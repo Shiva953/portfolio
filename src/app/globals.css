@@ -3,19 +3,62 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
-
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+  --background: 0 0% 0%;
+  --foreground: 0 0% 100%;
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+  background-color: hsl(var(--background));
+  color: hsl(var(--foreground));
+}
+
+::selection {
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.prose {
+  max-width: none;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.bg-gradient-animate {
+  background-size: 200% 200%;
+  animation: gradient 15s ease infinite;
+}
+
+@font-face {
+  font-family: "Freight Big Pro";
+  src: url("/fonts/FreightBigPro-Book.woff2") format("woff2");
+  font-weight: normal;
+  font-style: italic;
+}
+
+.font-freight {
+  font-family: "Freight Big Pro", serif;
+  font-style: italic;
+}
+
+.gradient-blur {
+  background: radial-gradient(circle at top right, rgba(50, 50, 50, 0.2), transparent 80%);
+}
+
+.image-glow {
+  transition: all 0.3s ease;
+}
+
+.image-glow:hover {
+  filter: brightness(1.2);
+  box-shadow: 0 0 40px rgba(255, 255, 255, 0.2);
+  transform: scale(1.02);
 }
