@@ -53,10 +53,9 @@ const projects = {
   },
 }
 
-export default async function ProjectPage({ params }: { params: { slug: Promise<string> } }) {
+export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
   const { slug } = await params;
-  const slugF = await slug;
-  const project = projects[slugF as keyof typeof projects]
+  const project = projects[slug as keyof typeof projects]
 
   if (!project) {
     return <div>Project not found</div>
