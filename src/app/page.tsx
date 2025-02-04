@@ -7,6 +7,7 @@ import localFont from 'next/font/local'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import {Roboto_Mono} from "next/font/google"
+import { WalletAddress } from '@/components/WalletAddress'
 
 const roboto = Roboto_Mono({style: ["normal"], subsets: ["latin", "latin-ext"]})
 
@@ -26,7 +27,10 @@ export default function Home() {
       <div className="max-w-4xl mx-auto px-6 py-6 space-y-12">
         {/* Header */}
         <header className="flex justify-between items-start">
+        <div className='flex flex-row items-center gap-x-4'>
           <h1 className={` text-3xl font-bold text-white ${supply.className}`}>SHIVA</h1>
+          <WalletAddress address={"792FsxG2Co6rDAwudPCW1bJp8VwkzVThdSGPPZJpswE5"}/>
+        </div>
           <div className="flex gap-4">
             <Link href="https://github.com/Shiva953" className="text-gray-400 hover:text-white transition-colors">
               <Github className="h-5 w-5" />

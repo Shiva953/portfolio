@@ -2,6 +2,7 @@ import './globals.css'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import { Metadata } from 'next'
+import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
   title: 'Portfolio',
@@ -15,7 +16,10 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" className={`${GeistSans.variable} ${GeistMono.variable}`}>
-      <body className="bg-black min-h-screen font-sans antialiased">{children}</body>
+      <body className="bg-black min-h-screen font-sans antialiased">
+        {children}
+        <Toaster position='top-center'/>
+        </body>
     </html>
   )
 }
