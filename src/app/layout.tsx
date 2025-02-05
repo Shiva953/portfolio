@@ -5,8 +5,8 @@ import { Metadata } from 'next'
 import { Toaster } from 'sonner'
 
 export const metadata: Metadata = {
-  title: 'Portfolio',
-  description: "Neutron's Portfolio Website",
+  title: "Shiva's Portfolio",
+  description: "Shiva's Portfolio Website, @Neutron975 on X",
 }
 
 export default function RootLayout({
