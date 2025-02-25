@@ -7,9 +7,12 @@ import localFont from 'next/font/local'
 import { GeistSans } from 'geist/font/sans'
 import { GeistMono } from 'geist/font/mono'
 import {Roboto_Mono} from "next/font/google"
+import { Inter } from 'next/font/google'
 import { WalletAddress } from '@/components/WalletAddress'
 
 const roboto = Roboto_Mono({style: ["normal"], subsets: ["latin", "latin-ext"]})
+
+const inter = Inter({style: ["normal", "italic"], subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"]})
 
 const supply = localFont({
   src: './font/Supply-Regular.otf',
@@ -28,7 +31,7 @@ export default function Home() {
         {/* Header */}
         <header className="flex justify-between items-start">
         <div className='flex flex-row items-center gap-x-4'>
-          <h1 className={` text-3xl font-bold text-white ${supply.className}`}>SHIVA</h1>
+          <h1 className={`text-3xl font-bold text-white tracking-tight ${supply.className}`}>SHIVA</h1>
           <WalletAddress address={"792FsxG2Co6rDAwudPCW1bJp8VwkzVThdSGPPZJpswE5"}/>
         </div>
           <div className="flex gap-4">
@@ -45,24 +48,25 @@ export default function Home() {
         </header>
 
         {/* Hero */}
-        <section className={`space-y-4 ${montreal.className}`}>
-          <p className="text-[1rem] tracking-[0.0175rem] text-white/60 max-w-3xl">
-            Hi, I{"'"}m Shiva. I{"'"}m a full-stack solana engineer and a self-taught developer. Won{' '}
+        <section className={`space-y-4 text-[0.9rem] tracking-[-0.045rem] ${roboto.className}`}>
+          <p className="text-white/70 max-w-3xl">
+            Hi, I{"'"}m <span className='text-white/90'>Shiva</span>. I{"'"}m a full-stack solana engineer and a self-taught developer. Won{' '}
             <span className='text-white font-semibold hover:cursor-pointer'>2 Hackathons</span> previously, also a{' '}
             <span className='text-white font-semibold hover:cursor-pointer'>Solana Foundation</span> Grantee. Love to build, contribute to <span className='text-white font-semibold hover:cursor-pointer'>open source</span> occasionally.
           </p>
-          <p className="text-[1rem] tracking-[0.0175rem] text-white/70">
+          <p className="text-white/75">
             I like nerding about cryptography and the math behind DeFi. You can find me on <span className='text-white underline hover:cursor-pointer'><Link href={"https://github.com/Shiva953"}>github</Link></span>, or DM me on <span className='text-white underline hover:cursor-pointer'><Link href={"https://x.com/Neutron975"}>X</Link></span>.
           </p>
-          <p className="text-[1rem] tracking-[0.0175rem] text-white font-extrabold">
+          <p className="text-white font-extrabold text-[1rem]">
             Member at @<span className='underline hover:cursor-pointer'>SuperteamIN</span>
           </p>
         </section>
 
-        <h2 className={`text-2xl text-white font-extrabold tracking-wide mb--8 ${montreal.className}`}>Work</h2>
+        
 
       {/* Experience */}
       <section className="space-y-2 text-sm tracking-wide">
+      <h1 className={`text-2xl text-white font-extrabold tracking-wide mb-6 ${montreal.className}`}>Work</h1>
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <div className="relative h-12 w-12 overflow-hidden rounded-full">
@@ -113,10 +117,9 @@ export default function Home() {
       </div>
     </section>
 
-      <h2 className={`text-2xl text-white font-extrabold tracking-wide ${montreal.className}`}>Projects</h2>
-
         {/* Projects */}
         <section className="space-y-2">
+        <h1 className={`text-2xl text-white font-extrabold tracking-wide mb-6 ${montreal.className}`}>Projects</h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-16">
             <Link href="/projects/belzin" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
@@ -240,6 +243,48 @@ export default function Home() {
                   </div>
                   <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
                     A minimal, terminal based solana CLI Wallet.
+                  </p>
+                </div>
+              </div>
+            </Link>
+            <Link href="https://github.com/Shiva953/Picovault" className="group w-full max-w-[30rem]">
+              <div className="space-y-4">
+                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
+                  <Image
+                    src="/solclix.png"
+                    alt="picovault"
+                    fill
+                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>Picovault</h3>
+                    <span className="text-gray-400">2024</span>
+                  </div>
+                  <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
+                    A Redis-like Key-Value store implementation in rust.
+                  </p>
+                </div>
+              </div>
+            </Link>
+            <Link href="https://github.com/Shiva953/ecdsa-rust" className="group w-full max-w-[30rem]">
+              <div className="space-y-4">
+                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
+                  <Image
+                    src="/ECC.png"
+                    alt="ecdsa"
+                    fill
+                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>ECDSA</h3>
+                    <span className="text-gray-400">2024</span>
+                  </div>
+                  <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
+                    Elliptic Curve Digital Signature Algorithm(EC-DSA) implementation, used to sign and verify messages.
                   </p>
                 </div>
               </div>
