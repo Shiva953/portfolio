@@ -48,8 +48,21 @@ export default function Home() {
         </header>
 
         {/* Hero */}
+        {/* Custom selection style for about section */}
+        <style>
+          {`
+            .about-section *::selection, .about-section::selection {
+              background: #fff !important;
+              color: #000 !important;
+            }
+            .about-section *::-moz-selection, .about-section::-moz-selection {
+              background: #fff !important;
+              color: #000 !important;
+            }
+          `}
+        </style>
         <section
-          className="space-y-4 custom-selection"
+          className="space-y-4 about-section"
           style={{
             fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
             fontSize: '14.6px',
@@ -58,25 +71,14 @@ export default function Home() {
             color: 'rgb(153, 153, 153)',
           }}
         >
-        <h1 className={`text-white tracking-tighter mb-4`} style={{
-        fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-        fontSize: '24px',
-        fontWeight: 600,
-        lineHeight: '36px',
-        color: 'rgb(255, 255, 255)',
-        }}>about</h1>
-          <style>
-            {`
-              .custom-selection ::selection {
-                background: #fff !important;
-                color: #000 !important;
-              }
-              .custom-selection ::-moz-selection {
-                background: #fff !important;
-                color: #000 !important;
-              }
-            `}
-          </style>
+          <h1 className={`text-white tracking-tighter mb-4`} style={{
+            fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+            fontSize: '28px',
+            fontWeight: 600,
+            lineHeight: '36px',
+            color: 'rgb(255, 255, 255)',
+          }}>about</h1>
+          
           <p style={{ maxWidth: '48rem' }} className='tracking-tight'>
             hi, I{"'"}m <span style={{ color: 'rgb(153, 153, 153)', fontWeight: 400 }}>shiva</span>. i{"'"}m a full-stack solana engineer and a self-taught developer. won{' '}
             <span style={{ color: 'rgb(234, 234, 234)', cursor: 'pointer' }}>2 hackathons</span> previously, also a{' '}
@@ -106,7 +108,7 @@ export default function Home() {
       <section className="space-y-2 text-sm tracking-wide">
       <h1 className={`text-white tracking-tighter mb-6`} style={{
         fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-        fontSize: '24px',
+        fontSize: '28px',
         fontWeight: 600,
         lineHeight: '36px',
         color: 'rgb(255, 255, 255)',
@@ -131,13 +133,25 @@ export default function Home() {
                   </div>
                   </Link>
                   
-                  <p className="text-white/60 tracking-tight" 
+                  <p className="text-white/60 tracking-tight custom-selection" 
                   style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
                   fontSize: '14px',
                   fontWeight: 400,
                   lineHeight: '22.4px',
                   color: 'rgb(153, 153, 153)',
                 }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
                     Member, Contributing to the Solana Ecosystem
                   </p>
                 </div>
@@ -158,13 +172,25 @@ export default function Home() {
                     <ChevronRight className="h-4 w-4 transform opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-1 group-hover:opacity-100 text-white" />
                   </div>
                   </Link>
-                  <p className="text-white/60 tracking-tight" 
+                  <p className="text-white/60 tracking-tight custom-selection" 
                   style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
                   fontSize: '14px',
                   fontWeight: 400,
                   lineHeight: '22.4px',
                   color: 'rgb(153, 153, 153)',
                 }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
                   Got numerous gigs from platforms like Superteam Earn and Gibwork</p>
                 </div>
                 <span className="text-gray-400">July 2024 - Present</span>
@@ -178,7 +204,7 @@ export default function Home() {
         <section className="space-y-2">
         <h1 className={`text-white tracking-tighter mb-6`} style={{
         fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-        fontSize: '24px',
+        fontSize: '28px',
         fontWeight: 600,
         lineHeight: '36px',
         color: 'rgb(255, 255, 255)',
@@ -196,11 +222,29 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>Belzin</h3>
-                    <span className="text-gray-400">2025</span>
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>belzin</h3>
+                    <span className="text-gray-400 text-sm">2025</span>
                   </div>
-                  <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
-                    AI-Agent Powered P2P Group Chat Betting. Received a <span className='text-white/90'>$3000 grant</span> from the <span className="text-white/90">Solana Foundation</span>.
+                  <p className="text-white/65 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    ai-agent powered p2p group chat betting. received a <span className='text-white/90'>$3000 grant</span> from the <span className="text-white/90">solana foundation</span>.
                   </p>
                 </div>
               </div>
@@ -217,11 +261,29 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>Univault</h3>
-                    <span className="text-gray-400">2024</span>
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>univault</h3>
+                    <span className="text-gray-400 text-sm">2024</span>
                   </div>
-                  <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
-                    Squads Multi-sig Management using Solana Blinks and Actions
+                  <p className="text-white/65 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    squads multi-sig management using solana blinks and actions
                   </p>
                 </div>
               </div>
@@ -238,11 +300,29 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>OSS Contributions</h3>
-                    <span className="text-gray-400">2024-25</span>
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>oss contributions</h3>
+                    <span className="text-gray-400 text-sm">2024-25</span>
                   </div>
-                  <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
-                    Some of my merged PRs in open source repositories, including the official anchor repo
+                  <p className="text-white/65 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    some of my merged prs in open source repositories, including the official anchor repo
                   </p>
                 </div>
               </div>
@@ -259,11 +339,29 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>Liquotic</h3>
-                    <span className="text-gray-400">2024</span>
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>liquotic</h3>
+                    <span className="text-gray-400 text-sm">2024</span>
                   </div>
-                  <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
-                    Buy NFTs with any SPL-Token
+                  <p className="text-white/65 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    buy NFTs with any SPL token
                   </p>
                 </div>
               </div>
@@ -280,11 +378,29 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>OpenVest</h3>
-                    <span className="text-gray-400">2024</span>
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>openvest</h3>
+                    <span className="text-gray-400 text-sm">2024</span>
                   </div>
-                  <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
-                    Create Token Vesting Schedules for Company Employees
+                  <p className="text-white/65 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    create token vesting schedules for company employees
                   </p>
                 </div>
               </div>
@@ -301,11 +417,29 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>SOL-CLIX</h3>
-                    <span className="text-gray-400">2024</span>
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>sol-clix</h3>
+                    <span className="text-gray-400 text-sm">2024</span>
                   </div>
-                  <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
-                    A minimal, terminal based solana CLI Wallet.
+                  <p className="text-white/65 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                  }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    a minimal, terminal based solana cli wallet.
                   </p>
                 </div>
               </div>
@@ -322,11 +456,29 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>Picovault</h3>
-                    <span className="text-gray-400">2024</span>
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>picovault</h3>
+                    <span className="text-gray-400 text-sm">2024</span>
                   </div>
-                  <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
-                    A Redis-like Key-Value store implementation in rust.
+                  <p className="text-white/65 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                  }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    a redis-like key-value store implementation in rust.
                   </p>
                 </div>
               </div>
@@ -344,10 +496,28 @@ export default function Home() {
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
                     <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>ECDSA</h3>
-                    <span className="text-gray-400">2024</span>
+                    <span className="text-gray-400 text-sm">2024</span>
                   </div>
-                  <p className={`text-white/65 tracking-tight font-[400] text-[0.8rem] ${roboto.className}`}>
-                    Elliptic Curve Digital Signature Algorithm(EC-DSA) implementation, used to sign and verify messages.
+                  <p className="text-white/65 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                  }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    elliptic curve digital signature algorithm(ECDSA) implementation for signing and verifying messages
                   </p>
                 </div>
               </div>
