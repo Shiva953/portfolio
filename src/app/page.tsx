@@ -48,25 +48,69 @@ export default function Home() {
         </header>
 
         {/* Hero */}
-        <section className={`space-y-4 text-[0.9rem] tracking-[-0.045rem] ${roboto.className}`}>
-          <p className="text-white/70 max-w-3xl">
-            Hi, I{"'"}m <span className='text-white/90'>Shiva</span>. I{"'"}m a full-stack solana engineer and a self-taught developer. Won{' '}
-            <span className='text-white font-semibold hover:cursor-pointer'>2 Hackathons</span> previously, also a{' '}
-            <span className='text-white font-semibold hover:cursor-pointer'>Solana Foundation</span> Grantee. Love to build, contribute to <span className='text-white font-semibold hover:cursor-pointer'>open source</span> occasionally.
+        <section
+          className="space-y-4 custom-selection"
+          style={{
+            fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+            fontSize: '14.6px',
+            fontWeight: 400,
+            lineHeight: '22.4px',
+            color: 'rgb(153, 153, 153)',
+          }}
+        >
+        <h1 className={`text-white tracking-tighter mb-4`} style={{
+        fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+        fontSize: '24px',
+        fontWeight: 600,
+        lineHeight: '36px',
+        color: 'rgb(255, 255, 255)',
+        }}>about</h1>
+          <style>
+            {`
+              .custom-selection ::selection {
+                background: #fff !important;
+                color: #000 !important;
+              }
+              .custom-selection ::-moz-selection {
+                background: #fff !important;
+                color: #000 !important;
+              }
+            `}
+          </style>
+          <p style={{ maxWidth: '48rem' }} className='tracking-tight'>
+            hi, I{"'"}m <span style={{ color: 'rgb(153, 153, 153)', fontWeight: 400 }}>shiva</span>. i{"'"}m a full-stack solana engineer and a self-taught developer. won{' '}
+            <span style={{ color: 'rgb(234, 234, 234)', cursor: 'pointer' }}>2 hackathons</span> previously, also a{' '}
+            <span style={{ color: 'rgb(234, 234, 234)', cursor: 'pointer' }}>solana foundation</span> grantee. love to build, contribute to <span style={{ color: 'rgb(234, 234, 234)', cursor: 'pointer' }}>open source</span> occasionally.
           </p>
-          <p className="text-white/75">
-            I like nerding about cryptography and the math behind DeFi. You can find me on <span className='text-white underline hover:cursor-pointer'><Link href={"https://github.com/Shiva953"}>github</Link></span>, or DM me on <span className='text-white underline hover:cursor-pointer'><Link href={"https://x.com/Neutron975"}>X</Link></span>.
+          <p>
+            i like nerding about cryptography and the math behind DeFi. you can find me on{' '}
+            <span style={{ cursor: 'pointer', color: 'rgb(234, 234, 234)' }}>
+              <Link href={"https://github.com/Shiva953"}>github</Link>
+            </span>
+            , or dm me on{' '}
+            <span style={{ cursor: 'pointer', color: 'rgb(234, 234, 234)' }}>
+              <Link href={"https://x.com/Neutron975"}>X</Link>
+            </span>
+            .
           </p>
-          <p className="text-white font-extrabold text-[1rem]">
-            Member at @<span className='underline hover:cursor-pointer'>SuperteamIN</span>
+          <p>
+            member at{'  '}
+            <span style={{ cursor: 'pointer', color: 'white' }} className='tracking-tigher'>
+              @superteamIN
+            </span>
+            .
           </p>
         </section>
-
         
-
       {/* Experience */}
       <section className="space-y-2 text-sm tracking-wide">
-      <h1 className={`text-2xl text-white font-extrabold tracking-wide mb-6 ${montreal.className}`}>Work</h1>
+      <h1 className={`text-white tracking-tighter mb-6`} style={{
+        fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+        fontSize: '24px',
+        fontWeight: 600,
+        lineHeight: '36px',
+        color: 'rgb(255, 255, 255)',
+        }}>work</h1>
         <div className="space-y-6">
           <div className="flex items-center gap-4">
             <div className="relative h-12 w-12 overflow-hidden rounded-full">
@@ -87,7 +131,13 @@ export default function Home() {
                   </div>
                   </Link>
                   
-                  <p className="text-white/60">
+                  <p className="text-white/60 tracking-tight" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                }}>
                     Member, Contributing to the Solana Ecosystem
                   </p>
                 </div>
@@ -108,7 +158,14 @@ export default function Home() {
                     <ChevronRight className="h-4 w-4 transform opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-1 group-hover:opacity-100 text-white" />
                   </div>
                   </Link>
-                  <p className="text-white/60">Got numerous gigs from platforms like Superteam Earn and Gibwork</p>
+                  <p className="text-white/60 tracking-tight" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                }}>
+                  Got numerous gigs from platforms like Superteam Earn and Gibwork</p>
                 </div>
                 <span className="text-gray-400">July 2024 - Present</span>
             </div>
@@ -119,7 +176,13 @@ export default function Home() {
 
         {/* Projects */}
         <section className="space-y-2">
-        <h1 className={`text-2xl text-white font-extrabold tracking-wide mb-6 ${montreal.className}`}>Projects</h1>
+        <h1 className={`text-white tracking-tighter mb-6`} style={{
+        fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+        fontSize: '24px',
+        fontWeight: 600,
+        lineHeight: '36px',
+        color: 'rgb(255, 255, 255)',
+        }}>projects</h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-16">
             <Link href="/projects/belzin" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
