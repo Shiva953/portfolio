@@ -210,6 +210,48 @@ export default function Home() {
         color: 'rgb(255, 255, 255)',
         }}>projects</h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-16">
+            <Link href="https://gorclash.fun" className="group w-full max-w-[30rem]">
+              <div className="space-y-4">
+                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
+                  <video
+                    src="/gorclash-preview.mp4"
+                    className="object-cover w-full h-full"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                    poster="/gorclash.png"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>Gorclash</h3>
+                    <span className="text-gray-400 text-sm">2025</span>
+                  </div>
+                  <p className="text-white/65 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                  }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    a mini-multiplayer arcade styled game built on gorbagana, a solana L2. <br/>
+                  </p>
+                </div>
+              </div>
+            </Link>
             <Link href="/projects/belzin" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
