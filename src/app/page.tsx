@@ -117,6 +117,51 @@ export default function Home() {
           <div className="flex items-center gap-4">
             <div className="relative h-12 w-12 overflow-hidden rounded-full">
               <Image
+                src="/glympse.png"
+                alt="GlympseDotFun"
+                fill
+                className="object-cover"
+              />
+            </div>
+            <div className="flex-1">
+              <div className={`flex items-center justify-between ${montreal.className} cursor-pointer`}>
+                <div>
+                <Link href={"https://glympse.fun"}>
+                  <div className="group flex items-center gap-2">
+                    <h3 className="font-bold text-white">GlympseDotFun</h3>
+                    <ChevronRight className="h-4 w-4 transform opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-1 group-hover:opacity-100 text-white" />
+                  </div>
+                  </Link>
+                  
+                  <p className="text-white/60 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '14px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    product engineering & solana protocol development
+                  </p>
+                </div>
+                <span className="text-gray-400">Aug to Nov 2025</span>
+              </div>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="relative h-12 w-12 overflow-hidden rounded-full">
+              <Image
                 src="/STINDIA.jpg"
                 alt="Superteam"
                 fill
