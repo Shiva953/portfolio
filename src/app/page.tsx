@@ -80,9 +80,7 @@ export default function Home() {
           }}>about</h1>
           
           <p style={{ maxWidth: '48rem' }} className='tracking-tight'>
-            hi, I{"'"}m <span style={{ color: 'rgb(153, 153, 153)', fontWeight: 400 }}>shiva</span>. i{"'"}m a full-stack solana engineer and a self-taught developer. won{' '}
-            <span style={{ color: 'rgb(234, 234, 234)', cursor: 'pointer' }}>2 hackathons</span> previously, also a{' '}
-            <span style={{ color: 'rgb(234, 234, 234)', cursor: 'pointer' }}>solana foundation</span> grantee. love to build, contribute to <span style={{ color: 'rgb(234, 234, 234)', cursor: 'pointer' }}>open source</span> occasionally.
+            hi, I{"'"}m <span style={{ color: 'rgb(255, 255, 255)', fontWeight: 600 }}>shiva</span>. i{"'"}m a full-stack solana engineer, self-taught dev and <span style={{ color: 'rgb(255, 255, 255)', cursor: 'pointer' }}>contribute to OSS</span> occasionally.
           </p>
           <p>
             i like nerding about cryptography and the math behind DeFi. you can find me on{' '}
@@ -97,7 +95,7 @@ export default function Home() {
           </p>
           <p>
             member at{'  '}
-            <span style={{ cursor: 'pointer', color: 'white' }} className='tracking-tigher'>
+            <span style={{ cursor: 'pointer', color: 'white', fontWeight: 600 }} className='tracking-tigher'>
               @superteamIN
             </span>
             .
