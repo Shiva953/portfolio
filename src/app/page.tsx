@@ -62,7 +62,7 @@ export default function Home() {
           `}
         </style>
         <section
-          className="space-y-4 about-section"
+          className="space-y-3 about-section"
           style={{
             fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
             fontSize: '14.6px',
@@ -80,9 +80,9 @@ export default function Home() {
           }}>about</h1>
           
           <p style={{ maxWidth: '48rem' }} className='tracking-tight'>
-            hi, I{"'"}m <span style={{ color: 'rgb(255, 255, 255)', fontWeight: 600 }}>shiva</span>. i{"'"}m a full-stack solana engineer, self-taught dev and <span style={{ color: 'rgb(255, 255, 255)', cursor: 'pointer' }}>contribute to OSS</span> occasionally.
+            hi, I{"'"}m <span style={{ color: 'rgb(255, 255, 255)', fontWeight: 600 }}>shiva</span>. i{"'"}m a full-stack <span style={{ color: 'rgb(255, 255, 255)', fontWeight: 600 }}>solana</span> engineer, self-taught dev and <span style={{ color: 'rgb(255, 255, 255)', cursor: 'pointer' }}>contribute to OSS</span> occasionally.
           </p>
-          <p>
+          <p className='tracking-tight'>
             i like nerding about cryptography and the math behind DeFi. you can find me on{' '}
             <span style={{ cursor: 'pointer', color: 'rgb(234, 234, 234)' }}>
               <Link href={"https://github.com/Shiva953"}>github</Link>
@@ -93,12 +93,13 @@ export default function Home() {
             </span>
             .
           </p>
-          <p>
+          <p className='tracking-tight'>
             member at{'  '}
-            <span style={{ cursor: 'pointer', color: 'white', fontWeight: 600 }} className='tracking-tigher'>
-              @superteamIN
-            </span>
-            .
+            <Link href="https://superteam.fun" target="_blank" rel="noopener noreferrer">
+              <span style={{ cursor: 'pointer', color: 'white', fontWeight: 600 }} className='tracking-tigher'>
+                @superteamIN
+              </span>
+            </Link>
           </p>
         </section>
         
