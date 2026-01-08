@@ -65,7 +65,7 @@ export default function Home() {
           className="space-y-3 about-section"
           style={{
             fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-            fontSize: '14.6px',
+            fontSize: '14.8px',
             fontWeight: 400,
             lineHeight: '22.4px',
             color: 'rgb(153, 153, 153)',
