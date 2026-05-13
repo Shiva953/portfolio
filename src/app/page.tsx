@@ -125,7 +125,7 @@ export default function Home() {
             <div className="flex-1">
               <div className={`flex items-center justify-between ${montreal.className} cursor-pointer`}>
                 <div>
-                <Link href={"https://glympse.fun"}>
+                <Link href={"https://x.com/glympsedotfun"}>
                   <div className="group flex items-center gap-2">
                     <h3 className="font-bold text-white">GlympseDotFun</h3>
                     <ChevronRight className="h-4 w-4 transform opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-1 group-hover:opacity-100 text-white" />
