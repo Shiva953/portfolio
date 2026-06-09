@@ -259,7 +259,7 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
                   <video
-                    src="/traderdraft_preview.mp4"
+                    src="/traderdraftpreview.mp4"
                     className="object-cover w-full h-full"
                     autoPlay
                     loop
@@ -269,7 +269,7 @@ export default function Home() {
                 </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>TraderDRAFT</h3>
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>TraderDraft</h3>
                     <span className="text-gray-400 text-sm">2025</span>
                   </div>
                   <p className="text-white/65 tracking-tight custom-selection"
