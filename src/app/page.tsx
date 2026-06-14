@@ -252,7 +252,83 @@ export default function Home() {
         color: 'rgb(255, 255, 255)',
         }}>projects</h1>
           <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-16">
-            {/* TraderDRAFT */}
+
+            {/* Belzin */}
+            <Link href="/projects/belzin" className="group w-full max-w-[30rem]">
+              <div className="space-y-4">
+                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
+                  <Image
+                    src="/belzin.png"
+                    alt="Belzin"
+                    fill
+                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
+                  />
+                </div>
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>Belzin</h3>
+                    <span className="text-gray-400 text-sm">2025</span>
+                  </div>
+                  <p className="text-white/65 tracking-tight custom-selection" 
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    Agent powered P2P group chat betting. received a <span className='text-white/90'>$3000 grant</span> from the <span className="text-white/90">solana foundation</span>.
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            {/* BountyExchange */}
+            <Link href="https://github.com/Shiva953/BountyExchange" className="group w-full max-w-[30rem]">
+              <div className="space-y-4">
+                <div className="relative w-full h-[250px] overflow-hidden rounded-lg bg-black rounded-lg" />
+                <div className="space-y-1">
+                  <div className="flex items-center justify-between">
+                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>BountyExchange</h3>
+                    <span className="text-gray-400 text-sm">2025</span>
+                  </div>
+                  <p className="text-white/65 tracking-tight custom-selection"
+                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
+                  fontSize: '12.8px',
+                  fontWeight: 400,
+                  lineHeight: '22.4px',
+                  color: 'rgb(153, 153, 153)',
+                  }}>
+                    <style>
+                    {`
+                      .custom-selection::selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                      .custom-selection::-moz-selection {
+                        background: #fff !important;
+                        color: #000 !important;
+                      }
+                    `}
+                    </style>
+                    Trustless USDC escrow for KOL trading bounties on Solana, settled via off-chain volume oracle and crank-based finalization.
+                  </p>
+                </div>
+              </div>
+            </Link>
+
+            {/* TraderDraft */}
             <Link href="https://github.com/Shiva953/traderdraft" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
@@ -294,6 +370,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* Gorclash */}
             <Link href="https://gorclash.fun" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
@@ -336,45 +414,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
-            <Link href="/projects/belzin" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <Image
-                    src="/belzin.png"
-                    alt="Belzin"
-                    fill
-                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>belzin</h3>
-                    <span className="text-gray-400 text-sm">2025</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    ai-agent powered p2p group chat betting. received a <span className='text-white/90'>$3000 grant</span> from the <span className="text-white/90">solana foundation</span>.
-                  </p>
-                </div>
-              </div>
-            </Link>
+
+            {/* Univault */}
             <Link href="/projects/univault" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
@@ -414,6 +455,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* OSS */}
             <Link href="https://github.com/pulls?q=is%3Amerged+is%3Apr+author%3AShiva953+archived%3Afalse+" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
@@ -453,6 +496,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* Liquotic */}
             <Link href="/projects/liquotic" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
@@ -492,6 +537,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* Openvest */}
             <Link href="/projects/openvest" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
@@ -531,6 +578,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* Sol-clix */}
             <Link href="https://github.com/Shiva953/sol-clix" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
@@ -570,6 +619,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* Picovault */}
             <Link href="https://github.com/Shiva953/Picovault" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
@@ -609,6 +660,8 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
+            {/* ECDSA */}
             <Link href="https://github.com/Shiva953/ecdsa-rust" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
@@ -648,6 +701,7 @@ export default function Home() {
                 </div>
               </div>
             </Link>
+
           </div>
         </section>
       </div>
