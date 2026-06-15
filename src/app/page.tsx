@@ -297,7 +297,16 @@ export default function Home() {
             {/* BountyExchange */}
             <Link href="https://github.com/Shiva953/BountyExchange" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg bg-black rounded-lg" />
+                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
+                  <video
+                    src="/BEXdemo.mp4"
+                    className="object-cover w-full h-full"
+                    autoPlay
+                    loop
+                    muted
+                    playsInline
+                  />
+                </div>
                 <div className="space-y-1">
                   <div className="flex items-center justify-between">
                     <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>BountyExchange</h3>
