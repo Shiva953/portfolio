@@ -299,7 +299,7 @@ export default function Home() {
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
                   <video
-                    src="/BEXdemo.mp4"
+                    src="/BEXDemo.mp4"
                     className="object-cover w-full h-full"
                     autoPlay
                     loop
@@ -381,7 +381,7 @@ export default function Home() {
             </Link>
 
             {/* Gorclash */}
-            <Link href="https://gorclash.fun" className="group w-full max-w-[30rem]">
+            <Link href="https://github.com/Shiva953/gorclash" className="group w-full max-w-[30rem]">
               <div className="space-y-4">
                 <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
                   <video
