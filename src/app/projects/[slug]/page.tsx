@@ -1,174 +1,181 @@
-import Image from 'next/image'
+import type { Metadata } from 'next'
 import Link from 'next/link'
-import { ArrowLeft } from 'lucide-react'
-import localFont from 'next/font/local'
-import { ExternalLink } from 'lucide-react'
+import { notFound } from 'next/navigation'
+import { ArrowLeft, ArrowRight, ArrowUpRight, Check } from 'lucide-react'
+import { Contact } from '@/components/contact'
+import { ContactDock } from '@/components/contact-dock'
+import { DemoPlayer } from '@/components/demo-video'
+import { SiteFooter } from '@/components/site-footer'
+import { SiteHeader } from '@/components/site-header'
+import { Backdrop, Prompt } from '@/components/terminal'
+import { getProject, projects } from '@/lib/projects'
+import { site } from '@/lib/site'
 
-const supply = localFont({
-  src: '../../font/Supply-Regular.otf',
-  display: 'swap',
-})
+type PageProps = { params: Promise<{ slug: string }> }
 
-const montreal = localFont({
-  src: '../../font/NeueMontreal-Regular.otf',
-  display: 'swap',
-})
+export const dynamicParams = false
 
-const projects = {
-  'belzin': {
-    title: 'Belzin',
-    year: '2025',
-    overview: 'AI-Agent Powered P2P Group Chat Betting platform built on Solana. The project leverages machine learning to provide intelligent betting suggestions and risk assessment.',
-    'live': 'https://belzin.fun',
-    'url' : 'https://github.com/Shiva953/Belzin',
-    image: '/belzin.png',
-    tools: ['Next.js', 'TypeScript', 'Rust', 'Prisma', 'PostgreSQL', 'solana/web3.js', 'Solana Wallet Adapter', 'Solana Actions']
-  },
-  'univault': {
-    title: 'Univault',
-    year: '2024',
-    'live': 'https://univault.xyz',
-    'url' : 'https://github.com/Shiva953/Univault',
-    overview: 'Squads Multisig Management using Solana Blinks, providing a seamless and secure way to manage multi-signature wallets with enhanced UX.',
-    image: '/univault.png',
-    tools: ['Typescript', 'NextJS', 'Solana Actions', 'Blinks']
-  },
-  'liquotic': {
-    title: 'Liquotic',
-    year: '2024',
-    'live': 'https://liquotic.xyz',
-    'url' : 'https://github.com/Shiva953/Liquotic',
-    overview: 'Liquotic lets you buy an NFT with any SPL-token(like USDC) rather than only SOL.',
-    image: '/liquotic.jpg',
-    tools: ['Typescript', 'NextJS', 'Solana Actions', 'Prisma', 'PostgresSQL', 'Solana Wallet Adapter', 'solana/web3.js']
-  },
-  'openvest': {
-    title: 'Openvest',
-    year: '2024',
-    'live': 'https://openvest.vercel.app',
-    'url' : 'https://github.com/Shiva953/openvest',
-    overview: 'Lets you create token vesting schedules for your company employees. Lock the supply into the company vault, and then choose the vest duration per choice.',
-    image: '/openvest.png',
-    tools: ['Typescript', 'NextJS', 'Anchor', 'Rust']
-  },
+export function generateStaticParams() {
+  return projects.map((project) => ({ slug: project.slug }))
 }
 
-export default async function ProjectPage({ params }: { params: Promise<{ slug: string }> }) {
-  const { slug } = await params;
-  const project = projects[slug as keyof typeof projects]
+export async function generateMetadata({ params }: PageProps): Promise<Metadata> {
+  const { slug } = await params
+  const project = getProject(slug)
+  if (!project) return {}
 
-  if (!project) {
-    return <div>Project not found</div>
+  const description = project.summary
+  return {
+    title: project.name,
+    description,
+    alternates: { canonical: `/projects/${project.slug}` },
+    openGraph: {
+      type: 'article',
+      url: `/projects/${project.slug}`,
+      title: `${project.name} by ${site.name}`,
+      description,
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: `${project.name} by ${site.name}`,
+      description,
+    },
   }
+}
+
+export default async function ProjectPage({ params }: PageProps) {
+  const { slug } = await params
+  const project = getProject(slug)
+  if (!project) notFound()
+
+  const index = projects.indexOf(project)
+  const next = projects[(index + 1) % projects.length]
 
   return (
-    <main className="min-h-screen bg-black text-white">
-      <div className="max-w-7xl mx-auto px-6 py-12">
-        {/* Back Button */}
-        <Link 
-          href="/" 
-          className="inline-flex items-center text-gray-400 hover:text-white transition-colors mb-12"
-        >
-          <ArrowLeft className="w-4 h-4 mr-2" />
-          Back to projects
-        </Link>
+    <>
+      <SiteHeader />
 
-        {/* Project Header */}
-        <div className="space-y-4 mb-12">
-          <h1 className={`text-4xl md:text-5xl font-bold ${montreal.className}`}>
-            {project.title}
-          </h1>
-          <div className={`flex gap-6 text-gray-400 font-semibold ${supply.className}`}>
-              <a 
-                href={project.live}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-white transition-colors"
-              >
-                <span>Live</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
-              <a 
-                href={project.url}
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="flex items-center gap-2 hover:text-white transition-colors"
-              >
-                <span>Github</span>
-                <ExternalLink className="w-4 h-4" />
-              </a>
+      <main className="lowercase">
+        <article className="shell pb-14 pt-6 sm:pt-10">
+          <Link
+            href="/#work"
+            className="inline-flex items-center gap-2 text-[15px] text-muted transition-colors hover:text-white"
+          >
+            <ArrowLeft className="h-4 w-4" aria-hidden />
+            All work
+          </Link>
+
+          <header className="mt-8">
+            <div className="flex items-baseline justify-between gap-6">
+              <h1 className="blend text-[clamp(2rem,5.5vw,3.5rem)] font-semibold leading-none">
+                {project.name}
+              </h1>
+              <span className="font-roboto text-[13px] text-faint">{project.year}</span>
             </div>
-        </div>
+            <p className="mt-4 max-w-[34ch] text-xl leading-snug text-muted sm:text-2xl">
+              {project.tagline}
+            </p>
 
-        {/* Project Content Grid */}
-        <div className="grid md:grid-cols-[1fr,1fr] gap-12">
-          {/* Left Column - Image */}
-          <div className="relative h-[300px] rounded-lg overflow-hidden">
-            <Link href={project.live}>
-            <Image
-              src={project.image}
-              alt={project.title}
-              fill
-              className="object-cover cursor-pointer image-glow opacity-80 hover:opacity-100 transition-opacity"
-            />
-            </Link>
-          </div>
-
-          {/* Right Column - Content */}
-          <div className="space-y-12">
-            {/* Overview Section */}
-            <div>
-              <h2 className={`text-xl font-bold mb-4 ${supply.className}`}>Overview</h2>
-              <div className={`prose prose-invert max-w-[5rem] ${montreal.className}`}>
-                <p className="text-white/70 font-[600] tracking-[0.025rem] text-[17px] leading-[28px]">
-                {project.title == 'Belzin' && (
-                    <>
-                      AI-Agent Powered P2P Group Chat Betting platform built using the solana agent kit. Received a $3000 Grant from the <span className='text-white underline font-extrabold'>Solana Foundation</span>.
-
-                      {`\n`}
-                      You can find the contracts for the dapp <span className='text-white underline font-extrabold'><Link href={"https://github.com/Shiva953/belzin-betting-program"}>here</Link></span>.
-                    </>
-                  )}
-
-                  {project.title == 'Univault' && (
-                    <>
-                      All-In-One Squads Multisig Management using solana blinks. Send Vault Transactions and Vote on them, directly through a blink. <span className='text-white underline hover:cursor-pointer'><Link href={"https://x.com/thesendcoin/status/1839324398102409634"}>Won the Blinkathon</Link></span> under Squads Track, a blinks-centred <span className='text-white underline hover:cursor-pointer'><Link href={"https://blinkathon.fun"}>solana hackathon</Link></span> organized by the send community.
-                    </>
-                  )}
-                  {project.title == 'Liquotic' && (
-                    <>
-                      Liquotic lets you buy an NFT with any SPL token listed on the jup list, rather than only SOL. It combines jupiter swap API along with the Magiceden API, where the jupiter aggregator swaps the selected token to SOL, which is then used to buy the NFT.
-                    </>
-                  )}
-                  {project.title == 'Openvest' && (
-                    <>
-                      Lets you create token vesting schedules for your company employees. Lock the supply into the company vault, and then choose the vest duration per choice.
-                    </>
-                  )}
-                </p>
-              </div>
-            </div>
-
-            {/* Tools Section */}
-            <div>
-              <h2 className={`text-xl font-bold mb-4 ${supply.className}`}>Tools</h2>
-              <div className="flex flex-wrap gap-2">
-                {project.tools.map((tool) => (
-                  <span
-                    key={tool}
-                    className={`px-3 py-1 rounded-full bg-white/5 text-gray-300 ${montreal.className}`}
+            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-[15px]">
+              {project.award &&
+                (project.award.href ? (
+                  <a
+                    href={project.award.href}
+                    target="_blank"
+                    rel="noopener"
+                    className="flex items-center gap-2 font-mono text-[13px] text-white underline-offset-4 hover:underline"
                   >
-                    {tool}
-                  </span>
+                    <Check className="h-3.5 w-3.5 shrink-0 text-live" strokeWidth={3} aria-hidden />
+                    {project.award.label}
+                  </a>
+                ) : (
+                  <p className="flex items-center gap-2 font-mono text-[13px] text-white">
+                    <Check className="h-3.5 w-3.5 shrink-0 text-live" strokeWidth={3} aria-hidden />
+                    {project.award.label}
+                  </p>
                 ))}
-              </div>
+              {project.links.map((link) => (
+                <a
+                  key={link.href}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="inline-flex items-center gap-1 text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
+                >
+                  {link.label}
+                  <ArrowUpRight className="h-4 w-4" aria-hidden />
+                </a>
+              ))}
             </div>
-           
-          </div>
-        </div>
-      </div>
+          </header>
 
-      <div className="fixed inset-0 -z-10 gradient-blur" />
-    </main>
+          <div className="mt-10 overflow-hidden rounded-xl border border-line bg-surface">
+            <DemoPlayer
+              name={project.name}
+              media={project.media}
+              sizes="(min-width: 1024px) 960px, 100vw"
+            />
+          </div>
+
+          <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-12">
+            <div className="md:col-span-7">
+              <h2 className="section-title">
+                <Prompt command="cat">Overview</Prompt>
+              </h2>
+              <p className="mt-3 text-lg leading-relaxed text-white/90">{project.summary}</p>
+
+              <h2 className="section-title mt-10">
+                <Prompt>What I built</Prompt>
+              </h2>
+              <ul className="mt-3 space-y-3 text-[17px] leading-snug text-white/90">
+                {project.built.map((line) => (
+                  <li
+                    key={line}
+                    className="relative pl-6 before:absolute before:left-0 before:top-[0.62em] before:h-px before:w-3 before:bg-white/40"
+                  >
+                    {line}
+                  </li>
+                ))}
+              </ul>
+            </div>
+
+            <aside className="md:col-span-5">
+              <h2 className="section-title">
+                <Prompt command="cat">Stack</Prompt>
+              </h2>
+              <ul className="mt-3 flex flex-wrap gap-1.5">
+                {project.stack.map((tool) => (
+                  <li key={tool} className="chip">
+                    {tool}
+                  </li>
+                ))}
+              </ul>
+            </aside>
+          </div>
+
+          <Link
+            href={`/projects/${next.slug}`}
+            className="group mt-16 flex items-center justify-between gap-6 border-y border-line py-6"
+          >
+            <span>
+              <span className="block font-mono text-[13px] text-faint">Next project</span>
+              <span className="blend mt-1 block text-[22px] font-semibold">
+                {next.name}
+              </span>
+            </span>
+            <ArrowRight
+              className="h-5 w-5 text-muted transition-transform duration-200 group-hover:translate-x-1 group-hover:text-white"
+              aria-hidden
+            />
+          </Link>
+        </article>
+
+        <Contact />
+      </main>
+
+      <SiteFooter />
+      <ContactDock />
+      <Backdrop />
+    </>
   )
 }

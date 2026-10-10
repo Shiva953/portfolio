@@ -1,764 +1,226 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
-import { Mail, Github, Twitter } from 'lucide-react'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ChevronRight } from 'lucide-react'
-import localFont from 'next/font/local'
-import { GeistSans } from 'geist/font/sans'
-import { GeistMono } from 'geist/font/mono'
-import {Roboto_Mono} from "next/font/google"
-import { Inter } from 'next/font/google'
+import { Check } from 'lucide-react'
+import { Contact } from '@/components/contact'
+import { ContactDock } from '@/components/contact-dock'
+import { ContactIcons } from '@/components/contact-links'
+import { ProjectPreview } from '@/components/demo-video'
+import { SiteFooter } from '@/components/site-footer'
+import { SiteHeader } from '@/components/site-header'
+import { Backdrop, Prompt } from '@/components/terminal'
+import { featuredProjects, projects, sideProjects } from '@/lib/projects'
+import { experience, openSource, proof, site, stack } from '@/lib/site'
 
-const roboto = Roboto_Mono({style: ["normal"], subsets: ["latin", "latin-ext"]})
-
-const inter = Inter({style: ["normal", "italic"], subsets: ["latin", "latin-ext", "cyrillic", "cyrillic-ext"]})
-
-const supply = localFont({
-  src: './font/Supply-Regular.otf',
-  display: 'swap',
-})
-
-const montreal = localFont({
-  src: './font/NeueMontreal-Regular.otf',
-  display: 'swap',
-})
+// Everything that doesn't get a card: one sentence of links under the grid.
+const alsoBuilt = [
+  ...projects
+    .filter((project) => !project.featured)
+    .map((project) => ({ name: project.name, href: `/projects/${project.slug}`, external: false })),
+  ...sideProjects.map((project) => ({ name: project.name, href: project.href, external: true })),
+]
 
 export default function Home() {
   return (
-    <main className="min-h-screen">
-      <div className="max-w-4xl mx-auto px-6 py-6 space-y-12">
-        {/* Header */}
-        <header className="flex justify-between items-start">
-        <div className='flex flex-row items-center gap-x-4'>
-          <h1 className={`text-3xl font-bold text-white tracking-tighter ${supply.className}`}>SHIVA</h1>
-        </div>
-          <div className="flex gap-4">
-            <Link href="https://github.com/Shiva953" className="text-gray-400 hover:text-white transition-colors">
-              <Github className="h-5 w-5" />
-            </Link>
-            <Link href="https://x.com/Neutron975" className="text-gray-400 hover:text-white transition-colors">
-              <Twitter className="h-5 w-5" />
-            </Link>
-            <Link href="mailto:shivaset2@gmail.com" className="text-gray-400 hover:text-white transition-colors">
-              <Mail className="h-5 w-5" />
-            </Link>
-          </div>
-        </header>
+    <>
+      <SiteHeader />
 
-        {/* Hero */}
-        {/* Custom selection style for about section */}
-        <style>
-          {`
-            .about-section *::selection, .about-section::selection {
-              background: #fff !important;
-              color: #000 !important;
-            }
-            .about-section *::-moz-selection, .about-section::-moz-selection {
-              background: #fff !important;
-              color: #000 !important;
-            }
-          `}
-        </style>
-        <section
-          className="space-y-3 about-section"
-          style={{
-            fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-            fontSize: '14.8px',
-            fontWeight: 400,
-            lineHeight: '22.4px',
-            color: 'rgb(153, 153, 153)',
-          }}
-        >
-          <h1 className={`text-white tracking-tighter mb-4`} style={{
-            fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-            fontSize: '28px',
-            fontWeight: 600,
-            lineHeight: '36px',
-            color: 'rgb(255, 255, 255)',
-          }}>about</h1>
-          
-          <p style={{ maxWidth: '48rem' }} className='tracking-tight'>
-            hi, I{"'"}m <span style={{ color: 'rgb(255, 255, 255)', fontWeight: 600 }}>shiva</span>. i{"'"}m a full-stack <span style={{ color: 'rgb(255, 255, 255)', fontWeight: 600 }}>solana</span> engineer, self-taught dev and <span style={{ color: 'rgb(255, 255, 255)', cursor: 'pointer' }}>contribute to OSS</span> occasionally.
+      {/* Copy is written in sentence case; the lowercase voice is this one class. */}
+      <main className="lowercase">
+        <section className="shell pb-12 pt-10 sm:pb-14 sm:pt-14">
+          {/* The page opens like a shell session: the command types itself, then the answer prints. */}
+          <p aria-hidden className="font-mono text-[15px] leading-6 text-white">
+            <span className="text-live">$</span> <span className="typed">whoami</span>
+            <span className="cursor" />
           </p>
-          <p className='tracking-tight'>
-            i like nerding about cryptography and the math behind DeFi. you can find me on{' '}
-            <span style={{ cursor: 'pointer', color: 'rgb(234, 234, 234)' }}>
-              <Link href={"https://github.com/Shiva953"}>github</Link>
-            </span>
-            , or dm me on{' '}
-            <span style={{ cursor: 'pointer', color: 'rgb(234, 234, 234)' }}>
-              <Link href={"https://x.com/Neutron975"}>X</Link>
-            </span>
-            .
-          </p>
-          <p className='tracking-tight'>
-            member at{'  '}
-            <Link href="https://superteam.fun" target="_blank" rel="noopener noreferrer">
-              <span style={{ cursor: 'pointer', color: 'white', fontWeight: 600 }} className='tracking-tigher'>
-                @superteamIN
+
+          {/* One heading for search engines, two sizes for people: the name, then what he does. */}
+          <h1 className="rise mt-5 font-display" style={{ '--i': 5 } as React.CSSProperties}>
+            <span className="block text-[clamp(3rem,2rem+4vw,4.5rem)] font-bold leading-none tracking-[-0.02em]">
+              I’m Shiva.
+            </span>{' '}
+            <span className="mt-5 block text-[clamp(1.375rem,1.1rem+1vw,1.75rem)] leading-[1.22] tracking-[-0.02em]">
+              <span className="block text-balance">I build Solana products end to end.</span>{' '}
+              <span className="block text-pretty text-muted">
+                Rust smart contracts, <span className="whitespace-nowrap">real-time</span> indexers,
+                and the apps on top.
               </span>
-            </Link>
+            </span>
+          </h1>
+
+          <ul
+            className="rise mt-6 flex flex-wrap gap-x-6 gap-y-2 font-mono text-[13px] text-white/90"
+            style={{ '--i': 6 } as React.CSSProperties}
+          >
+            {proof.map((item) => (
+              <li key={item} className="flex items-center gap-2">
+                <Check className="h-3.5 w-3.5 text-live" strokeWidth={3} aria-hidden />
+                {item}
+              </li>
+            ))}
+          </ul>
+
+          <div className="rise mt-6" style={{ '--i': 7 } as React.CSSProperties}>
+            <ContactIcons />
+          </div>
+        </section>
+
+        <section id="experience" className="shell py-8">
+          <h2 className="section-title">
+            <Prompt command="ls">Experience</Prompt>
+          </h2>
+          <ul className="mt-3">
+            {experience.map((job) => (
+              <li key={job.company}>
+                <a
+                  href={job.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="group flex items-start gap-4 py-3 sm:items-center"
+                >
+                  <Image
+                    src={job.logo}
+                    alt=""
+                    width={36}
+                    height={36}
+                    className="h-9 w-9 shrink-0 rounded-lg object-cover"
+                  />
+                  <div className="min-w-0 flex-1 sm:flex sm:items-baseline sm:gap-3">
+                    <p className="text-[17px] leading-6 text-white underline-offset-4 group-hover:underline">
+                      {job.company}
+                    </p>
+                    <p className="text-[15px] leading-snug text-muted">{job.line}</p>
+                    <p className="mt-1 font-mono text-xs text-faint sm:ml-auto sm:mt-0 sm:shrink-0">
+                      {job.period}
+                    </p>
+                  </div>
+                </a>
+              </li>
+            ))}
+          </ul>
+        </section>
+
+        <section id="work" className="shell py-8">
+          <h2 className="section-title">
+            <Prompt command="ls">Work</Prompt>
+          </h2>
+          <ul className="mt-6 grid gap-x-5 gap-y-9 sm:grid-cols-2 lg:grid-cols-3">
+            {featuredProjects.map((project) => (
+              <li key={project.slug}>
+                <Link href={`/projects/${project.slug}`} className="group block">
+                  {/* Each project sits in a terminal window; the path in its title bar is decoration. */}
+                  <div className="overflow-hidden rounded-xl border border-line bg-surface transition-colors duration-200 group-hover:border-white/40">
+                    <div
+                      aria-hidden
+                      className="flex h-8 items-center gap-2.5 border-b border-line px-3 font-mono text-xs text-faint"
+                    >
+                      <span className="flex gap-1">
+                        <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                      </span>
+                      <span className="truncate">~/{project.slug}</span>
+                    </div>
+                    <div className="relative aspect-video">
+                      <ProjectPreview
+                        name={project.name}
+                        media={project.media}
+                        sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
+                      />
+                    </div>
+                  </div>
+                  {/* Only the name uses the blended Roboto Mono + Neue Montreal font. */}
+                  <div className="mt-3.5 flex items-baseline justify-between gap-3">
+                    <h3 className="blend text-[19px] font-semibold leading-6 text-white underline-offset-4 group-hover:underline">
+                      {project.name}
+                    </h3>
+                    <span className="font-roboto text-xs text-faint">{project.year}</span>
+                  </div>
+                  <p className="mt-1.5 text-pretty text-[15px] leading-snug text-muted">
+                    {project.tagline}
+                  </p>
+                  {project.award && (
+                    <p className="mt-2 flex items-center gap-2 font-mono text-[13px] text-white">
+                      <Check className="h-3.5 w-3.5 shrink-0 text-live" strokeWidth={3} aria-hidden />
+                      {project.award.label}
+                    </p>
+                  )}
+                </Link>
+              </li>
+            ))}
+          </ul>
+
+          {/* Names sit in code-style tags, so they need no commas between them. */}
+          <p className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-2 text-[15px] text-muted">
+            Also built
+            {alsoBuilt.map((build) =>
+              build.external ? (
+                <a
+                  key={build.name}
+                  href={build.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="code-link"
+                >
+                  {build.name}
+                </a>
+              ) : (
+                <Link key={build.name} href={build.href} className="code-link">
+                  {build.name}
+                </Link>
+              ),
+            )}
+            <span>and more on</span>
+            <a
+              href={`${site.github.url}?tab=repositories`}
+              target="_blank"
+              rel="noopener"
+              className="code-link"
+            >
+              GitHub
+            </a>
           </p>
         </section>
-        
-      {/* Experience */}
-      <section className="space-y-2 text-sm tracking-wide">
-      <h1 className={`text-white tracking-tighter mb-6`} style={{
-        fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-        fontSize: '28px',
-        fontWeight: 600,
-        lineHeight: '36px',
-        color: 'rgb(255, 255, 255)',
-        }}>work</h1>
-        <div className="space-y-6">
-          <div className="flex items-center gap-4">
-            <div className="relative h-12 w-12 overflow-hidden rounded-full">
-              <Image
-                src="/glympse.png"
-                alt="GlympseDotFun"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="flex-1">
-              <div className={`flex items-center justify-between ${montreal.className} cursor-pointer`}>
-                <div>
-                <Link href={"https://x.com/glympsedotfun"}>
-                  <div className="group flex items-center gap-2">
-                    <h3 className="font-bold text-white">GlympseDotFun</h3>
-                    <ChevronRight className="h-4 w-4 transform opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-1 group-hover:opacity-100 text-white" />
-                  </div>
-                  </Link>
-                  
-                  <p className="text-white/60 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    product engineering & solana protocol development
-                  </p>
-                </div>
-                <span className="text-gray-400">Aug to Nov 2025</span>
-              </div>
-            </div>
+
+        <section id="open-source" className="shell grid gap-8 py-8 sm:grid-cols-2 sm:gap-12">
+          <div>
+            <h2 className="section-title">
+              <Prompt command="ls">Open-source</Prompt>
+            </h2>
+            <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 text-[15px] text-muted">
+              Merged pull requests in
+              {openSource.map((pr) => (
+                <a
+                  key={pr.repo}
+                  href={pr.href}
+                  target="_blank"
+                  rel="noopener"
+                  className="code-link"
+                >
+                  {pr.repo}
+                </a>
+              ))}
+            </p>
           </div>
-          <div className="flex items-center gap-4">
-            <div className="relative h-12 w-12 overflow-hidden rounded-full">
-              <Image
-                src="/STINDIA.jpg"
-                alt="Superteam"
-                fill
-                className="object-cover"
-              />
-            </div>
-            <div className="flex-1">
-              <div className={`flex items-center justify-between ${montreal.className} cursor-pointer`}>
-                <div>
-                <Link href={"https://superteam.fun"}>
-                  <div className="group flex items-center gap-2">
-                    <h3 className="font-bold text-white">Superteam</h3>
-                    <ChevronRight className="h-4 w-4 transform opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-1 group-hover:opacity-100 text-white" />
-                  </div>
-                  </Link>
-                  
-                  <p className="text-white/60 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    Member, Contributing to the Solana Ecosystem
-                  </p>
-                </div>
-                <span className="text-gray-400">January 2025 - Present</span>
-              </div>
-            </div>
-          </div>
-          <div className="flex items-center gap-4 cursor-pointer">
-            <div className="relative h-12 w-12 overflow-hidden rounded-full">
-              <Image src="/earn.jpg" alt="freelance" fill className="object-cover" />
-            </div>
-            <div className="flex-1">
-              <div className={`flex items-center justify-between ${montreal.className}`}>
-                <div>
-                <Link href={"https://earn.superteam.fun/t/shiva7343/"}>
-                  <div className="group flex items-center gap-2">
-                    <h3 className="font-bold text-white">Freelance | Superteam Earn & Gibwork</h3>
-                    <ChevronRight className="h-4 w-4 transform opacity-0 transition-all duration-300 ease-in-out group-hover:translate-x-1 group-hover:opacity-100 text-white" />
-                  </div>
-                  </Link>
-                  <p className="text-white/60 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '14px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                  Got numerous gigs from platforms like Superteam Earn and Gibwork</p>
-                </div>
-                <span className="text-gray-400">July 2024 - Present</span>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-        {/* Projects */}
-        <section className="space-y-2">
-        <h1 className={`text-white tracking-tighter mb-6`} style={{
-        fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-        fontSize: '28px',
-        fontWeight: 600,
-        lineHeight: '36px',
-        color: 'rgb(255, 255, 255)',
-        }}>projects</h1>
-          <div className="grid grid-cols-1 lg:grid-cols-2 justify-items-center gap-16">
-
-            {/* Belzin */}
-            <Link href="/projects/belzin" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <Image
-                    src="/belzin.png"
-                    alt="Belzin"
-                    fill
-                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>Belzin</h3>
-                    <span className="text-gray-400 text-sm">2025</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    Agent powered P2P group chat betting. received a <span className='text-white/90'>$3000 grant</span> from the <span className="text-white/90">solana foundation</span>.
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* BountyExchange */}
-            <Link href="https://github.com/Shiva953/BountyExchange" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <video
-                    src="/BEXDemo.mp4"
-                    className="object-cover w-full h-full"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>BountyExchange</h3>
-                    <span className="text-gray-400 text-sm">2025</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection"
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                  }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    Trustless USDC escrow for KOL trading bounties on Solana, settled via off-chain volume oracle and crank-based finalization.
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* TraderDraft */}
-            <Link href="https://github.com/Shiva953/traderdraft" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <video
-                    src="/traderdraftpreview.mp4"
-                    className="object-cover w-full h-full"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>TraderDraft</h3>
-                    <span className="text-gray-400 text-sm">2025</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection"
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                  }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    trade tokenized KOL tokens on solana and compete in live trading windows to earn tournament points.
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* Gorclash */}
-            <Link href="https://github.com/Shiva953/gorclash" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <video
-                    src="/gorclash-preview.mp4"
-                    className="object-cover w-full h-full"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                    poster="/gorclash.png"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>Gorclash</h3>
-                    <span className="text-gray-400 text-sm">2025</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                  }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    a mini-multiplayer arcade styled game built on gorbagana, a solana L2. <br/>
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* Gibbon */}
-            <Link href="https://github.com/Shiva953/gibbon" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <video
-                    src="/gibbon-demo.mp4"
-                    className="object-cover w-full h-full"
-                    autoPlay
-                    loop
-                    muted
-                    playsInline
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>Gibbon</h3>
-                    <span className="text-gray-400 text-sm">2026</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection"
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                  }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    terraform-style plan/apply cli for gibwork bounties.
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* Univault */}
-            <Link href="/projects/univault" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <Image
-                    src="/univault.png"
-                    alt="Univault"
-                    fill
-                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>univault</h3>
-                    <span className="text-gray-400 text-sm">2024</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    squads multi-sig management using solana blinks and actions
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* OSS */}
-            <Link href="https://github.com/pulls?q=is%3Amerged+is%3Apr+author%3AShiva953+archived%3Afalse+" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <Image
-                    src="/oss.png"
-                    alt="OSS"
-                    fill
-                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>oss contributions</h3>
-                    <span className="text-gray-400 text-sm">2024-25</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    some of my merged prs in open source repositories, including the official anchor repo
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* Liquotic */}
-            <Link href="/projects/liquotic" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <Image
-                    src="/liquotic.jpg"
-                    alt="Liquotic"
-                    fill
-                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>liquotic</h3>
-                    <span className="text-gray-400 text-sm">2024</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    buy NFTs with any SPL token
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* Openvest */}
-            <Link href="/projects/openvest" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <Image
-                    src="/openvest.png"
-                    alt="OpenVest"
-                    fill
-                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>openvest</h3>
-                    <span className="text-gray-400 text-sm">2024</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    create token vesting schedules for company employees
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* Sol-clix */}
-            <Link href="https://github.com/Shiva953/sol-clix" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <Image
-                    src="/solclix.png"
-                    alt="solclix"
-                    fill
-                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>sol-clix</h3>
-                    <span className="text-gray-400 text-sm">2024</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                  }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    a minimal, terminal based solana cli wallet.
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* Picovault */}
-            <Link href="https://github.com/Shiva953/Picovault" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <Image
-                    src="/solclix.png"
-                    alt="picovault"
-                    fill
-                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>picovault</h3>
-                    <span className="text-gray-400 text-sm">2024</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                  }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    a redis-like key-value store implementation in rust.
-                  </p>
-                </div>
-              </div>
-            </Link>
-
-            {/* ECDSA */}
-            <Link href="https://github.com/Shiva953/ecdsa-rust" className="group w-full max-w-[30rem]">
-              <div className="space-y-4">
-                <div className="relative w-full h-[250px] overflow-hidden rounded-lg">
-                  <Image
-                    src="/ECC.png"
-                    alt="ecdsa"
-                    fill
-                    className="object-cover image-glow opacity-80 hover:opacity-100 transition-opacity"
-                  />
-                </div>
-                <div className="space-y-1">
-                  <div className="flex items-center justify-between">
-                    <h3 className={`text-xl text-white font-bold group-hover:text-white group-hover:underline group-hover:drop-shadow-[0_0_6px_rgba(255,255,255,0.4)] ${montreal.className}`}>ECDSA</h3>
-                    <span className="text-gray-400 text-sm">2024</span>
-                  </div>
-                  <p className="text-white/65 tracking-tight custom-selection" 
-                  style={{ fontFamily: 'Inter, -apple-system, "system-ui", sans-serif',
-                  fontSize: '12.8px',
-                  fontWeight: 400,
-                  lineHeight: '22.4px',
-                  color: 'rgb(153, 153, 153)',
-                  }}>
-                    <style>
-                    {`
-                      .custom-selection::selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                      .custom-selection::-moz-selection {
-                        background: #fff !important;
-                        color: #000 !important;
-                      }
-                    `}
-                    </style>
-                    elliptic curve digital signature algorithm(ECDSA) implementation for signing and verifying messages
-                  </p>
-                </div>
-              </div>
-            </Link>
-
+          <div>
+            <h2 className="section-title">
+              <Prompt command="cat">Stack</Prompt>
+            </h2>
+            <ul className="mt-4 flex flex-wrap gap-1.5">
+              {stack.map((tool) => (
+                <li key={tool} className="chip">
+                  {tool}
+                </li>
+              ))}
+            </ul>
           </div>
         </section>
-      </div>
 
-      <div className="fixed inset-0 -z-10 gradient-blur" />
-    </main>
+        <Contact />
+      </main>
+
+      <SiteFooter />
+      <ContactDock />
+      <Backdrop />
+    </>
   )
 }
