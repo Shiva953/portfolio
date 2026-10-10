@@ -19,16 +19,14 @@ export default {
       },
       fontFamily: {
         sans: ["var(--font-montreal)", "ui-sans-serif", "system-ui", "sans-serif"],
-        mono: ["var(--font-supply)", "ui-monospace", "SFMono-Regular", "monospace"],
-        display: ["var(--font-grotesk)", "var(--font-montreal)", "ui-sans-serif", "sans-serif"],
-        roboto: ["var(--font-roboto-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
-        blend: [
-          "var(--font-montreal-spacing)",
-          "var(--font-roboto-mono)",
-          "var(--font-montreal)",
-          "ui-monospace",
-          "monospace",
+        // Terminal text. Coding ligatures are off so sequences like "www" or "->" stay literal.
+        mono: [
+          ["var(--font-jetbrains-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
+          { fontFeatureSettings: '"calt" 0, "liga" 0' },
         ],
+        // The SHIVA wordmark.
+        supply: ["var(--font-supply)", "ui-monospace", "SFMono-Regular", "monospace"],
+        display: ["var(--font-geist-sans)", "Arial", "sans-serif"],
       },
     },
   },

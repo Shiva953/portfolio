@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { Toaster } from 'sonner'
 import { site } from '@/lib/site'
-import { grotesk, montreal, montrealSpacing, robotoMono, supply } from './fonts'
+import { GeistSans, jetbrainsMono, montreal, supply } from './fonts'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -84,7 +84,7 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${montreal.variable} ${supply.variable} ${grotesk.variable} ${robotoMono.variable} ${montrealSpacing.variable}`}>
+    <html lang="en" className={`${montreal.variable} ${supply.variable} ${GeistSans.variable} ${jetbrainsMono.variable}`}>
       <body className="min-h-screen bg-black font-sans antialiased">
         {children}
         <Toaster theme="dark" position="top-center" />

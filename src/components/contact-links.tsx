@@ -44,7 +44,7 @@ export function ContactIcons() {
                 {...linkTarget(contact.key)}
                 aria-label={contact.label}
                 title={contact.label}
-                className="grid h-10 w-10 place-items-center rounded-full text-white transition-colors duration-200 hover:bg-white hover:text-black"
+                className="grid h-10 w-10 place-items-center rounded-full text-white/[0.86] transition-colors duration-200 hover:bg-white hover:text-black"
               >
                 <Icon className="h-[22px] w-[22px]" aria-hidden />
               </a>
@@ -74,7 +74,7 @@ export function ContactLinks() {
               {...linkTarget(contact.key)}
               className="pill w-full gap-1.5 px-0 text-sm sm:w-auto sm:gap-2 sm:px-4 sm:text-[15px]"
             >
-              <Icon className="h-4 w-4" aria-hidden />
+              <Icon className="h-4 w-4 opacity-[0.86]" aria-hidden />
               {contact.label}
             </a>
           </li>

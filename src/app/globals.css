@@ -24,7 +24,7 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  /* Neue Montreal and Supply ship a single weight, so never let the browser fake a bold. */
+  /* Neue Montreal ships a single weight, so never let the browser fake a bold. */
   font-synthesis: none;
 }
 
@@ -172,13 +172,42 @@ body {
     @apply rounded-full border border-line px-2.5 py-1 font-mono text-xs leading-none text-muted;
   }
 
-  /* Project names: Roboto Mono letters with Neue Montreal spaces and punctuation.
-     Monospace letters sit in wide cells, so they are pulled tight to read as compact text;
-     the word gap gets a little back so words stay distinct. */
-  .blend {
-    @apply font-blend;
+  /* Project titles. Monospace letters sit in wide cells, so they are pulled
+     tight to read as one compact word. */
+  .project-title {
+    @apply font-mono;
     letter-spacing: -0.06em;
-    word-spacing: 0.12em;
+  }
+
+  /* Trims a single line of text to its capital letters: the box is exactly cap-height tall and
+     ends on the baseline, so text can be lined up with the edges of whatever sits beside it.
+     The line has no height of its own; an empty inline block as tall as the capitals stands on
+     the baseline and defines the box, which keeps the result free of font-metric rounding. */
+  .trim-display,
+  .trim-mono {
+    display: block;
+    line-height: 0;
+  }
+
+  .trim-display::before,
+  .trim-mono::before {
+    content: "";
+    display: inline-block;
+    height: var(--cap-height);
+  }
+
+  /* Cap heights of Geist Sans and JetBrains Mono. */
+  .trim-display {
+    --cap-height: 0.71em;
+  }
+
+  .trim-mono {
+    --cap-height: 0.73em;
+  }
+
+  /* Extra weight for company names. Neue Montreal ships one weight, so it is drawn as a stroke. */
+  .heavier {
+    -webkit-text-stroke: 0.035em currentColor;
   }
 
   /* Names of repos and projects, set like inline code. */

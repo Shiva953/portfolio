@@ -16,9 +16,10 @@ type OgCardProps = {
 // One card design for every share preview: the home page and each project.
 export async function renderOgCard({ command, headline, detail, footer }: OgCardProps) {
   const fontDir = join(process.cwd(), 'src/app/font')
-  const [montreal, supply] = await Promise.all([
+  const [montreal, supply, jetbrainsMono] = await Promise.all([
     readFile(join(fontDir, 'NeueMontreal-Regular.otf')),
     readFile(join(fontDir, 'Supply-Regular.otf')),
+    readFile(join(fontDir, 'JetBrainsMono-Regular.ttf')),
   ])
 
   return new ImageResponse(
@@ -45,7 +46,7 @@ export async function renderOgCard({ command, headline, detail, footer }: OgCard
               style={{
                 display: 'flex',
                 alignItems: 'center',
-                fontFamily: 'Supply',
+                fontFamily: 'JetBrains Mono',
                 fontSize: 22,
                 padding: '12px 22px',
                 borderRadius: 999,
@@ -67,7 +68,7 @@ export async function renderOgCard({ command, headline, detail, footer }: OgCard
         </div>
 
         <div style={{ display: 'flex', flexDirection: 'column' }}>
-          <div style={{ display: 'flex', fontFamily: 'Supply', fontSize: 26, marginBottom: 22 }}>
+          <div style={{ display: 'flex', fontFamily: 'JetBrains Mono', fontSize: 26, marginBottom: 22 }}>
             <div style={{ color: '#14f195', marginRight: 14 }}>$</div>
             {command}
           </div>
@@ -93,7 +94,7 @@ export async function renderOgCard({ command, headline, detail, footer }: OgCard
             justifyContent: 'space-between',
             paddingTop: 26,
             borderTop: '1px solid rgba(255,255,255,0.16)',
-            fontFamily: 'Supply',
+            fontFamily: 'JetBrains Mono',
             fontSize: 22,
             color: '#999',
           }}
@@ -108,6 +109,7 @@ export async function renderOgCard({ command, headline, detail, footer }: OgCard
       fonts: [
         { name: 'Montreal', data: montreal, weight: 400, style: 'normal' },
         { name: 'Supply', data: supply, weight: 400, style: 'normal' },
+        { name: 'JetBrains Mono', data: jetbrainsMono, weight: 400, style: 'normal' },
       ],
     },
   )

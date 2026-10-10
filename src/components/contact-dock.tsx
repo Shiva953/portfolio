@@ -88,7 +88,7 @@ export function ContactDock() {
               href={contact.href}
               {...linkTarget(contact.key)}
               aria-label={contact.label}
-              className="group relative grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/[0.07] text-neutral-300 transition-colors duration-200 hover:bg-white/[0.14] hover:text-white"
+              className="group relative grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/[0.07] text-white/[0.86] transition-colors duration-200 hover:bg-white/[0.14] hover:text-white"
             >
               <Icon className="h-[18px] w-[18px] scale-[var(--dock-scale,1)]" aria-hidden />
               <span

@@ -7,7 +7,7 @@ export function SiteHeader() {
       <Link
         href="/"
         aria-label={`${site.name}, home`}
-        className="font-mono text-[22px] leading-none tracking-tighter"
+        className="font-supply text-[22px] leading-none tracking-tighter"
       >
         SHIVA
       </Link>

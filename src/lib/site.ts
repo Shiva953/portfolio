@@ -2,6 +2,8 @@
 export const site = {
   name: 'Shiva Seth',
   role: 'Full-Stack Solana Engineer',
+  // One line under the name in the hero. Keep it short: it has to fit on one line on a phone.
+  tagline: 'Solana Engineer · Rust · TypeScript',
   // Must be the domain that serves the site directly (the primary domain in Vercel), not one that
   // redirects. Link previews on X fail when the shared address needs more than one redirect.
   url: 'https://shiva66.xyz',
@@ -18,9 +20,6 @@ export const site = {
   github: { handle: 'Shiva953', url: 'https://github.com/Shiva953' },
   earn: { handle: 'shiva7343', url: 'https://earn.superteam.fun/t/shiva7343/' },
 }
-
-// Shown under the intro as passing checks.
-export const proof = ['4 hackathon wins', 'Solana Foundation grant', 'Code merged into Anchor']
 
 // The four ways to reach you, in the order they appear in the hero, the dock and the footer.
 export const contacts = [

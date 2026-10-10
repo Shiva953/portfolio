@@ -67,10 +67,10 @@ export default async function ProjectPage({ params }: PageProps) {
 
           <header className="mt-8">
             <div className="flex items-baseline justify-between gap-6">
-              <h1 className="blend text-[clamp(2rem,5.5vw,3.5rem)] font-semibold leading-none">
+              <h1 className="project-title text-[clamp(2rem,5.5vw,3.5rem)] font-semibold leading-none">
                 {project.name}
               </h1>
-              <span className="font-roboto text-[13px] text-faint">{project.year}</span>
+              <span className="font-mono text-[13px] text-faint">{project.year}</span>
             </div>
             <p className="mt-4 max-w-[34ch] text-xl leading-snug text-muted sm:text-2xl">
               {project.tagline}
@@ -159,7 +159,7 @@ export default async function ProjectPage({ params }: PageProps) {
           >
             <span>
               <span className="block font-mono text-[13px] text-faint">Next project</span>
-              <span className="blend mt-1 block text-[22px] font-semibold">
+              <span className="project-title mt-1 block text-[22px] font-semibold">
                 {next.name}
               </span>
             </span>
