@@ -98,7 +98,7 @@ export async function renderOgCard({ command, headline, detail, footer }: OgCard
             color: '#999',
           }}
         >
-          <div style={{ color: '#fff' }}>{site.url.replace('https://www.', '')}</div>
+          <div style={{ color: '#fff' }}>{site.url.replace(/^https?:\/\/(www\.)?/, '')}</div>
           <div>{footer}</div>
         </div>
       </div>

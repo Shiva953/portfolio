@@ -2,7 +2,9 @@
 export const site = {
   name: 'Shiva Seth',
   role: 'Full-Stack Solana Engineer',
-  url: 'https://www.shiva66.xyz',
+  // Must be the domain that serves the site directly (the primary domain in Vercel), not one that
+  // redirects. Link previews on X fail when the shared address needs more than one redirect.
+  url: 'https://shiva66.xyz',
   title: 'Shiva Seth | Full-Stack Solana Engineer',
   description:
     'Shiva Seth is a full-stack Solana engineer building Rust smart contracts, real-time indexers and the apps on top. 4 hackathon wins. Open to work.',
