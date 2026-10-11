@@ -3,7 +3,7 @@ export const site = {
   name: 'Shiva Seth',
   role: 'Full-Stack Solana Engineer',
   // One line under the name in the hero. Keep it short: it has to fit on one line on a phone.
-  tagline: 'Solana Engineer · Rust · TypeScript',
+  tagline: 'Solana Engineer · TypeScript · Rust',
   // Must be the domain that serves the site directly (the primary domain in Vercel), not one that
   // redirects. Link previews on X fail when the shared address needs more than one redirect.
   url: 'https://shiva66.xyz',
@@ -39,7 +39,7 @@ export const experience = [
   },
   {
     company: 'Send Arcade',
-    line: 'Built on-chain Wordle, Chess and The Squad Game',
+    line: 'Built on-chain games on Solana',
     period: 'Feb – Apr 2025',
     logo: '/sendarcade.png',
     href: 'https://www.sendarcade.fun',
@@ -74,9 +74,9 @@ export const openSource = [
 ]
 
 export const stack = [
+  'TypeScript',
   'Rust',
   'Anchor',
-  'TypeScript',
   'Next.js',
   'Node.js',
   'PostgreSQL',
