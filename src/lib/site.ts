@@ -1,15 +1,23 @@
 // Everything a visitor needs to reach you lives here, so it only changes in one place.
 export const site = {
   name: 'Shiva Seth',
-  role: 'Full-Stack Solana Engineer',
+  role: 'Product Engineer',
   // One line under the name in the hero. Keep it short: it has to fit on one line on a phone.
   tagline: 'Engineer · Builder',
   // Must be the domain that serves the site directly (the primary domain in Vercel), not one that
   // redirects. Link previews on X fail when the shared address needs more than one redirect.
   url: 'https://shiva66.xyz',
-  title: 'Shiva Seth | Full-Stack Solana Engineer',
+  // The browser tab, the search listing and the text beside a link preview all use these two.
+  title: 'Shiva Seth | Product Engineer',
   description:
-    'Shiva Seth is a full-stack Solana engineer building Rust smart contracts, real-time indexers and the apps on top. 4 hackathon wins. Open to work.',
+    'Shiva Seth is a product engineer who ships end to end, from smart contracts and AI agents to the apps on top. 4 hackathon wins. Open to work.',
+  // The text on the link preview image (X, LinkedIn, Slack and the like). The footer names what
+  // any hiring team might be looking for, so keep it free of ecosystem-specific credentials.
+  share: {
+    headline: 'Product engineer.',
+    detail: 'Smart contracts, AI agents, and the apps on top.',
+    footer: 'full-stack / builds with AI / consumer apps / 4 hackathon wins',
+  },
   email: 'shivaset2@gmail.com',
   resume: '/shiva_seth.pdf',
   // Flip to false once you're hired: it drives the status light, the copy and the OG image.
