@@ -18,7 +18,7 @@ export default {
         live: "var(--live)",
       },
       fontFamily: {
-        sans: ["var(--font-montreal)", "ui-sans-serif", "system-ui", "sans-serif"],
+        sans: ["var(--font-satoshi)", "ui-sans-serif", "system-ui", "sans-serif"],
         // Terminal text. Coding ligatures are off so sequences like "www" or "->" stay literal.
         mono: [
           ["var(--font-jetbrains-mono)", "ui-monospace", "SFMono-Regular", "monospace"],

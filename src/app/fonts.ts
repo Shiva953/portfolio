@@ -1,11 +1,12 @@
 import { JetBrains_Mono } from 'next/font/google'
 import localFont from 'next/font/local'
 
-export const montreal = localFont({
-  src: './font/NeueMontreal-Regular.otf',
-  weight: '400',
+// Body text: experience, project descriptions, contact section. One variable file, every weight.
+export const satoshi = localFont({
+  src: './font/Satoshi-Variable.woff2',
+  weight: '300 900',
   display: 'swap',
-  variable: '--font-montreal',
+  variable: '--font-satoshi',
 })
 
 // Hero name and description. Sets --font-geist-sans to "GeistSans", "GeistSans Fallback".

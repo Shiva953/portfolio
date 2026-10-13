@@ -24,7 +24,7 @@ html {
 body {
   background-color: var(--background);
   color: var(--foreground);
-  /* Neue Montreal ships a single weight, so never let the browser fake a bold. */
+  /* Every face here ships the weights it is used at, so never let the browser fake one. */
   font-synthesis: none;
 }
 
@@ -146,8 +146,9 @@ body {
 }
 
 @layer components {
+  /* One reading column for the whole site: 640px of content, about 80 characters a line. */
   .shell {
-    @apply mx-auto w-full max-w-5xl px-5 sm:px-8;
+    @apply mx-auto w-full max-w-[44rem] px-5 sm:px-8;
   }
 
   .btn {
@@ -203,11 +204,6 @@ body {
 
   .trim-mono {
     --cap-height: 0.73em;
-  }
-
-  /* Extra weight for company names. Neue Montreal ships one weight, so it is drawn as a stroke. */
-  .heavier {
-    -webkit-text-stroke: 0.035em currentColor;
   }
 
   /* Names of repos and projects, set like inline code. */

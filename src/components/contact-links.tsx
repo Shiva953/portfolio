@@ -1,5 +1,5 @@
 import { CalendarDays, FileText, Mail } from 'lucide-react'
-import { GithubIcon, XIcon } from '@/components/icons'
+import { ArrowUpRightIcon, GithubIcon, XIcon } from '@/components/icons'
 import { contacts, site } from '@/lib/site'
 
 export const contactIcons = {
@@ -14,27 +14,29 @@ export function linkTarget(key: (typeof contacts)[number]['key']) {
   return key === 'email' ? {} : { target: '_blank', rel: 'noopener' }
 }
 
-function BookCall() {
-  if (!site.bookCallUrl) return null
-  return (
-    <a
-      href={site.bookCallUrl}
-      target="_blank"
-      rel="noopener"
-      className="pill border-white bg-white text-black hover:bg-white/80"
-    >
-      <CalendarDays className="h-4 w-4" aria-hidden />
-      Book a call
-    </a>
-  )
-}
+// Shared hover behaviour for text links: the label underlines and the arrow fades in.
+// Hover is limited to larger screens so the effect never sticks after a tap on a phone.
+export const arrowLink =
+  'group flex items-center no-underline underline-offset-4 transition duration-150 ease-in-out md:hover:underline focus-visible:underline'
+export const arrowLinkArrow =
+  'h-[1em] w-[1em] shrink-0 opacity-0 transition-opacity duration-150 md:group-hover:opacity-100 group-focus-visible:opacity-100'
 
-// Hero: logos only, in white. The labelled version sits at the end of the page.
-export function ContactIcons() {
+// X, email, resume and GitHub as icon-and-label links. Used in the hero and the contact section.
+export function ContactLinks() {
   return (
     <div className="flex flex-wrap items-center gap-x-5 gap-y-3">
-      <BookCall />
-      <ul className="-ml-2 flex items-center gap-1">
+      {site.bookCallUrl && (
+        <a
+          href={site.bookCallUrl}
+          target="_blank"
+          rel="noopener"
+          className="pill border-white bg-white text-black hover:bg-white/80"
+        >
+          <CalendarDays className="h-4 w-4" aria-hidden />
+          Book a call
+        </a>
+      )}
+      <ul className="flex w-fit flex-wrap items-center gap-2 tracking-tight">
         {contacts.map((contact) => {
           const Icon = contactIcons[contact.key]
           return (
@@ -42,44 +44,16 @@ export function ContactIcons() {
               <a
                 href={contact.href}
                 {...linkTarget(contact.key)}
-                aria-label={contact.label}
-                title={contact.label}
-                className="grid h-10 w-10 place-items-center rounded-full text-white/[0.86] transition-colors duration-200 hover:bg-white hover:text-black"
+                className={`${arrowLink} text-base text-white/[0.86] md:hover:text-white`}
               >
-                <Icon className="h-[22px] w-[22px]" aria-hidden />
+                <Icon className="mr-1.5 h-3.5 w-3.5 shrink-0" aria-hidden />
+                <span className="text-sm font-[450]">{contact.label}</span>
+                <ArrowUpRightIcon className={arrowLinkArrow} />
               </a>
             </li>
           )
         })}
       </ul>
     </div>
-  )
-}
-
-// Closing section: logo and label, four equal columns on phones so they sit on one row.
-export function ContactLinks() {
-  return (
-    <ul className="grid grid-cols-4 gap-1.5 sm:flex sm:flex-wrap sm:gap-2.5">
-      {site.bookCallUrl && (
-        <li className="col-span-4">
-          <BookCall />
-        </li>
-      )}
-      {contacts.map((contact) => {
-        const Icon = contactIcons[contact.key]
-        return (
-          <li key={contact.key}>
-            <a
-              href={contact.href}
-              {...linkTarget(contact.key)}
-              className="pill w-full gap-1.5 px-0 text-sm sm:w-auto sm:gap-2 sm:px-4 sm:text-[15px]"
-            >
-              <Icon className="h-4 w-4 opacity-[0.86]" aria-hidden />
-              {contact.label}
-            </a>
-          </li>
-        )
-      })}
-    </ul>
   )
 }

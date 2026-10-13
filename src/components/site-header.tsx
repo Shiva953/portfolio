@@ -4,10 +4,11 @@ import { site } from '@/lib/site'
 export function SiteHeader() {
   return (
     <header className="shell flex h-16 items-center justify-between">
+      {/* Supply ships one weight, so the wordmark's extra weight is drawn as a stroke. */}
       <Link
         href="/"
         aria-label={`${site.name}, home`}
-        className="font-supply text-[22px] leading-none tracking-tighter"
+        className="font-supply text-[22px] leading-none tracking-[-0.03em] [-webkit-text-stroke:0.045em_currentColor]"
       >
         SHIVA
       </Link>

@@ -3,8 +3,9 @@ import Link from 'next/link'
 import { Check } from 'lucide-react'
 import { Contact } from '@/components/contact'
 import { ContactDock } from '@/components/contact-dock'
-import { ContactIcons } from '@/components/contact-links'
+import { ContactLinks, arrowLink, arrowLinkArrow } from '@/components/contact-links'
 import { ProjectPreview } from '@/components/demo-video'
+import { ArrowUpRightIcon } from '@/components/icons'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
 import { Backdrop, Prompt } from '@/components/terminal'
@@ -31,7 +32,7 @@ export default function Home() {
 
       {/* Copy is written in sentence case; the lowercase voice is this one class. */}
       <main className="lowercase">
-        <section className="shell pb-12 pt-10 sm:pb-14 sm:pt-14">
+        <section className="shell pb-10 pt-8 sm:pt-12">
           {/* The page opens like a shell session: the command types itself, then the answer prints. */}
           <p aria-hidden className="font-mono text-[15px] leading-6 text-white">
             <span className="text-live">$</span> <span className="typed">whoami</span>
@@ -58,15 +59,16 @@ export default function Home() {
               <h1 className="trim-display font-display text-[0.61em] font-bold normal-case tracking-[-0.05em]">
                 Shiva
               </h1>
-              <p className="trim-mono ml-[0.13em] whitespace-nowrap font-mono text-[10px] font-medium uppercase tracking-[0.1em] text-white/65 sm:text-[11px]">
+              <p className="trim-mono ml-[0.13em] whitespace-nowrap font-mono text-[10px] font-medium uppercase tracking-[0.1em] text-white/80 sm:text-[11px]">
                 {site.tagline}
               </p>
             </div>
           </div>
 
-          {/* What he does, what he has shipped and the proof, in one short paragraph. */}
+          {/* What he does, what he has shipped and the proof, in one short paragraph.
+              Body copy at 72% white; the three proof points at full white. */}
           <p
-            className="rise mt-7 max-w-[55rem] text-pretty font-display text-[14.5px] normal-case leading-[1.7] tracking-[-0.015em] text-muted sm:text-[15.5px] sm:leading-[1.7]"
+            className="rise mt-7 text-pretty text-[14.5px] normal-case leading-[1.7] tracking-[-0.015em] text-white/[0.72] sm:text-[15.5px] sm:leading-[1.7]"
             style={{ '--i': 6 } as React.CSSProperties}
           >
             Full-stack Solana engineer. I write smart contracts in Rust and Anchor, build{' '}
@@ -78,51 +80,54 @@ export default function Home() {
             <NoBreak>Self-taught</NoBreak>, and I nerd out on cryptography and the math behind DeFi.
           </p>
 
-          <div className="rise mt-7" style={{ '--i': 7 } as React.CSSProperties}>
-            <ContactIcons />
+          <div className="rise mt-6" style={{ '--i': 7 } as React.CSSProperties}>
+            <ContactLinks />
           </div>
         </section>
 
-        <section id="experience" className="shell py-10">
+        <section id="experience" className="shell py-8">
           <h2 className="section-title">
             <Prompt command="ls">Experience</Prompt>
           </h2>
-          <ul className="mt-3">
+          <ul className="mt-6 space-y-7">
             {experience.map((job) => (
-              <li key={job.company}>
-                <a
-                  href={job.href}
-                  target="_blank"
-                  rel="noopener"
-                  className="group flex items-start gap-4 py-3.5 sm:items-center"
-                >
-                  <Image
-                    src={job.logo}
-                    alt=""
-                    width={36}
-                    height={36}
-                    className="h-9 w-9 shrink-0 rounded-lg object-cover"
-                  />
-                  <div className="min-w-0 flex-1 sm:flex sm:items-baseline sm:gap-4">
-                    <p className="heavier text-[17px] leading-6 tracking-[0.01em] text-white underline-offset-4 group-hover:underline">
-                      {job.company}
-                    </p>
-                    <p className="text-[15px] leading-snug tracking-[0.025em] text-muted">{job.line}</p>
-                    <p className="mt-1 font-mono text-xs text-faint sm:ml-auto sm:mt-0 sm:shrink-0">
+              <li key={job.company} className="flex gap-4">
+                <Image
+                  src={job.logo}
+                  alt=""
+                  width={36}
+                  height={36}
+                  className="mt-0.5 h-9 w-9 shrink-0 rounded-lg object-cover"
+                />
+                <div className="min-w-0 flex-1">
+                  {/* Company and role on one line, dates pushed to the right edge. The arrow that
+                      fades in on hover already holds a gap between the name and the role. */}
+                  <div className="flex flex-wrap items-baseline gap-x-1 tracking-tight">
+                    <h3 className="text-base font-semibold text-white">
+                      <a href={job.href} target="_blank" rel="noopener" className={arrowLink}>
+                        {job.company}
+                        <ArrowUpRightIcon className={arrowLinkArrow} />
+                      </a>
+                    </h3>
+                    <p className="text-sm text-white/70">{job.role}</p>
+                    <p className="w-full font-mono text-xs tracking-normal text-faint sm:ml-auto sm:w-auto">
                       {job.period}
                     </p>
                   </div>
-                </a>
+                  <p className="mt-1.5 text-pretty text-[15px] normal-case leading-[1.6] text-muted">
+                    {job.summary}
+                  </p>
+                </div>
               </li>
             ))}
           </ul>
         </section>
 
-        <section id="work" className="shell py-10">
+        <section id="work" className="shell py-8">
           <h2 className="section-title">
             <Prompt command="ls">Work</Prompt>
           </h2>
-          <ul className="mt-7 grid gap-x-8 gap-y-12 sm:grid-cols-2 lg:grid-cols-3 lg:gap-x-10">
+          <ul className="mt-6 grid gap-x-8 gap-y-10 sm:grid-cols-2">
             {featuredProjects.map((project) => (
               <li key={project.slug}>
                 <Link href={`/projects/${project.slug}`} className="group block">
@@ -143,7 +148,7 @@ export default function Home() {
                       <ProjectPreview
                         name={project.name}
                         media={project.media}
-                        sizes="(min-width: 1024px) 320px, (min-width: 640px) 50vw, 100vw"
+                        sizes="(min-width: 640px) 320px, 100vw"
                       />
                     </div>
                   </div>
@@ -169,7 +174,7 @@ export default function Home() {
           </ul>
 
           {/* Names sit in code-style tags, so they need no commas between them. */}
-          <p className="mt-10 flex flex-wrap items-center gap-x-2 gap-y-2 text-[15px] text-muted">
+          <p className="mt-9 flex flex-wrap items-center gap-x-2 gap-y-2 text-[15px] text-muted">
             Also built
             {alsoBuilt.map((build) =>
               build.external ? (
@@ -188,25 +193,27 @@ export default function Home() {
                 </Link>
               ),
             )}
-            <span>and more on</span>
-            <a
-              href={`${site.github.url}?tab=repositories`}
-              target="_blank"
-              rel="noopener"
-              className="code-link"
-            >
-              GitHub
-            </a>
+            <span className="flex items-center gap-x-2 whitespace-nowrap">
+              and more on
+              <a
+                href={`${site.github.url}?tab=repositories`}
+                target="_blank"
+                rel="noopener"
+                className="code-link"
+              >
+                GitHub
+              </a>
+            </span>
           </p>
         </section>
 
-        <section id="open-source" className="shell grid gap-10 py-10 sm:grid-cols-2 sm:gap-12">
+        <section id="open-source" className="shell space-y-9 py-8">
           <div>
             <h2 className="section-title">
               <Prompt command="ls">Open-source</Prompt>
             </h2>
             <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 text-[15px] text-muted">
-              Merged pull requests in
+              <span className="normal-case">Merged PRs in</span>
               {openSource.map((pr) => (
                 <a
                   key={pr.repo}

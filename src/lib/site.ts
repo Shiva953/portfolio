@@ -3,7 +3,7 @@ export const site = {
   name: 'Shiva Seth',
   role: 'Full-Stack Solana Engineer',
   // One line under the name in the hero. Keep it short: it has to fit on one line on a phone.
-  tagline: 'Solana Engineer · TypeScript · Rust',
+  tagline: 'Engineer · Builder',
   // Must be the domain that serves the site directly (the primary domain in Vercel), not one that
   // redirects. Link previews on X fail when the shared address needs more than one redirect.
   url: 'https://shiva66.xyz',
@@ -21,7 +21,7 @@ export const site = {
   earn: { handle: 'shiva7343', url: 'https://earn.superteam.fun/t/shiva7343/' },
 }
 
-// The four ways to reach you, in the order they appear in the hero, the dock and the footer.
+// The four ways to reach you, in the order they appear in the hero, the dock and the contact section.
 export const contacts = [
   { key: 'x', label: 'X', href: site.x.url },
   { key: 'email', label: 'Email', href: `mailto:${site.email}` },
@@ -29,34 +29,43 @@ export const contacts = [
   { key: 'github', label: 'GitHub', href: site.github.url },
 ] as const
 
+// `summary` is what you actually did there, in a sentence or two.
 export const experience = [
   {
     company: 'GlympseDotFun',
-    line: 'Product engineering and Solana protocol development',
+    role: 'Product engineering & protocol dev',
     period: 'Aug – Nov 2025',
     logo: '/glympse.png',
     href: 'https://x.com/glympsedotfun',
+    summary:
+      'Built product features and Solana protocol integrations. Worked directly on smart contract architecture and on-chain game mechanics.',
   },
   {
     company: 'Send Arcade',
-    line: 'Built on-chain games on Solana',
+    role: 'Software developer',
     period: 'Feb – Apr 2025',
     logo: '/sendarcade.png',
     href: 'https://www.sendarcade.fun',
+    summary:
+      'Built on-chain games on Solana. Wrote the programs behind fee deposits, token swaps and game logic in Rust and Anchor.',
   },
   {
     company: 'Superteam India',
-    line: 'Member, with a $3,000 Solana Foundation grant',
+    role: 'Member',
     period: 'Jan 2025 – Present',
     logo: '/STINDIA.jpg',
     href: 'https://superteam.fun',
+    summary:
+      'Help members win bounties with hands-on technical support. Received a $3,000 Solana Foundation grant to build Belzin.',
   },
   {
     company: 'Freelance',
-    line: 'Solana programs and dApps for clients on Superteam Earn and Gibwork',
+    role: 'Solana developer, Superteam Earn & Gibwork',
     period: 'Jul 2024 – Present',
     logo: '/earn.jpg',
     href: 'https://earn.superteam.fun/t/shiva7343/',
+    summary:
+      'Custom Solana programs and dApps for clients in TypeScript, Rust and Anchor. Built pipelines that index and stream on-chain data in real time with Helius gRPC.',
   },
 ]
 

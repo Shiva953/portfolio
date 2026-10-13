@@ -16,8 +16,8 @@ type OgCardProps = {
 // One card design for every share preview: the home page and each project.
 export async function renderOgCard({ command, headline, detail, footer }: OgCardProps) {
   const fontDir = join(process.cwd(), 'src/app/font')
-  const [montreal, supply, jetbrainsMono] = await Promise.all([
-    readFile(join(fontDir, 'NeueMontreal-Regular.otf')),
+  const [satoshi, supply, jetbrainsMono] = await Promise.all([
+    readFile(join(fontDir, 'Satoshi-Medium.ttf')),
     readFile(join(fontDir, 'Supply-Regular.otf')),
     readFile(join(fontDir, 'JetBrainsMono-Regular.ttf')),
   ])
@@ -36,7 +36,7 @@ export async function renderOgCard({ command, headline, detail, footer }: OgCard
           backgroundImage:
             'radial-gradient(circle at 100% 0%, rgba(255,255,255,0.14), rgba(0,0,0,0) 55%)',
           color: '#fff',
-          fontFamily: 'Montreal',
+          fontFamily: 'Satoshi',
         }}
       >
         <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between' }}>
@@ -76,11 +76,11 @@ export async function renderOgCard({ command, headline, detail, footer }: OgCard
           <div
             style={{
               marginTop: 22,
-              fontSize: 38,
+              fontSize: 36,
               lineHeight: 1.18,
               letterSpacing: -1,
               color: '#999',
-              maxWidth: 960,
+              maxWidth: 1056,
             }}
           >
             {detail}
@@ -107,7 +107,7 @@ export async function renderOgCard({ command, headline, detail, footer }: OgCard
     {
       ...ogSize,
       fonts: [
-        { name: 'Montreal', data: montreal, weight: 400, style: 'normal' },
+        { name: 'Satoshi', data: satoshi, weight: 500, style: 'normal' },
         { name: 'Supply', data: supply, weight: 400, style: 'normal' },
         { name: 'JetBrains Mono', data: jetbrainsMono, weight: 400, style: 'normal' },
       ],

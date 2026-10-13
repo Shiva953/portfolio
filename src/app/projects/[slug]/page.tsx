@@ -67,16 +67,16 @@ export default async function ProjectPage({ params }: PageProps) {
 
           <header className="mt-8">
             <div className="flex items-baseline justify-between gap-6">
-              <h1 className="project-title text-[clamp(2rem,5.5vw,3.5rem)] font-semibold leading-none">
+              <h1 className="project-title text-[clamp(2rem,5.5vw,2.75rem)] font-semibold leading-none">
                 {project.name}
               </h1>
               <span className="font-mono text-[13px] text-faint">{project.year}</span>
             </div>
-            <p className="mt-4 max-w-[34ch] text-xl leading-snug text-muted sm:text-2xl">
+            <p className="mt-4 text-pretty text-lg leading-snug text-muted">
               {project.tagline}
             </p>
 
-            <div className="mt-6 flex flex-wrap items-center gap-x-5 gap-y-3 text-[15px]">
+            <div className="mt-5 flex flex-wrap items-center gap-x-5 gap-y-3 text-[15px]">
               {project.award &&
                 (project.award.href ? (
                   <a
@@ -109,25 +109,29 @@ export default async function ProjectPage({ params }: PageProps) {
             </div>
           </header>
 
-          <div className="mt-10 overflow-hidden rounded-xl border border-line bg-surface">
+          <div className="mt-8 overflow-hidden rounded-xl border border-line bg-surface">
             <DemoPlayer
               name={project.name}
               media={project.media}
-              sizes="(min-width: 1024px) 960px, 100vw"
+              sizes="(min-width: 704px) 640px, 100vw"
             />
           </div>
 
-          <div className="mt-12 grid gap-10 md:grid-cols-12 md:gap-12">
-            <div className="md:col-span-7">
+          <div className="mt-10 space-y-9">
+            <div>
               <h2 className="section-title">
                 <Prompt command="cat">Overview</Prompt>
               </h2>
-              <p className="mt-3 text-lg leading-relaxed text-white/90">{project.summary}</p>
+              <p className="mt-3 text-pretty text-base leading-relaxed text-white/90">
+                {project.summary}
+              </p>
+            </div>
 
-              <h2 className="section-title mt-10">
+            <div>
+              <h2 className="section-title">
                 <Prompt>What I built</Prompt>
               </h2>
-              <ul className="mt-3 space-y-3 text-[17px] leading-snug text-white/90">
+              <ul className="mt-3 space-y-2.5 text-[15px] leading-snug text-white/90">
                 {project.built.map((line) => (
                   <li
                     key={line}
@@ -139,7 +143,7 @@ export default async function ProjectPage({ params }: PageProps) {
               </ul>
             </div>
 
-            <aside className="md:col-span-5">
+            <div>
               <h2 className="section-title">
                 <Prompt command="cat">Stack</Prompt>
               </h2>
@@ -150,12 +154,12 @@ export default async function ProjectPage({ params }: PageProps) {
                   </li>
                 ))}
               </ul>
-            </aside>
+            </div>
           </div>
 
           <Link
             href={`/projects/${next.slug}`}
-            className="group mt-16 flex items-center justify-between gap-6 border-y border-line py-6"
+            className="group mt-12 flex items-center justify-between gap-6 border-y border-line py-5"
           >
             <span>
               <span className="block font-mono text-[13px] text-faint">Next project</span>
