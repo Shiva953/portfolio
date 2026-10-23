@@ -1,26 +1,45 @@
+import Image from 'next/image'
 import Link from 'next/link'
 import { ThemeToggle } from '@/components/theme-toggle'
 import { site } from '@/lib/site'
 
+// Section links, in page order. Absolute so they also work from a project page.
+const sections = [
+  { href: '/#experience', label: 'experience' },
+  { href: '/#work', label: 'work' },
+  { href: '/#contact', label: 'contact' },
+]
+
+// A slim bar: the profile picture as a logo on the left, section links and the theme toggle on the right,
+// and a hairline across the full width underneath.
 export function SiteHeader() {
   return (
-    <header className="shell flex h-16 items-center justify-between">
-      {/* Supply ships one weight, so the wordmark's extra weight is drawn as a stroke. */}
-      <Link
-        href="/"
-        aria-label={`${site.name}, home`}
-        className="font-supply text-[22px] leading-none tracking-[-0.03em] [-webkit-text-stroke:0.045em_currentColor]"
-      >
-        SHIVA
-      </Link>
-      <div className="flex items-center gap-4">
-        {site.openToWork && (
-          <p className="flex items-center gap-2.5 font-mono text-[13px] text-fg">
-            <span className="status-dot" aria-hidden />
-            open to work
-          </p>
-        )}
-        <ThemeToggle />
+    <header className="border-b border-line">
+      <div className="shell flex h-14 items-center justify-between">
+        {/* The profile picture doubles as the logo, same as the browser tab icon. */}
+        <Link href="/" aria-label={`${site.name}, home`} className="shrink-0 transition-opacity hover:opacity-80">
+          <Image
+            src="/pfp.png"
+            alt=""
+            width={768}
+            height={768}
+            unoptimized
+            loading="eager"
+            className="h-7 w-7 rounded-[7px]"
+          />
+        </Link>
+        <nav aria-label="Sections" className="flex items-center gap-4 font-mono text-[13px] sm:gap-5">
+          {sections.map((section) => (
+            <a
+              key={section.href}
+              href={section.href}
+              className="text-muted transition-colors duration-150 hover:text-fg"
+            >
+              {section.label}
+            </a>
+          ))}
+          <ThemeToggle />
+        </nav>
       </div>
     </header>
   )

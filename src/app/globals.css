@@ -3,32 +3,49 @@
 @tailwind utilities;
 
 /* Dark is the default. A script in layout.tsx sets data-theme from the saved choice before the
-   first paint, and the toggle in the header flips it. fg, bg and raised are RGB channels. */
+   first paint, and the toggle in the header flips it. fg, bg and raised are RGB channels.
+   Both themes are Gruvbox: warm cream on charcoal, and dark brown on paper. */
 :root,
 :root[data-theme="dark"] {
-  --bg: 8 8 8;
-  --fg: 237 237 237;
-  --raised: 23 23 23;
-  --muted: #999;
-  --faint: #777;
-  --line: rgba(255, 255, 255, 0.1);
-  --surface: rgba(255, 255, 255, 0.035);
-  --live: #14f195;
+  --bg: 9 10 11;
+  --fg: 243 236 223;
+  --raised: 26 28 30;
+  --muted: #bcb19f;
+  --faint: #9a8d7d;
+  --line: #2b2d30;
+  --surface: #101112;
+  --live: #c3d46a;
+  --selection: rgba(184, 202, 92, 0.3);
   --dock-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
+  /* Stack tags cycle through these. */
+  --tag-1: #7ccabb;
+  --tag-2: #edb54f;
+  --tag-3: #c3d46a;
+  --tag-4: #fa9148;
+  --tag-5: #e2809e;
+  --tag-6: #84d08b;
+  --tag-7: #f8725e;
   color-scheme: dark;
 }
 
 :root[data-theme="light"] {
-  --bg: 255 255 255;
-  --fg: 10 10 10;
-  --raised: 255 255 255;
-  --muted: #666;
-  --faint: #8a8a8a;
-  --line: rgba(0, 0, 0, 0.09);
-  --surface: rgba(0, 0, 0, 0.025);
-  /* The bright green washes out on white, so light mode uses a deeper one. */
-  --live: #0f9d63;
-  --dock-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  --bg: 251 241 199;
+  --fg: 40 37 35;
+  --raised: 244 232 190;
+  --muted: #574a40;
+  --faint: #6e6156;
+  --line: #d5c4a1;
+  --surface: #f4e8be;
+  --live: #5a7a22;
+  --selection: rgba(90, 122, 34, 0.24);
+  --dock-shadow: 0 10px 30px rgba(60, 56, 54, 0.12);
+  --tag-1: #03738c;
+  --tag-2: #c47c0a;
+  --tag-3: #7e7a00;
+  --tag-4: #c23d00;
+  --tag-5: #a03a7a;
+  --tag-6: #368856;
+  --tag-7: #b40a0a;
   color-scheme: light;
 }
 
@@ -48,8 +65,8 @@ body {
 }
 
 ::selection {
-  background: var(--live);
-  color: rgb(var(--bg));
+  background: var(--selection);
+  color: rgb(var(--fg));
 }
 
 :focus-visible {
@@ -208,9 +225,25 @@ body {
     @apply font-mono text-[15px] leading-6 text-fg;
   }
 
-  .chip {
-    @apply rounded-full border border-line px-2.5 py-1 font-mono text-xs leading-none text-muted;
+  /* Availability badge in the hero: a quiet stamp in the accent colour. */
+  .status-badge {
+    @apply items-center gap-2 border px-2.5 py-1.5 font-mono text-[11px] font-medium uppercase leading-none tracking-[0.06em];
+    color: var(--live);
+    border-color: color-mix(in srgb, var(--live) 45%, transparent);
   }
+
+  /* Stack tags: sharp corners like the code links, each in its own colour. */
+  .chip {
+    @apply border border-line px-2 py-1 font-mono text-xs leading-none text-muted;
+  }
+
+  .chip:nth-child(7n + 1) { color: var(--tag-1); }
+  .chip:nth-child(7n + 2) { color: var(--tag-2); }
+  .chip:nth-child(7n + 3) { color: var(--tag-3); }
+  .chip:nth-child(7n + 4) { color: var(--tag-4); }
+  .chip:nth-child(7n + 5) { color: var(--tag-5); }
+  .chip:nth-child(7n + 6) { color: var(--tag-6); }
+  .chip:nth-child(7n + 7) { color: var(--tag-7); }
 
   /* Project titles. Monospace letters sit in wide cells, so they are pulled
      tight to read as one compact word. */
@@ -219,35 +252,9 @@ body {
     letter-spacing: -0.06em;
   }
 
-  /* Trims a single line of text to its capital letters: the box is exactly cap-height tall and
-     ends on the baseline, so text can be lined up with the edges of whatever sits beside it.
-     The line has no height of its own; an empty inline block as tall as the capitals stands on
-     the baseline and defines the box, which keeps the result free of font-metric rounding. */
-  .trim-display,
-  .trim-mono {
-    display: block;
-    line-height: 0;
-  }
-
-  .trim-display::before,
-  .trim-mono::before {
-    content: "";
-    display: inline-block;
-    height: var(--cap-height);
-  }
-
-  /* Cap heights of Geist Sans and JetBrains Mono. */
-  .trim-display {
-    --cap-height: 0.71em;
-  }
-
-  .trim-mono {
-    --cap-height: 0.73em;
-  }
-
   /* Names of repos and projects, set like inline code. */
   .code-link {
-    @apply rounded-[5px] bg-fg/[0.08] px-1.5 py-0.5 font-mono text-[13px] text-fg transition-colors duration-150 hover:bg-fg hover:text-bg;
+    @apply bg-fg/[0.08] px-1.5 py-0.5 font-mono text-[13px] text-fg transition-colors duration-150 hover:bg-fg hover:text-bg;
   }
 
 }

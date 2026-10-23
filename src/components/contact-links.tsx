@@ -46,8 +46,8 @@ export function ContactLinks() {
                 {...linkTarget(contact.key)}
                 className={`${arrowLink} text-base text-fg/[0.86] md:hover:text-fg`}
               >
-                <Icon className="mr-1.5 h-3.5 w-3.5 shrink-0" aria-hidden />
-                <span className="text-sm font-[450]">{contact.label}</span>
+                <Icon className="mr-1.5 h-4 w-4 shrink-0" aria-hidden />
+                <span className="text-[15px] font-[450]">{contact.label}</span>
                 <ArrowUpRightIcon className={arrowLinkArrow} />
               </a>
             </li>

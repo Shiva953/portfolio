@@ -54,7 +54,7 @@ export const metadata: Metadata = {
 const themeScript = `try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}`
 
 export const viewport: Viewport = {
-  themeColor: '#080808',
+  themeColor: '#090a0b',
   colorScheme: 'dark light',
 }
 

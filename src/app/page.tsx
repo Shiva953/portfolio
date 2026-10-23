@@ -37,20 +37,11 @@ export default function Home() {
 
       {/* Copy is written in sentence case; the lowercase voice is this one class. */}
       <main className="lowercase">
-        <section className="shell pb-10 pt-8 sm:pt-12">
-          {/* The page opens like a shell session: the command types itself, then the answer prints. */}
-          <p aria-hidden className="font-mono text-[15px] leading-6 text-fg">
-            <span className="text-live">$</span> <span className="typed">whoami</span>
-            <span className="cursor" />
-          </p>
-
-          {/* Picture and name are both sized in em off this row's font size, so they scale together.
-              Inside the picture's height: a margin, the name, a gap, the tagline and the same
-              margin again. The tagline keeps its size, so the name is the part that gives way. */}
-          <div
-            className="rise mt-5 flex items-stretch gap-[0.22em] text-[clamp(3rem,2rem+4vw,4.5rem)]"
-            style={{ '--i': 5 } as React.CSSProperties}
-          >
+        <section className="shell pb-10 pt-10 sm:pt-14">
+          {/* Photo on the left; the prompt, name and tagline stacked beside it, the way whoami
+              answers in a terminal. The open-to-work badge sits at the right edge from sm up;
+              on phones the dock carries it. */}
+          <div className="rise flex items-center gap-4 sm:gap-5" style={{ '--i': 5 } as React.CSSProperties}>
             <Image
               src="/pfp.png"
               alt=""
@@ -58,21 +49,35 @@ export default function Home() {
               height={768}
               unoptimized
               loading="eager"
-              className="h-[0.9em] w-[0.9em] shrink-0 rounded-[0.2em]"
+              className="h-[84px] w-[84px] shrink-0 rounded-[18px]"
             />
-            <div className="flex min-w-0 flex-col justify-between py-[0.05em]">
-              <h1 className="trim-display font-display text-[0.61em] font-bold normal-case tracking-[-0.05em]">
+            <div className="min-w-0 flex-1">
+              {/* The command types itself, then the answer is already there below it. */}
+              <p aria-hidden className="font-mono text-[13px] leading-4 text-muted">
+                <span className="text-live">$</span> <span className="typed">whoami</span>
+                <span className="cursor" />
+              </p>
+              {/* The offset was measured from the rendered letters: it centres the name exactly
+                  between the prompt above and the tagline below. A transform moves only the name,
+                  so the prompt, tagline and photo stay where they are. */}
+              <h1 className="mt-1.5 -translate-y-[1.625px] font-mono text-[42px] font-extrabold lowercase leading-none tracking-[-0.09em]">
                 Shiva
               </h1>
-              <p className="trim-mono ml-[0.13em] whitespace-nowrap font-mono text-[10px] font-medium uppercase tracking-[0.03em] text-fg/80 sm:text-[11px]">
+              <p className="ml-[0.1em] mt-px whitespace-nowrap font-mono text-[12px] font-medium lowercase leading-none tracking-[-0.01em] text-fg/80">
                 {site.tagline}
               </p>
             </div>
+            {site.openToWork && (
+              <p className="status-badge hidden self-start sm:inline-flex">
+                <span className="status-dot" aria-hidden />
+                open to work
+              </p>
+            )}
           </div>
 
-          {/* A short spoken-style intro, as if said to a founder in person. Body at 92% of the text colour; key phrases in semibold at full strength. */}
+          {/* A short spoken-style intro, as if said to a founder in person. Body at 79% of the text colour; key phrases in semibold at full strength. */}
           <p
-            className="rise mt-7 text-pretty text-[14.5px] normal-case leading-[1.7] tracking-[-0.015em] text-fg/[0.92] sm:text-[15.5px] sm:leading-[1.7]"
+            className="rise mt-7 text-pretty font-mono text-[13px] normal-case leading-[1.75] tracking-[-0.035em] text-fg/[0.79] sm:text-[14px] sm:leading-[1.75]"
             style={{ '--i': 6 } as React.CSSProperties}
           >
             I’m a <NoBreak>full-stack</NoBreak>, <NoBreak>product-minded</NoBreak> engineer who loves

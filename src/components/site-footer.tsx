@@ -1,3 +1,4 @@
+import { LocalTime } from '@/components/local-time'
 import { site } from '@/lib/site'
 
 export function SiteFooter() {
@@ -6,7 +7,7 @@ export function SiteFooter() {
       <p>
         © {new Date().getFullYear()} {site.name}
       </p>
-      <p aria-hidden>exit 0</p>
+      <LocalTime />
     </footer>
   )
 }
