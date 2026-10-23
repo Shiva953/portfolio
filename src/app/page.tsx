@@ -25,6 +25,11 @@ function NoBreak({ children }: { children: React.ReactNode }) {
   return <span className="whitespace-nowrap">{children}</span>
 }
 
+// The phrases in the intro a skimming reader should catch.
+function Strong({ children }: { children: React.ReactNode }) {
+  return <strong className="font-semibold text-fg">{children}</strong>
+}
+
 export default function Home() {
   return (
     <>
@@ -59,25 +64,24 @@ export default function Home() {
               <h1 className="trim-display font-display text-[0.61em] font-bold normal-case tracking-[-0.05em]">
                 Shiva
               </h1>
-              <p className="trim-mono ml-[0.13em] whitespace-nowrap font-mono text-[10px] font-medium uppercase tracking-[0.1em] text-fg/80 sm:text-[11px]">
+              <p className="trim-mono ml-[0.13em] whitespace-nowrap font-mono text-[10px] font-medium uppercase tracking-[0.03em] text-fg/80 sm:text-[11px]">
                 {site.tagline}
               </p>
             </div>
           </div>
 
-          {/* What he does, what he has shipped and the proof, in one short paragraph.
-              Body copy at 72% of the text colour; the three proof points at full strength. */}
+          {/* A short spoken-style intro, as if said to a founder in person. Body at 92% of the text colour; key phrases in semibold at full strength. */}
           <p
-            className="rise mt-7 text-pretty text-[14.5px] normal-case leading-[1.7] tracking-[-0.015em] text-fg/[0.72] sm:text-[15.5px] sm:leading-[1.7]"
+            className="rise mt-7 text-pretty text-[14.5px] normal-case leading-[1.7] tracking-[-0.015em] text-fg/[0.92] sm:text-[15.5px] sm:leading-[1.7]"
             style={{ '--i': 6 } as React.CSSProperties}
           >
-            Full-stack Solana engineer. I write smart contracts in Rust and Anchor, build{' '}
-            <NoBreak>real-time</NoBreak> indexers, and ship the apps on top. So far that’s{' '}
-            <NoBreak>on-chain</NoBreak> games, escrow protocols, AI agents and blinks, plus{' '}
-            <span className="text-fg">4{'\u00a0'}hackathon wins</span>,{' '}
-            <span className="text-fg">a Solana Foundation grant</span> and{' '}
-            <span className="text-fg">code merged into Anchor</span>.{' '}
-            <NoBreak>Self-taught</NoBreak>, and I nerd out on cryptography and the math behind DeFi.
+            I’m a <NoBreak>full-stack</NoBreak>, <NoBreak>product-minded</NoBreak> engineer who loves
+            taking products from <Strong><NoBreak>0→1</NoBreak></Strong>. For the past two years I’ve been freelancing,{' '}
+            <Strong>building MVPs</Strong> for early teams and owning each one{' '}
+            <Strong>end to end</Strong>, from the first sketch to launch. These days that’s mostly{' '}
+            <Strong>AI agents and apps on Solana</Strong>. I’m <NoBreak>self-taught</NoBreak>, and
+            along the way I’ve won a bunch of <Strong>hackathons and bounties</Strong>, and landed a{' '}
+            <Strong>Solana Foundation grant</Strong>.
           </p>
 
           <div className="rise mt-6" style={{ '--i': 7 } as React.CSSProperties}>
