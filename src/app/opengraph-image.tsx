@@ -7,9 +7,10 @@ export const contentType = 'image/png'
 
 export default function Image() {
   return renderOgCard({
-    command: 'whoami',
-    headline: site.share.headline,
+    title: 'Shiva',
+    avatar: true,
     detail: site.share.detail,
-    footer: site.share.footer,
+    // Left column top to bottom, then the right. Belzin sits fully in view.
+    shots: ['bountyexchange', 'traderdraft', 'belzin', 'univault', 'gibbon', 'gorclash'],
   })
 }

@@ -1,4 +1,5 @@
 import Link from 'next/link'
+import { ThemeToggle } from '@/components/theme-toggle'
 import { site } from '@/lib/site'
 
 export function SiteHeader() {
@@ -12,12 +13,15 @@ export function SiteHeader() {
       >
         SHIVA
       </Link>
-      {site.openToWork && (
-        <p className="flex items-center gap-2.5 font-mono text-[13px] text-white">
-          <span className="status-dot" aria-hidden />
-          open to work
-        </p>
-      )}
+      <div className="flex items-center gap-4">
+        {site.openToWork && (
+          <p className="flex items-center gap-2.5 font-mono text-[13px] text-fg">
+            <span className="status-dot" aria-hidden />
+            open to work
+          </p>
+        )}
+        <ThemeToggle />
+      </div>
     </header>
   )
 }

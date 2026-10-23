@@ -11,12 +11,10 @@ export const site = {
   title: 'Shiva Seth | Product Engineer',
   description:
     'Shiva Seth is a product engineer who ships end to end, from smart contracts and AI agents to the apps on top. 4 hackathon wins. Open to work.',
-  // The text on the link preview image (X, LinkedIn, Slack and the like). The footer names what
-  // any hiring team might be looking for, so keep it free of ecosystem-specific credentials.
+  // The text on the link preview image (X, LinkedIn, Slack and the like). Written for any team
+  // hiring a full-stack or product engineer, so keep it free of ecosystem-specific terms.
   share: {
-    headline: 'Product engineer.',
-    detail: 'Smart contracts, AI agents, and the apps on top.',
-    footer: 'full-stack / builds with AI / consumer apps / 4 hackathon wins',
+    detail: 'Full-stack product engineer. I ship crypto and AI apps end to end.',
   },
   email: 'shivaset2@gmail.com',
   resume: '/shiva_seth.pdf',

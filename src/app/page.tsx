@@ -8,7 +8,7 @@ import { ProjectPreview } from '@/components/demo-video'
 import { ArrowUpRightIcon } from '@/components/icons'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { Backdrop, Prompt } from '@/components/terminal'
+import { Prompt } from '@/components/terminal'
 import { featuredProjects, projects, sideProjects } from '@/lib/projects'
 import { experience, openSource, site, stack } from '@/lib/site'
 
@@ -34,7 +34,7 @@ export default function Home() {
       <main className="lowercase">
         <section className="shell pb-10 pt-8 sm:pt-12">
           {/* The page opens like a shell session: the command types itself, then the answer prints. */}
-          <p aria-hidden className="font-mono text-[15px] leading-6 text-white">
+          <p aria-hidden className="font-mono text-[15px] leading-6 text-fg">
             <span className="text-live">$</span> <span className="typed">whoami</span>
             <span className="cursor" />
           </p>
@@ -59,24 +59,24 @@ export default function Home() {
               <h1 className="trim-display font-display text-[0.61em] font-bold normal-case tracking-[-0.05em]">
                 Shiva
               </h1>
-              <p className="trim-mono ml-[0.13em] whitespace-nowrap font-mono text-[10px] font-medium uppercase tracking-[0.1em] text-white/80 sm:text-[11px]">
+              <p className="trim-mono ml-[0.13em] whitespace-nowrap font-mono text-[10px] font-medium uppercase tracking-[0.1em] text-fg/80 sm:text-[11px]">
                 {site.tagline}
               </p>
             </div>
           </div>
 
           {/* What he does, what he has shipped and the proof, in one short paragraph.
-              Body copy at 72% white; the three proof points at full white. */}
+              Body copy at 72% of the text colour; the three proof points at full strength. */}
           <p
-            className="rise mt-7 text-pretty text-[14.5px] normal-case leading-[1.7] tracking-[-0.015em] text-white/[0.72] sm:text-[15.5px] sm:leading-[1.7]"
+            className="rise mt-7 text-pretty text-[14.5px] normal-case leading-[1.7] tracking-[-0.015em] text-fg/[0.72] sm:text-[15.5px] sm:leading-[1.7]"
             style={{ '--i': 6 } as React.CSSProperties}
           >
             Full-stack Solana engineer. I write smart contracts in Rust and Anchor, build{' '}
             <NoBreak>real-time</NoBreak> indexers, and ship the apps on top. So far that’s{' '}
             <NoBreak>on-chain</NoBreak> games, escrow protocols, AI agents and blinks, plus{' '}
-            <span className="text-white">4{'\u00a0'}hackathon wins</span>,{' '}
-            <span className="text-white">a Solana Foundation grant</span> and{' '}
-            <span className="text-white">code merged into Anchor</span>.{' '}
+            <span className="text-fg">4{'\u00a0'}hackathon wins</span>,{' '}
+            <span className="text-fg">a Solana Foundation grant</span> and{' '}
+            <span className="text-fg">code merged into Anchor</span>.{' '}
             <NoBreak>Self-taught</NoBreak>, and I nerd out on cryptography and the math behind DeFi.
           </p>
 
@@ -103,13 +103,13 @@ export default function Home() {
                   {/* Company and role on one line, dates pushed to the right edge. The arrow that
                       fades in on hover already holds a gap between the name and the role. */}
                   <div className="flex flex-wrap items-baseline gap-x-1 tracking-tight">
-                    <h3 className="text-base font-semibold text-white">
+                    <h3 className="text-base font-semibold text-fg">
                       <a href={job.href} target="_blank" rel="noopener" className={arrowLink}>
                         {job.company}
                         <ArrowUpRightIcon className={arrowLinkArrow} />
                       </a>
                     </h3>
-                    <p className="text-sm text-white/70">{job.role}</p>
+                    <p className="text-sm text-fg/70">{job.role}</p>
                     <p className="w-full font-mono text-xs tracking-normal text-faint sm:ml-auto sm:w-auto">
                       {job.period}
                     </p>
@@ -132,15 +132,15 @@ export default function Home() {
               <li key={project.slug}>
                 <Link href={`/projects/${project.slug}`} className="group block">
                   {/* Each project sits in a terminal window; the path in its title bar is decoration. */}
-                  <div className="overflow-hidden rounded-xl border border-line bg-surface transition-colors duration-200 group-hover:border-white/40">
+                  <div className="overflow-hidden rounded-xl border border-line bg-surface transition-colors duration-200 group-hover:border-fg/40">
                     <div
                       aria-hidden
                       className="flex h-8 items-center gap-2.5 border-b border-line px-3 font-mono text-xs text-faint"
                     >
                       <span className="flex gap-1">
-                        <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
-                        <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
-                        <span className="h-1.5 w-1.5 rounded-full bg-white/25" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-fg/25" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-fg/25" />
+                        <span className="h-1.5 w-1.5 rounded-full bg-fg/25" />
                       </span>
                       <span className="truncate">~/{project.slug}</span>
                     </div>
@@ -154,7 +154,7 @@ export default function Home() {
                   </div>
                   {/* Title and year in JetBrains Mono; the description stays in the body font. */}
                   <div className="mt-3.5 flex items-baseline justify-between gap-3">
-                    <h3 className="project-title text-[19px] font-semibold leading-6 text-white underline-offset-4 group-hover:underline">
+                    <h3 className="project-title text-[19px] font-semibold leading-6 text-fg underline-offset-4 group-hover:underline">
                       {project.name}
                     </h3>
                     <span className="font-mono text-xs text-faint">{project.year}</span>
@@ -163,7 +163,7 @@ export default function Home() {
                     {project.tagline}
                   </p>
                   {project.award && (
-                    <p className="mt-2 flex items-center gap-2 font-mono text-[13px] text-white">
+                    <p className="mt-2 flex items-center gap-2 font-mono text-[13px] text-fg">
                       <Check className="h-3.5 w-3.5 shrink-0 text-live" strokeWidth={3} aria-hidden />
                       {project.award.label}
                     </p>
@@ -246,7 +246,6 @@ export default function Home() {
 
       <SiteFooter />
       <ContactDock />
-      <Backdrop />
     </>
   )
 }

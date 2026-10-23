@@ -15,9 +15,9 @@ export default async function Image({ params }: { params: Promise<{ slug: string
   const project = getProject(slug)
 
   return renderOgCard({
-    command: `cat ${slug}`,
-    headline: project?.name ?? site.name,
-    detail: project?.tagline ?? site.role,
-    footer: project?.award?.label ?? `Built by ${site.name}`,
+    title: project?.name ?? 'Shiva',
+    detail: project?.tagline ?? site.share.detail,
+    footer: project?.award?.label ?? `by ${site.name}`,
+    shots: project ? [project.slug] : [],
   })
 }

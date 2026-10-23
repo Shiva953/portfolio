@@ -7,7 +7,7 @@ import { ContactDock } from '@/components/contact-dock'
 import { DemoPlayer } from '@/components/demo-video'
 import { SiteFooter } from '@/components/site-footer'
 import { SiteHeader } from '@/components/site-header'
-import { Backdrop, Prompt } from '@/components/terminal'
+import { Prompt } from '@/components/terminal'
 import { getProject, projects } from '@/lib/projects'
 import { site } from '@/lib/site'
 
@@ -59,7 +59,7 @@ export default async function ProjectPage({ params }: PageProps) {
         <article className="shell pb-14 pt-6 sm:pt-10">
           <Link
             href="/#work"
-            className="inline-flex items-center gap-2 text-[15px] text-muted transition-colors hover:text-white"
+            className="inline-flex items-center gap-2 text-[15px] text-muted transition-colors hover:text-fg"
           >
             <ArrowLeft className="h-4 w-4" aria-hidden />
             All work
@@ -83,13 +83,13 @@ export default async function ProjectPage({ params }: PageProps) {
                     href={project.award.href}
                     target="_blank"
                     rel="noopener"
-                    className="flex items-center gap-2 font-mono text-[13px] text-white underline-offset-4 hover:underline"
+                    className="flex items-center gap-2 font-mono text-[13px] text-fg underline-offset-4 hover:underline"
                   >
                     <Check className="h-3.5 w-3.5 shrink-0 text-live" strokeWidth={3} aria-hidden />
                     {project.award.label}
                   </a>
                 ) : (
-                  <p className="flex items-center gap-2 font-mono text-[13px] text-white">
+                  <p className="flex items-center gap-2 font-mono text-[13px] text-fg">
                     <Check className="h-3.5 w-3.5 shrink-0 text-live" strokeWidth={3} aria-hidden />
                     {project.award.label}
                   </p>
@@ -100,7 +100,7 @@ export default async function ProjectPage({ params }: PageProps) {
                   href={link.href}
                   target="_blank"
                   rel="noopener"
-                  className="inline-flex items-center gap-1 text-white underline decoration-white/30 underline-offset-4 transition-colors hover:decoration-white"
+                  className="inline-flex items-center gap-1 text-fg underline decoration-fg/30 underline-offset-4 transition-colors hover:decoration-fg"
                 >
                   {link.label}
                   <ArrowUpRight className="h-4 w-4" aria-hidden />
@@ -122,7 +122,7 @@ export default async function ProjectPage({ params }: PageProps) {
               <h2 className="section-title">
                 <Prompt command="cat">Overview</Prompt>
               </h2>
-              <p className="mt-3 text-pretty text-base leading-relaxed text-white/90">
+              <p className="mt-3 text-pretty text-base leading-relaxed text-fg/90">
                 {project.summary}
               </p>
             </div>
@@ -131,11 +131,11 @@ export default async function ProjectPage({ params }: PageProps) {
               <h2 className="section-title">
                 <Prompt>What I built</Prompt>
               </h2>
-              <ul className="mt-3 space-y-2.5 text-[15px] leading-snug text-white/90">
+              <ul className="mt-3 space-y-2.5 text-[15px] leading-snug text-fg/90">
                 {project.built.map((line) => (
                   <li
                     key={line}
-                    className="relative pl-6 before:absolute before:left-0 before:top-[0.62em] before:h-px before:w-3 before:bg-white/40"
+                    className="relative pl-6 before:absolute before:left-0 before:top-[0.62em] before:h-px before:w-3 before:bg-fg/40"
                   >
                     {line}
                   </li>
@@ -168,7 +168,7 @@ export default async function ProjectPage({ params }: PageProps) {
               </span>
             </span>
             <ArrowRight
-              className="h-5 w-5 text-muted transition-transform duration-200 group-hover:translate-x-1 group-hover:text-white"
+              className="h-5 w-5 text-muted transition-transform duration-200 group-hover:translate-x-1 group-hover:text-fg"
               aria-hidden
             />
           </Link>
@@ -179,7 +179,6 @@ export default async function ProjectPage({ params }: PageProps) {
 
       <SiteFooter />
       <ContactDock />
-      <Backdrop />
     </>
   )
 }

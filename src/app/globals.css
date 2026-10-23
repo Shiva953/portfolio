@@ -2,15 +2,34 @@
 @tailwind components;
 @tailwind utilities;
 
-:root {
-  --background: #000;
-  --foreground: #fff;
+/* Dark is the default. A script in layout.tsx sets data-theme from the saved choice before the
+   first paint, and the toggle in the header flips it. fg, bg and raised are RGB channels. */
+:root,
+:root[data-theme="dark"] {
+  --bg: 8 8 8;
+  --fg: 237 237 237;
+  --raised: 23 23 23;
   --muted: #999;
   --faint: #777;
   --line: rgba(255, 255, 255, 0.1);
   --surface: rgba(255, 255, 255, 0.035);
   --live: #14f195;
+  --dock-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
   color-scheme: dark;
+}
+
+:root[data-theme="light"] {
+  --bg: 255 255 255;
+  --fg: 10 10 10;
+  --raised: 255 255 255;
+  --muted: #666;
+  --faint: #8a8a8a;
+  --line: rgba(0, 0, 0, 0.09);
+  --surface: rgba(0, 0, 0, 0.025);
+  /* The bright green washes out on white, so light mode uses a deeper one. */
+  --live: #0f9d63;
+  --dock-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+  color-scheme: light;
 }
 
 html {
@@ -22,32 +41,20 @@ html {
 }
 
 body {
-  background-color: var(--background);
-  color: var(--foreground);
+  background-color: rgb(var(--bg));
+  color: rgb(var(--fg));
   /* Every face here ships the weights it is used at, so never let the browser fake one. */
   font-synthesis: none;
 }
 
 ::selection {
   background: var(--live);
-  color: #000;
+  color: rgb(var(--bg));
 }
 
 :focus-visible {
-  outline: 2px solid #fff;
+  outline: 2px solid rgb(var(--fg));
   outline-offset: 3px;
-}
-
-.gradient-blur {
-  background: radial-gradient(circle at top right, rgba(50, 50, 50, 0.2), transparent 80%);
-}
-
-/* Faint dot grid that fades out down the screen. */
-.dot-grid {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.1) 1px, transparent 1px);
-  background-size: 24px 24px;
-  -webkit-mask-image: linear-gradient(to bottom, #000, transparent 75%);
-  mask-image: linear-gradient(to bottom, #000, transparent 75%);
 }
 
 /* Terminal cursor. */
@@ -132,7 +139,39 @@ body {
   }
 }
 
+/* Theme toggle: the sun shows in dark mode, the moon in light. The button tilts on hover. */
+.theme-toggle {
+  transition: color 0.2s, transform 0.48s cubic-bezier(0.34, 1.56, 0.64, 1);
+}
+
+.theme-toggle:hover {
+  transform: rotate(22deg);
+}
+
+.theme-toggle:active {
+  transform: rotate(22deg) scale(0.86);
+}
+
+.theme-icon {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transform: scale(0.92);
+  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+:root:not([data-theme="light"]) .theme-icon-sun,
+:root[data-theme="light"] .theme-icon-moon {
+  opacity: 1;
+  transform: none;
+}
+
 @media (prefers-reduced-motion: reduce) {
+  .theme-toggle,
+  .theme-icon {
+    transition: none;
+  }
+
   html {
     scroll-behavior: auto;
   }
@@ -156,17 +195,17 @@ body {
   }
 
   .btn-primary {
-    @apply bg-white text-black hover:bg-white/80;
+    @apply bg-fg text-bg hover:bg-fg/80;
   }
 
   /* Contact pills: one style for all four, inverted on hover. */
   .pill {
-    @apply inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-white/15 px-4 text-[15px] leading-none text-white transition-colors duration-200 hover:border-white hover:bg-white hover:text-black;
+    @apply inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-fg/15 px-4 text-[15px] leading-none text-fg transition-colors duration-200 hover:border-fg hover:bg-fg hover:text-bg;
   }
 
   /* Section headings read as shell commands. */
   .section-title {
-    @apply font-mono text-[15px] leading-6 text-white;
+    @apply font-mono text-[15px] leading-6 text-fg;
   }
 
   .chip {
@@ -208,7 +247,7 @@ body {
 
   /* Names of repos and projects, set like inline code. */
   .code-link {
-    @apply rounded-[5px] bg-white/[0.08] px-1.5 py-0.5 font-mono text-[13px] text-white transition-colors duration-150 hover:bg-white hover:text-black;
+    @apply rounded-[5px] bg-fg/[0.08] px-1.5 py-0.5 font-mono text-[13px] text-fg transition-colors duration-150 hover:bg-fg hover:text-bg;
   }
 
 }

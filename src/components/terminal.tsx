@@ -10,12 +10,3 @@ export function Prompt({ command, children }: { command?: string; children?: Rea
   )
 }
 
-// Fixed page background: soft corner glow plus a dot grid.
-export function Backdrop() {
-  return (
-    <>
-      <div className="gradient-blur pointer-events-none fixed inset-0 -z-10" />
-      <div className="dot-grid pointer-events-none fixed inset-0 -z-10" />
-    </>
-  )
-}

@@ -7,7 +7,7 @@ export function Contact() {
   return (
     <section id="contact" className="shell pb-14 pt-4">
       <div className="border-t border-line pt-10">
-        <p aria-hidden className="font-mono text-[15px] text-white">
+        <p aria-hidden className="font-mono text-[15px] text-fg">
           <Prompt>sudo hire shiva</Prompt>
         </p>
         <h2 className="mt-4 text-[clamp(1.75rem,5vw,2.25rem)] font-medium leading-tight tracking-[-0.03em]">
@@ -19,7 +19,7 @@ export function Contact() {
         </div>
         <CopyEmail
           email={site.email}
-          className="mt-4 inline-flex items-center gap-2 font-mono text-[13px] text-muted transition-colors hover:text-white"
+          className="mt-4 inline-flex items-center gap-2 font-mono text-[13px] text-muted transition-colors hover:text-fg"
         >
           {site.email}
         </CopyEmail>

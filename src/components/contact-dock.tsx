@@ -66,15 +66,15 @@ export function ContactDock() {
         aria-label="Contact"
         onPointerMove={handleMove}
         onPointerLeave={handleLeave}
-        className="pointer-events-auto flex h-[52px] items-end gap-1.5 rounded-2xl border border-white/10 bg-neutral-950/90 p-1.5 shadow-[0_10px_40px_rgba(0,0,0,0.7)] backdrop-blur-md"
+        className="pointer-events-auto flex h-[52px] items-end gap-1.5 rounded-2xl border border-fg/10 bg-bg/90 p-1.5 shadow-dock backdrop-blur-md"
       >
         {site.openToWork && (
           <>
-            <p className="flex h-10 items-center gap-2 whitespace-nowrap pl-2.5 pr-1.5 font-mono text-xs text-white">
+            <p className="flex h-10 items-center gap-2 whitespace-nowrap pl-2.5 pr-1.5 font-mono text-xs text-fg">
               <span className="status-dot" aria-hidden />
               open to work
             </p>
-            <span className="mx-0.5 mb-2 h-6 w-px bg-white/10" aria-hidden />
+            <span className="mx-0.5 mb-2 h-6 w-px bg-fg/10" aria-hidden />
           </>
         )}
         {contacts.map((contact, index) => {
@@ -88,12 +88,12 @@ export function ContactDock() {
               href={contact.href}
               {...linkTarget(contact.key)}
               aria-label={contact.label}
-              className="group relative grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-white/[0.07] text-white/[0.86] transition-colors duration-200 hover:bg-white/[0.14] hover:text-white"
+              className="group relative grid h-10 w-10 shrink-0 place-items-center rounded-xl bg-fg/[0.07] text-fg/[0.86] transition-colors duration-200 hover:bg-fg/[0.14] hover:text-fg"
             >
               <Icon className="h-[18px] w-[18px] scale-[var(--dock-scale,1)]" aria-hidden />
               <span
                 aria-hidden
-                className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-white/10 bg-neutral-900 px-2 py-1 font-mono text-[11px] lowercase leading-none text-white opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100"
+                className="pointer-events-none absolute -top-8 left-1/2 -translate-x-1/2 whitespace-nowrap rounded-md border border-fg/10 bg-raised px-2 py-1 font-mono text-[11px] lowercase leading-none text-fg opacity-0 transition-opacity duration-150 group-hover:opacity-100 group-focus-visible:opacity-100"
               >
                 {contact.label}
               </span>

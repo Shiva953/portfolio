@@ -8,14 +8,20 @@ export default {
   ],
   theme: {
     extend: {
+      // Theme colours live in globals.css. fg and bg are RGB channels so opacity
+      // modifiers like text-fg/70 work in both themes.
       colors: {
-        background: "var(--background)",
-        foreground: "var(--foreground)",
+        fg: "rgb(var(--fg) / <alpha-value>)",
+        bg: "rgb(var(--bg) / <alpha-value>)",
+        raised: "rgb(var(--raised) / <alpha-value>)",
         muted: "var(--muted)",
         faint: "var(--faint)",
         line: "var(--line)",
         surface: "var(--surface)",
         live: "var(--live)",
+      },
+      boxShadow: {
+        dock: "var(--dock-shadow)",
       },
       fontFamily: {
         sans: ["var(--font-satoshi)", "ui-sans-serif", "system-ui", "sans-serif"],

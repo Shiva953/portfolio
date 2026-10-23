@@ -30,7 +30,7 @@ export function ContactLinks() {
           href={site.bookCallUrl}
           target="_blank"
           rel="noopener"
-          className="pill border-white bg-white text-black hover:bg-white/80"
+          className="pill border-fg bg-fg text-bg hover:bg-fg/80"
         >
           <CalendarDays className="h-4 w-4" aria-hidden />
           Book a call
@@ -44,7 +44,7 @@ export function ContactLinks() {
               <a
                 href={contact.href}
                 {...linkTarget(contact.key)}
-                className={`${arrowLink} text-base text-white/[0.86] md:hover:text-white`}
+                className={`${arrowLink} text-base text-fg/[0.86] md:hover:text-fg`}
               >
                 <Icon className="mr-1.5 h-3.5 w-3.5 shrink-0" aria-hidden />
                 <span className="text-sm font-[450]">{contact.label}</span>

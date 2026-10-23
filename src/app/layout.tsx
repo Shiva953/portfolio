@@ -1,6 +1,6 @@
 import './globals.css'
 import type { Metadata, Viewport } from 'next'
-import { Toaster } from 'sonner'
+import { ThemedToaster } from '@/components/theme-toggle'
 import { site } from '@/lib/site'
 import { GeistSans, jetbrainsMono, satoshi, supply } from './fonts'
 
@@ -50,9 +50,12 @@ export const metadata: Metadata = {
   },
 }
 
+// Runs in <head> before the first paint, so a saved light theme never flashes dark first.
+const themeScript = `try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}`
+
 export const viewport: Viewport = {
-  themeColor: '#000000',
-  colorScheme: 'dark',
+  themeColor: '#080808',
+  colorScheme: 'dark light',
 }
 
 // Tells search engines who this site is about and which profiles belong to the same person.
@@ -84,10 +87,18 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className={`${satoshi.variable} ${supply.variable} ${GeistSans.variable} ${jetbrainsMono.variable}`}>
-      <body className="min-h-screen bg-black font-sans antialiased">
+    <html
+      lang="en"
+      className={`${satoshi.variable} ${supply.variable} ${GeistSans.variable} ${jetbrainsMono.variable}`}
+      // The theme script sets data-theme before React hydrates.
+      suppressHydrationWarning
+    >
+      <head>
+        <script dangerouslySetInnerHTML={{ __html: themeScript }} />
+      </head>
+      <body className="min-h-screen bg-bg font-sans antialiased">
         {children}
-        <Toaster theme="dark" position="top-center" />
+        <ThemedToaster />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(personSchema) }}
