@@ -7,6 +7,7 @@ import { ContactLinks, arrowLink, arrowLinkArrow } from '@/components/contact-li
 import { ProjectPreview } from '@/components/demo-video'
 import { ArrowUpRightIcon } from '@/components/icons'
 import { SiteFooter } from '@/components/site-footer'
+import { RevealOnScroll } from '@/components/reveal'
 import { SiteHeader } from '@/components/site-header'
 import { Prompt } from '@/components/terminal'
 import { featuredProjects, projects, sideProjects } from '@/lib/projects'
@@ -60,10 +61,10 @@ export default function Home() {
               {/* The offset was measured from the rendered letters: it centres the name exactly
                   between the prompt above and the tagline below. A transform moves only the name,
                   so the prompt, tagline and photo stay where they are. */}
-              <h1 className="mt-1.5 -translate-y-[1.625px] font-mono text-[42px] font-extrabold lowercase leading-none tracking-[-0.09em]">
+              <h1 className="mt-1.5 -translate-y-[2.625px] font-mono text-[58px] font-extrabold lowercase leading-none tracking-[-0.09em]">
                 Shiva
               </h1>
-              <p className="ml-[0.1em] mt-px whitespace-nowrap font-mono text-[12px] font-medium lowercase leading-none tracking-[-0.01em] text-fg/80">
+              <p className="ml-[0.1em] -mt-0.5 whitespace-nowrap font-mono text-[13px] font-medium lowercase leading-none tracking-[-0.01em] text-fg/80">
                 {site.tagline}
               </p>
             </div>
@@ -77,7 +78,7 @@ export default function Home() {
 
           {/* A short spoken-style intro, as if said to a founder in person. Body at 79% of the text colour; key phrases in semibold at full strength. */}
           <p
-            className="rise mt-7 text-pretty font-mono text-[13px] normal-case leading-[1.75] tracking-[-0.035em] text-fg/[0.79] sm:text-[14px] sm:leading-[1.75]"
+            className="rise mt-7 max-w-[68ch] text-pretty font-mono text-[13px] normal-case leading-[1.75] tracking-[-0.035em] text-fg/[0.79] sm:text-[14px] sm:leading-[1.75]"
             style={{ '--i': 6 } as React.CSSProperties}
           >
             I’m a <NoBreak>full-stack</NoBreak>, <NoBreak>product-minded</NoBreak> engineer who loves
@@ -95,12 +96,12 @@ export default function Home() {
         </section>
 
         <section id="experience" className="shell py-8">
-          <h2 className="section-title">
+          <h2 data-reveal className="section-title">
             <Prompt command="ls">Experience</Prompt>
           </h2>
           <ul className="mt-6 space-y-7">
-            {experience.map((job) => (
-              <li key={job.company} className="flex gap-4">
+            {experience.map((job, index) => (
+              <li key={job.company} data-reveal style={{ '--d': index + 1 } as React.CSSProperties} className="flex gap-4">
                 <Image
                   src={job.logo}
                   alt=""
@@ -119,11 +120,11 @@ export default function Home() {
                       </a>
                     </h3>
                     <p className="text-sm text-fg/70">{job.role}</p>
-                    <p className="w-full font-mono text-xs tracking-normal text-faint sm:ml-auto sm:w-auto">
+                    <p className="w-full font-mono text-[13px] tracking-normal text-faint sm:ml-auto sm:w-auto">
                       {job.period}
                     </p>
                   </div>
-                  <p className="mt-1.5 text-pretty text-[15px] normal-case leading-[1.6] text-muted">
+                  <p className="mt-1.5 text-pretty text-base normal-case leading-[1.6] text-muted">
                     {job.summary}
                   </p>
                 </div>
@@ -133,18 +134,18 @@ export default function Home() {
         </section>
 
         <section id="work" className="shell py-8">
-          <h2 className="section-title">
+          <h2 data-reveal className="section-title">
             <Prompt command="ls">Work</Prompt>
           </h2>
           <ul className="mt-6 grid gap-x-8 gap-y-10 sm:grid-cols-2">
-            {featuredProjects.map((project) => (
-              <li key={project.slug}>
+            {featuredProjects.map((project, index) => (
+              <li key={project.slug} data-reveal style={{ '--d': (index % 2) + 1 } as React.CSSProperties}>
                 <Link href={`/projects/${project.slug}`} className="group block">
                   {/* Each project sits in a terminal window; the path in its title bar is decoration. */}
                   <div className="overflow-hidden rounded-xl border border-line bg-surface transition-colors duration-200 group-hover:border-fg/40">
                     <div
                       aria-hidden
-                      className="flex h-8 items-center gap-2.5 border-b border-line px-3 font-mono text-xs text-faint"
+                      className="flex h-8 items-center gap-2.5 border-b border-line px-3 font-mono text-[13px] text-faint"
                     >
                       <span className="flex gap-1">
                         <span className="h-1.5 w-1.5 rounded-full bg-fg/25" />
@@ -166,9 +167,9 @@ export default function Home() {
                     <h3 className="project-title text-[19px] font-semibold leading-6 text-fg underline-offset-4 group-hover:underline">
                       {project.name}
                     </h3>
-                    <span className="font-mono text-xs text-faint">{project.year}</span>
+                    <span className="font-mono text-[13px] text-faint">{project.year}</span>
                   </div>
-                  <p className="mt-1.5 text-pretty text-[15px] leading-snug text-muted">
+                  <p className="mt-1.5 text-pretty text-base leading-snug text-muted">
                     {project.tagline}
                   </p>
                   {project.award && (
@@ -183,7 +184,7 @@ export default function Home() {
           </ul>
 
           {/* Names sit in code-style tags, so they need no commas between them. */}
-          <p className="mt-9 flex flex-wrap items-center gap-x-2 gap-y-2 text-[15px] text-muted">
+          <p data-reveal className="mt-9 flex flex-wrap items-center gap-x-2 gap-y-2 text-base text-muted">
             Also built
             {alsoBuilt.map((build) =>
               build.external ? (
@@ -218,10 +219,10 @@ export default function Home() {
 
         <section id="open-source" className="shell space-y-9 py-8">
           <div>
-            <h2 className="section-title">
+            <h2 data-reveal className="section-title">
               <Prompt command="ls">Open-source</Prompt>
             </h2>
-            <p className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 text-[15px] text-muted">
+            <p data-reveal style={{ '--d': 1 } as React.CSSProperties} className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 text-base text-muted">
               <span className="normal-case">Merged PRs in</span>
               {openSource.map((pr) => (
                 <a
@@ -237,10 +238,10 @@ export default function Home() {
             </p>
           </div>
           <div>
-            <h2 className="section-title">
+            <h2 data-reveal className="section-title">
               <Prompt command="cat">Stack</Prompt>
             </h2>
-            <ul className="mt-4 flex flex-wrap gap-1.5">
+            <ul data-reveal style={{ '--d': 1 } as React.CSSProperties} className="mt-4 flex flex-wrap gap-1.5">
               {stack.map((tool) => (
                 <li key={tool} className="chip">
                   {tool}
@@ -255,6 +256,7 @@ export default function Home() {
 
       <SiteFooter />
       <ContactDock />
+      <RevealOnScroll />
     </>
   )
 }

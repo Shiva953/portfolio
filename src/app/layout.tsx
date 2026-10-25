@@ -51,7 +51,7 @@ export const metadata: Metadata = {
 }
 
 // Runs in <head> before the first paint, so a saved light theme never flashes dark first.
-const themeScript = `try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}`
+const themeScript = `document.documentElement.classList.add('js');try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}`
 
 export const viewport: Viewport = {
   themeColor: '#090a0b',
@@ -96,7 +96,7 @@ export default function RootLayout({
       <head>
         <script dangerouslySetInnerHTML={{ __html: themeScript }} />
       </head>
-      <body className="min-h-screen bg-bg font-sans antialiased">
+      <body className="min-h-dvh bg-bg font-sans antialiased">
         {children}
         <ThemedToaster />
         <script

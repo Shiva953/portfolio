@@ -6,6 +6,7 @@ import { Contact } from '@/components/contact'
 import { ContactDock } from '@/components/contact-dock'
 import { DemoPlayer } from '@/components/demo-video'
 import { SiteFooter } from '@/components/site-footer'
+import { RevealOnScroll } from '@/components/reveal'
 import { SiteHeader } from '@/components/site-header'
 import { Prompt } from '@/components/terminal'
 import { getProject, projects } from '@/lib/projects'
@@ -131,7 +132,7 @@ export default async function ProjectPage({ params }: PageProps) {
               <h2 className="section-title">
                 <Prompt>What I built</Prompt>
               </h2>
-              <ul className="mt-3 space-y-2.5 text-[15px] leading-snug text-fg/90">
+              <ul className="mt-3 space-y-2.5 text-base leading-snug text-fg/90">
                 {project.built.map((line) => (
                   <li
                     key={line}
@@ -179,6 +180,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
       <SiteFooter />
       <ContactDock />
+      <RevealOnScroll />
     </>
   )
 }

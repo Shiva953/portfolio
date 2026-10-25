@@ -53,6 +53,7 @@ export function ProjectPreview({ name, media, sizes }: MediaProps) {
         <video
           ref={video}
           src={media.preview}
+          poster={media.poster}
           muted
           loop
           playsInline

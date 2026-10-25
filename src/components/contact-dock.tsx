@@ -70,7 +70,7 @@ export function ContactDock() {
       >
         {site.openToWork && (
           <>
-            <p className="flex h-10 items-center gap-2 whitespace-nowrap pl-2.5 pr-1.5 font-mono text-xs text-fg">
+            <p className="flex h-10 items-center gap-2 whitespace-nowrap pl-2.5 pr-1.5 font-mono text-[13px] text-fg">
               <span className="status-dot" aria-hidden />
               open to work
             </p>
