@@ -6,7 +6,6 @@ import { Contact } from '@/components/contact'
 import { ContactDock } from '@/components/contact-dock'
 import { DemoPlayer } from '@/components/demo-video'
 import { SiteFooter } from '@/components/site-footer'
-import { RevealOnScroll } from '@/components/reveal'
 import { SiteHeader } from '@/components/site-header'
 import { Prompt } from '@/components/terminal'
 import { getProject, projects } from '@/lib/projects'
@@ -68,7 +67,7 @@ export default async function ProjectPage({ params }: PageProps) {
 
           <header className="mt-8">
             <div className="flex items-baseline justify-between gap-6">
-              <h1 className="project-title text-[clamp(2rem,5.5vw,2.75rem)] font-semibold leading-none">
+              <h1 className="project-title text-[clamp(1.75rem,5vw,2.25rem)] font-semibold leading-none">
                 {project.name}
               </h1>
               <span className="font-mono text-[13px] text-faint">{project.year}</span>
@@ -148,13 +147,7 @@ export default async function ProjectPage({ params }: PageProps) {
               <h2 className="section-title">
                 <Prompt command="cat">Stack</Prompt>
               </h2>
-              <ul className="mt-3 flex flex-wrap gap-1.5">
-                {project.stack.map((tool) => (
-                  <li key={tool} className="chip">
-                    {tool}
-                  </li>
-                ))}
-              </ul>
+              <p className="mt-3 font-mono text-[13px] leading-6 text-fg/80">{project.stack.join(' · ')}</p>
             </div>
           </div>
 
@@ -164,7 +157,7 @@ export default async function ProjectPage({ params }: PageProps) {
           >
             <span>
               <span className="block font-mono text-[13px] text-faint">Next project</span>
-              <span className="project-title mt-1 block text-[22px] font-semibold">
+              <span className="project-title mt-1 block text-[20px] font-semibold">
                 {next.name}
               </span>
             </span>
@@ -180,7 +173,6 @@ export default async function ProjectPage({ params }: PageProps) {
 
       <SiteFooter />
       <ContactDock />
-      <RevealOnScroll />
     </>
   )
 }

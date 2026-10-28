@@ -9,22 +9,28 @@ type Theme = 'light' | 'dark'
 const current = (): Theme =>
   document.documentElement.dataset.theme === 'light' ? 'light' : 'dark'
 
+// Flips the theme with every transition switched off for one frame, so colours change at once
+// instead of each element easing on its own. Shared by the button and the `t` shortcut.
+export function toggleTheme() {
+  const root = document.documentElement
+  const next: Theme = current() === 'light' ? 'dark' : 'light'
+  root.classList.add('theme-switching')
+  root.dataset.theme = next
+  void root.offsetHeight
+  requestAnimationFrame(() => root.classList.remove('theme-switching'))
+  try {
+    localStorage.setItem('theme', next)
+  } catch {}
+}
+
 // Sun in dark mode, moon in light. Which icon shows is pure CSS, so the server render matches.
 export function ThemeToggle() {
-  const toggle = () => {
-    const next: Theme = current() === 'light' ? 'dark' : 'light'
-    document.documentElement.dataset.theme = next
-    try {
-      localStorage.setItem('theme', next)
-    } catch {}
-  }
-
   return (
     <button
       type="button"
-      onClick={toggle}
+      onClick={toggleTheme}
       aria-label="Toggle light and dark mode"
-      className="theme-toggle -mr-2 p-2 text-muted hover:text-fg"
+      className="press -mr-2 p-2 text-muted transition-colors duration-150 hover:text-fg"
     >
       <span className="relative block h-4 w-4">
         <Sun className="theme-icon theme-icon-sun h-4 w-4" aria-hidden />

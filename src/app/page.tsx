@@ -6,14 +6,14 @@ import { ContactDock } from '@/components/contact-dock'
 import { ContactLinks, arrowLink, arrowLinkArrow } from '@/components/contact-links'
 import { ProjectPreview } from '@/components/demo-video'
 import { ArrowUpRightIcon } from '@/components/icons'
+import { LocalTime } from '@/components/local-time'
 import { SiteFooter } from '@/components/site-footer'
-import { RevealOnScroll } from '@/components/reveal'
 import { SiteHeader } from '@/components/site-header'
 import { Prompt } from '@/components/terminal'
 import { featuredProjects, projects, sideProjects } from '@/lib/projects'
 import { experience, openSource, site, stack } from '@/lib/site'
 
-// Everything that doesn't get a card: one sentence of links under the grid.
+// Everything that doesn't get a row: one line of links under the list.
 const alsoBuilt = [
   ...projects
     .filter((project) => !project.featured)
@@ -28,8 +28,11 @@ function NoBreak({ children }: { children: React.ReactNode }) {
 
 // The phrases in the intro a skimming reader should catch.
 function Strong({ children }: { children: React.ReactNode }) {
-  return <strong className="font-semibold text-fg">{children}</strong>
+  return <strong className="font-medium text-fg">{children}</strong>
 }
+
+// Stagger index for the page-load sequence.
+const order = (i: number) => ({ '--i': i }) as React.CSSProperties
 
 export default function Home() {
   return (
@@ -38,11 +41,10 @@ export default function Home() {
 
       {/* Copy is written in sentence case; the lowercase voice is this one class. */}
       <main className="lowercase">
-        <section className="shell pb-10 pt-10 sm:pt-14">
-          {/* Photo on the left; the prompt, name and tagline stacked beside it, the way whoami
-              answers in a terminal. The open-to-work badge sits at the right edge from sm up;
-              on phones the dock carries it. */}
-          <div className="rise flex items-center gap-4 sm:gap-5" style={{ '--i': 5 } as React.CSSProperties}>
+        <section className="shell pb-8 pt-10 sm:pt-14">
+          {/* Who, what and where in three lines beside the picture: the name, then two quiet
+              meta lines a recruiter can scan in a second. */}
+          <div className="enter flex items-center gap-4" style={order(0)}>
             <Image
               src="/pfp.png"
               alt=""
@@ -50,81 +52,82 @@ export default function Home() {
               height={768}
               unoptimized
               loading="eager"
-              className="h-[84px] w-[84px] shrink-0 rounded-[18px]"
+              className="img-outline h-[68px] w-[68px] shrink-0 rounded-[15px]"
             />
-            <div className="min-w-0 flex-1">
-              {/* The command types itself, then the answer is already there below it. */}
-              <p aria-hidden className="font-mono text-[13px] leading-4 text-muted">
-                <span className="text-live">$</span> <span className="typed">whoami</span>
-                <span className="cursor" />
+            <div className="min-w-0">
+              <h1 className="name">Shiva</h1>
+              {/* The last item drops on phones so the line never truncates. */}
+              <p className="mt-1.5 font-mono text-[14px] leading-5 text-muted">
+                {site.meta.slice(0, -1).join(' · ')}
+                <span className="hidden sm:inline"> · {site.meta.at(-1)}</span>
               </p>
-              {/* The offset was measured from the rendered letters: it centres the name exactly
-                  between the prompt above and the tagline below. A transform moves only the name,
-                  so the prompt, tagline and photo stay where they are. */}
-              <h1 className="mt-1.5 -translate-y-[2.625px] font-mono text-[58px] font-extrabold lowercase leading-none tracking-[-0.09em]">
-                Shiva
-              </h1>
-              <p className="ml-[0.1em] -mt-0.5 whitespace-nowrap font-mono text-[13px] font-medium lowercase leading-none tracking-[-0.01em] text-fg/80">
-                {site.tagline}
+              <p className="flex flex-wrap items-center gap-x-1.5 font-mono text-[14px] leading-5 text-faint">
+                <span>{site.location}</span>
+                <span aria-hidden>·</span>
+                <LocalTime />
+                {/* On phones the dock already says this, so the line stays one line. */}
+                {site.openToWork && (
+                  <span className="hidden items-center gap-1.5 text-muted sm:inline-flex">
+                    <span aria-hidden className="text-faint">·</span>
+                    <span className="status-dot" aria-hidden />
+                    open to work
+                  </span>
+                )}
               </p>
             </div>
-            {site.openToWork && (
-              <p className="status-badge hidden self-start sm:inline-flex">
-                <span className="status-dot" aria-hidden />
-                open to work
-              </p>
-            )}
           </div>
 
-          {/* A short spoken-style intro, as if said to a founder in person. Body at 79% of the text colour; key phrases in semibold at full strength. */}
+          {/* A short spoken-style intro, as if said to a founder in person. */}
           <p
-            className="rise mt-7 max-w-[68ch] text-pretty font-mono text-[13px] normal-case leading-[1.75] tracking-[-0.035em] text-fg/[0.79] sm:text-[14px] sm:leading-[1.75]"
-            style={{ '--i': 6 } as React.CSSProperties}
+            className="enter mt-8 max-w-[62ch] text-pretty text-[15px] normal-case leading-[1.7] text-fg/80"
+            style={order(1)}
           >
             I’m a <NoBreak>full-stack</NoBreak>, <NoBreak>product-minded</NoBreak> engineer who loves
-            taking products from <Strong><NoBreak>0→1</NoBreak></Strong>. For the past two years I’ve been freelancing,{' '}
-            <Strong>building MVPs</Strong> for early teams and owning each one{' '}
-            <Strong>end to end</Strong>, from the first sketch to launch. These days that’s mostly{' '}
-            <Strong>AI agents and apps on Solana</Strong>. I’m <NoBreak>self-taught</NoBreak>, and
-            along the way I’ve won a bunch of <Strong>hackathons and bounties</Strong>, and landed a{' '}
-            <Strong>Solana Foundation grant</Strong>.
+            taking products from{' '}
+            <Strong>
+              <NoBreak>0→1</NoBreak>
+            </Strong>
+            . For the past two years I’ve been freelancing, <Strong>building MVPs</Strong> for early
+            teams and owning each one <Strong>end to end</Strong>, from the first sketch to launch.
+            These days that’s mostly <Strong>AI agents and apps on Solana</Strong>. I’m{' '}
+            <NoBreak>self-taught</NoBreak>, and along the way I’ve won a bunch of{' '}
+            <Strong>hackathons and bounties</Strong>, and landed a <Strong>Solana Foundation grant</Strong>.
           </p>
 
-          <div className="rise mt-6" style={{ '--i': 7 } as React.CSSProperties}>
+          <div className="enter mt-6" style={order(2)}>
             <ContactLinks />
           </div>
         </section>
 
-        <section id="experience" className="shell py-8">
-          <h2 data-reveal className="section-title">
+        <section id="experience" className="shell enter py-10" style={order(3)}>
+          <h2 className="section-title">
             <Prompt command="ls">Experience</Prompt>
           </h2>
-          <ul className="mt-6 space-y-7">
-            {experience.map((job, index) => (
-              <li key={job.company} data-reveal style={{ '--d': index + 1 } as React.CSSProperties} className="flex gap-4">
+          <ul className="mt-6 space-y-6">
+            {experience.map((job) => (
+              <li key={job.company} className="flex gap-4">
                 <Image
                   src={job.logo}
                   alt=""
-                  width={36}
-                  height={36}
-                  className="mt-0.5 h-9 w-9 shrink-0 rounded-lg object-cover"
+                  width={32}
+                  height={32}
+                  className="img-outline mt-0.5 h-[34px] w-[34px] shrink-0 rounded-lg object-cover"
                 />
                 <div className="min-w-0 flex-1">
-                  {/* Company and role on one line, dates pushed to the right edge. The arrow that
-                      fades in on hover already holds a gap between the name and the role. */}
-                  <div className="flex flex-wrap items-baseline gap-x-1 tracking-tight">
-                    <h3 className="text-base font-semibold text-fg">
+                  {/* Company and role on one line, dates pushed to the right edge. */}
+                  <div className="flex flex-wrap items-baseline gap-x-2">
+                    <h3 className="font-display text-[16px] font-medium tracking-[-0.01em] text-fg">
                       <a href={job.href} target="_blank" rel="noopener" className={arrowLink}>
                         {job.company}
                         <ArrowUpRightIcon className={arrowLinkArrow} />
                       </a>
                     </h3>
-                    <p className="text-sm text-fg/70">{job.role}</p>
-                    <p className="w-full font-mono text-[13px] tracking-normal text-faint sm:ml-auto sm:w-auto">
+                    <p className="text-[15px] text-muted">{job.role}</p>
+                    <p className="w-full font-mono text-[14px] text-faint sm:ml-auto sm:w-auto">
                       {job.period}
                     </p>
                   </div>
-                  <p className="mt-1.5 text-pretty text-base normal-case leading-[1.6] text-muted">
+                  <p className="mt-1 text-pretty text-[14px] normal-case leading-[1.6] text-muted">
                     {job.summary}
                   </p>
                 </div>
@@ -133,68 +136,54 @@ export default function Home() {
           </ul>
         </section>
 
-        <section id="work" className="shell py-8">
-          <h2 data-reveal className="section-title">
+        <section id="work" className="shell py-10">
+          <h2 className="section-title">
             <Prompt command="ls">Work</Prompt>
           </h2>
-          <ul className="mt-6 grid gap-x-8 gap-y-10 sm:grid-cols-2">
-            {featuredProjects.map((project, index) => (
-              <li key={project.slug} data-reveal style={{ '--d': (index % 2) + 1 } as React.CSSProperties}>
-                <Link href={`/projects/${project.slug}`} className="group block">
-                  {/* Each project sits in a terminal window; the path in its title bar is decoration. */}
-                  <div className="overflow-hidden rounded-xl border border-line bg-surface transition-colors duration-200 group-hover:border-fg/40">
-                    <div
-                      aria-hidden
-                      className="flex h-8 items-center gap-2.5 border-b border-line px-3 font-mono text-[13px] text-faint"
-                    >
-                      <span className="flex gap-1">
-                        <span className="h-1.5 w-1.5 rounded-full bg-fg/25" />
-                        <span className="h-1.5 w-1.5 rounded-full bg-fg/25" />
-                        <span className="h-1.5 w-1.5 rounded-full bg-fg/25" />
-                      </span>
-                      <span className="truncate">~/{project.slug}</span>
-                    </div>
-                    <div className="relative aspect-video">
-                      <ProjectPreview
-                        name={project.name}
-                        media={project.media}
-                        sizes="(min-width: 640px) 320px, 100vw"
-                      />
-                    </div>
+          {/* One row per project: a moving thumbnail, then name, year, one line and any award.
+              Rows are split by a hairline, so the list reads top to bottom like a changelog. */}
+          <ul className="mt-4">
+            {featuredProjects.map((project) => (
+              <li key={project.slug} className="border-b border-line last:border-b-0">
+                <Link
+                  href={`/projects/${project.slug}`}
+                  className="group flex items-start gap-4 py-5 sm:gap-5"
+                >
+                  <div className="img-outline relative aspect-[16/10] w-28 shrink-0 overflow-hidden rounded-lg bg-surface sm:w-40">
+                    <ProjectPreview
+                      name={project.name}
+                      media={project.media}
+                      sizes="(min-width: 640px) 160px, 112px"
+                    />
                   </div>
-                  {/* Title and year in JetBrains Mono; the description stays in the body font. */}
-                  <div className="mt-3.5 flex items-baseline justify-between gap-3">
-                    <h3 className="project-title text-[19px] font-semibold leading-6 text-fg underline-offset-4 group-hover:underline">
-                      {project.name}
-                    </h3>
-                    <span className="font-mono text-[13px] text-faint">{project.year}</span>
-                  </div>
-                  <p className="mt-1.5 text-pretty text-base leading-snug text-muted">
-                    {project.tagline}
-                  </p>
-                  {project.award && (
-                    <p className="mt-2 flex items-center gap-2 font-mono text-[13px] text-fg">
-                      <Check className="h-3.5 w-3.5 shrink-0 text-live" strokeWidth={3} aria-hidden />
-                      {project.award.label}
+                  <div className="min-w-0 flex-1 pt-0.5">
+                    <div className="flex items-baseline justify-between gap-3">
+                      <h3 className="project-title text-[17px] font-semibold text-fg underline-offset-4 group-hover:underline">
+                        {project.name}
+                      </h3>
+                      <span className="font-mono text-[14px] text-faint">{project.year}</span>
+                    </div>
+                    <p className="mt-1 text-pretty text-[14px] leading-[1.55] text-muted">
+                      {project.tagline}
                     </p>
-                  )}
+                    {project.award && (
+                      <p className="mt-2 flex items-center gap-1.5 font-mono text-[14px] text-fg/90">
+                        <Check className="h-3.5 w-3.5 shrink-0 text-live" strokeWidth={2.5} aria-hidden />
+                        {project.award.label}
+                      </p>
+                    )}
+                  </div>
                 </Link>
               </li>
             ))}
           </ul>
 
           {/* Names sit in code-style tags, so they need no commas between them. */}
-          <p data-reveal className="mt-9 flex flex-wrap items-center gap-x-2 gap-y-2 text-base text-muted">
+          <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-2 text-[15px] text-muted">
             Also built
             {alsoBuilt.map((build) =>
               build.external ? (
-                <a
-                  key={build.name}
-                  href={build.href}
-                  target="_blank"
-                  rel="noopener"
-                  className="code-link"
-                >
+                <a key={build.name} href={build.href} target="_blank" rel="noopener" className="code-link">
                   {build.name}
                 </a>
               ) : (
@@ -217,37 +206,100 @@ export default function Home() {
           </p>
         </section>
 
-        <section id="open-source" className="shell space-y-9 py-8">
+        <section id="open-source" className="shell space-y-10 py-10">
           <div>
-            <h2 data-reveal className="section-title">
-              <Prompt command="ls">Open-source</Prompt>
-            </h2>
-            <p data-reveal style={{ '--d': 1 } as React.CSSProperties} className="mt-4 flex flex-wrap items-center gap-x-2 gap-y-2 text-base text-muted">
-              <span className="normal-case">Merged PRs in</span>
-              {openSource.map((pr) => (
-                <a
-                  key={pr.repo}
-                  href={pr.href}
-                  target="_blank"
-                  rel="noopener"
-                  className="code-link"
-                >
-                  {pr.repo}
-                </a>
-              ))}
-            </p>
-          </div>
-          <div>
-            <h2 data-reveal className="section-title">
-              <Prompt command="cat">Stack</Prompt>
-            </h2>
-            <ul data-reveal style={{ '--d': 1 } as React.CSSProperties} className="mt-4 flex flex-wrap gap-1.5">
-              {stack.map((tool) => (
-                <li key={tool} className="chip">
-                  {tool}
+            <div className="flex items-baseline justify-between gap-4">
+              <h2 className="section-title">
+                <Prompt command="ls">Open-source</Prompt>
+              </h2>
+              <a
+                href={openSource.allHref}
+                target="_blank"
+                rel="noopener"
+                className="font-mono text-[14px] text-faint transition-colors duration-150 hover:text-fg"
+              >
+                see all {openSource.total}
+              </a>
+            </div>
+
+            {/* Repos as filled tiles, one tone step off the page: the org's mark, the repo and how
+                many PRs landed there. Each opens the merged PRs in that repo. */}
+            <ul className="mt-4 grid grid-cols-2 gap-2 sm:grid-cols-3">
+              {openSource.repos.map((item) => (
+                <li key={item.repo}>
+                  <a
+                    href={item.href}
+                    target="_blank"
+                    rel="noopener"
+                    className="flex items-center gap-3 rounded-xl bg-surface px-3 py-3 transition-colors duration-150 hover:bg-fg/[0.07]"
+                  >
+                    <Image
+                      src={item.avatar}
+                      alt=""
+                      width={28}
+                      height={28}
+                      unoptimized
+                      className="img-outline h-[30px] w-[30px] shrink-0 rounded-[7px]"
+                    />
+                    <span className="min-w-0">
+                      <span className="block truncate text-[15px] font-medium leading-5 text-fg">
+                        {item.name}
+                      </span>
+                      <span className="block font-mono text-[13.5px] leading-4 text-faint">
+                        {item.merged} merged
+                      </span>
+                    </span>
+                  </a>
                 </li>
               ))}
             </ul>
+
+            {/* A few of the PRs themselves. Titles are commit messages, so they're set like code. */}
+            <ul className="mt-5">
+              {openSource.highlights.map((pr) => (
+                <li key={pr.href} className="border-b border-line last:border-b-0">
+                  <a
+                    href={pr.href}
+                    target="_blank"
+                    rel="noopener"
+                    className="group flex items-start gap-3 py-3"
+                  >
+                    <Image
+                      src={pr.avatar}
+                      alt=""
+                      width={16}
+                      height={16}
+                      unoptimized
+                      className="img-outline mt-[3px] h-4 w-4 shrink-0 rounded-[4px]"
+                    />
+                    {/* Title and repo share a line from sm up; on phones the repo drops below. */}
+                    <span className="flex min-w-0 flex-1 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-4">
+                      <span className="min-w-0 flex-1 font-mono text-[14px] normal-case leading-[1.5] text-fg/90 underline-offset-4 group-hover:underline">
+                        {pr.title}
+                      </span>
+                      <span className="shrink-0 font-mono text-[13.5px] text-faint">
+                        {pr.repo} #{pr.number}
+                      </span>
+                    </span>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+          <div>
+            <h2 className="section-title">
+              <Prompt command="cat">Stack</Prompt>
+            </h2>
+            {/* One plain line: the tools are the information, not the boxes around them. */}
+            {/* Each separator travels with the tool before it, so no line starts with a dot. */}
+            <p className="mt-4 flex flex-wrap font-mono text-[14px] leading-6 text-fg/80">
+              {stack.map((tool, index) => (
+                <span key={tool} className="whitespace-nowrap">
+                  {tool}
+                  {index < stack.length - 1 && <span className="px-2 text-faint">·</span>}
+                </span>
+              ))}
+            </p>
           </div>
         </section>
 
@@ -256,7 +308,6 @@ export default function Home() {
 
       <SiteFooter />
       <ContactDock />
-      <RevealOnScroll />
     </>
   )
 }

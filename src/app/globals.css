@@ -2,50 +2,46 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Type roles. Variant 1-geist: Geist Sans for everything set in words; Geist Mono for the meta lines and prompts.
+   Each font variant changes only this block and the .name rule below.
+   display: the name and headings · body: prose · meta: prompts, dates, small data. */
+:root {
+  --font-display: var(--font-geist-sans), system-ui, sans-serif;
+  --font-body: var(--font-geist-sans), system-ui, sans-serif;
+  --font-meta: var(--font-geist-mono), ui-monospace, monospace;
+}
+
 /* Dark is the default. A script in layout.tsx sets data-theme from the saved choice before the
    first paint, and the toggle in the header flips it. fg, bg and raised are RGB channels.
-   Both themes are Gruvbox: warm cream on charcoal, and dark brown on paper. */
+   Neutral greys with one quiet green, used only for the prompt and the availability dot. */
 :root,
 :root[data-theme="dark"] {
-  --bg: 9 10 11;
-  --fg: 243 236 223;
-  --raised: 26 28 30;
-  --muted: #bcb19f;
-  --faint: #9a8d7d;
-  --line: #2b2d30;
-  --surface: #101112;
-  --live: #c3d46a;
-  --selection: rgba(184, 202, 92, 0.3);
+  --bg: 10 10 10;
+  --fg: 237 237 237;
+  --raised: 23 23 23;
+  --muted: #a1a1a1;
+  --faint: #737373;
+  --line: rgba(255, 255, 255, 0.08);
+  --surface: #121212;
+  --live: #5fd38d;
+  --img-outline: rgba(255, 255, 255, 0.1);
+  --selection: rgba(255, 255, 255, 0.16);
   --dock-shadow: 0 10px 40px rgba(0, 0, 0, 0.7);
-  /* Stack tags cycle through these. */
-  --tag-1: #7ccabb;
-  --tag-2: #edb54f;
-  --tag-3: #c3d46a;
-  --tag-4: #fa9148;
-  --tag-5: #e2809e;
-  --tag-6: #84d08b;
-  --tag-7: #f8725e;
   color-scheme: dark;
 }
 
 :root[data-theme="light"] {
-  --bg: 251 241 199;
-  --fg: 40 37 35;
-  --raised: 244 232 190;
-  --muted: #574a40;
-  --faint: #6e6156;
-  --line: #d5c4a1;
-  --surface: #f4e8be;
-  --live: #5a7a22;
-  --selection: rgba(90, 122, 34, 0.24);
-  --dock-shadow: 0 10px 30px rgba(60, 56, 54, 0.12);
-  --tag-1: #03738c;
-  --tag-2: #c47c0a;
-  --tag-3: #7e7a00;
-  --tag-4: #c23d00;
-  --tag-5: #a03a7a;
-  --tag-6: #368856;
-  --tag-7: #b40a0a;
+  --bg: 250 250 250;
+  --fg: 23 23 23;
+  --raised: 255 255 255;
+  --muted: #525252;
+  --faint: #737373;
+  --line: rgba(0, 0, 0, 0.08);
+  --surface: #f2f2f2;
+  --live: #15803d;
+  --img-outline: rgba(0, 0, 0, 0.1);
+  --selection: rgba(0, 0, 0, 0.1);
+  --dock-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
   color-scheme: light;
 }
 
@@ -74,77 +70,33 @@ body {
   outline-offset: 3px;
 }
 
-/* Terminal cursor. */
-.cursor {
-  display: inline-block;
-  width: 0.6em;
-  height: 1.15em;
-  margin-left: 0.2em;
-  vertical-align: text-bottom;
-  background: var(--live);
-  animation: blink 1.1s steps(1) infinite;
+/* Set on <html> for one frame while the theme switches, so colour transitions don't smear. */
+.theme-switching *,
+.theme-switching *::before,
+.theme-switching *::after {
+  transition: none !important;
 }
 
-@keyframes blink {
-  50% {
-    opacity: 0;
-  }
-}
-
-/* Types out "whoami": six characters of a monospace face, so six steps of one ch each. */
-.typed {
-  display: inline-block;
-  width: 6ch;
-  overflow: hidden;
-  white-space: nowrap;
-  vertical-align: bottom;
-  animation: typing 0.32s steps(6, end) 0.1s both;
-}
-
-@keyframes typing {
-  from {
-    width: 0;
-  }
-}
-
-/* The one page-load moment: the hero settles in line by line. */
-@keyframes rise {
+/* The one page-load moment: the hero's parts arrive 100ms apart. */
+@keyframes enter {
   from {
     opacity: 0;
-    transform: translateY(10px);
-  }
-  to {
-    opacity: 1;
-    transform: none;
+    filter: blur(4px);
+    transform: translateY(12px);
   }
 }
 
-.rise {
-  animation: rise 0.7s cubic-bezier(0.2, 0.7, 0.2, 1) both;
-  animation-delay: calc(var(--i, 0) * 70ms);
-}
-
-/* Section entrances (see reveal.tsx). Hidden only once scripts run, so content never gets stuck. */
-.js [data-reveal] {
-  opacity: 0;
-  transform: translateY(18px);
-  transition:
-    opacity 0.6s cubic-bezier(0.2, 0.7, 0.2, 1),
-    transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
-  transition-delay: calc(var(--d, 0) * 75ms);
-}
-
-.js [data-reveal].is-in {
-  opacity: 1;
-  transform: none;
+.enter {
+  animation: enter 300ms ease-out both;
+  animation-delay: calc(var(--i, 0) * 100ms);
 }
 
 /* Availability light. */
 .status-dot {
   position: relative;
   display: inline-block;
-  width: 0.5rem;
-  height: 0.5rem;
+  width: 0.4375rem;
+  height: 0.4375rem;
   flex: none;
   border-radius: 9999px;
   background: var(--live);
@@ -171,62 +123,55 @@ body {
   }
 }
 
-/* Theme toggle: the sun shows in dark mode, the moon in light. The button tilts on hover. */
-.theme-toggle {
-  transition: color 0.2s, transform 0.48s cubic-bezier(0.34, 1.56, 0.64, 1);
-}
-
-.theme-toggle:hover {
-  transform: rotate(22deg);
-}
-
-.theme-toggle:active {
-  transform: rotate(22deg) scale(0.86);
-}
-
+/* Theme toggle: the sun shows in dark mode, the moon in light. Icons cross-fade. */
 .theme-icon {
   position: absolute;
   inset: 0;
   opacity: 0;
-  transform: scale(0.92);
-  transition: opacity 0.2s cubic-bezier(0.16, 1, 0.3, 1), transform 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+  scale: 0.25;
+  filter: blur(4px);
+  transition-property: opacity, scale, filter;
+  transition-duration: 300ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 }
 
 :root:not([data-theme="light"]) .theme-icon-sun,
 :root[data-theme="light"] .theme-icon-moon {
   opacity: 1;
-  transform: none;
+  scale: 1;
+  filter: none;
 }
 
 @media (prefers-reduced-motion: reduce) {
-  /* No entrance at all: everything is visible from the start. */
-  .js [data-reveal] {
-    opacity: 1;
-    transform: none;
-    transition: none;
-  }
-
-  .theme-toggle,
-  .theme-icon {
-    transition: none;
-  }
-
   html {
     scroll-behavior: auto;
   }
 
-  .rise,
-  .typed,
-  .cursor,
+  /* Opacity only: no travel, no blur. */
+  .enter {
+    animation-name: enter-fade;
+  }
+
+  .theme-icon {
+    scale: 1;
+    filter: none;
+  }
+
   .status-dot::after {
     animation: none;
   }
 }
 
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+  }
+}
+
 @layer components {
-  /* One reading column for the whole site: 640px of content, about 80 characters a line. */
+  /* One reading column for the whole site: 672px of content. */
   .shell {
-    @apply mx-auto w-full max-w-[44rem] px-5 sm:px-8;
+    @apply mx-auto w-full max-w-[46rem] px-5 sm:px-8;
   }
 
   .btn {
@@ -237,46 +182,47 @@ body {
     @apply bg-fg text-bg hover:bg-fg/80;
   }
 
-  /* Contact pills: one style for all four, inverted on hover. */
-  .pill {
-    @apply inline-flex h-10 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-fg/15 px-4 text-[15px] leading-none text-fg transition-colors duration-200 hover:border-fg hover:bg-fg hover:text-bg;
+  /* The name in the hero. Variants retune this rule to suit their display face. */
+  .name {
+    font-family: var(--font-display);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.1;
+    letter-spacing: -0.035em;
   }
 
-  /* Section headings read as shell commands. */
-  .section-title {
-    @apply font-mono text-[15px] leading-6 text-fg;
-  }
-
-  /* Availability badge in the hero: a quiet stamp in the accent colour. */
-  .status-badge {
-    @apply items-center gap-2 border px-2.5 py-1.5 font-mono text-[13px] font-medium leading-none tracking-[-0.01em];
-    color: var(--live);
-    border-color: color-mix(in srgb, var(--live) 45%, transparent);
-  }
-
-  /* Stack tags: sharp corners like the code links, each in its own colour. */
-  .chip {
-    @apply border border-line px-2 py-1 font-mono text-[13px] leading-none text-muted;
-  }
-
-  .chip:nth-child(7n + 1) { color: var(--tag-1); }
-  .chip:nth-child(7n + 2) { color: var(--tag-2); }
-  .chip:nth-child(7n + 3) { color: var(--tag-3); }
-  .chip:nth-child(7n + 4) { color: var(--tag-4); }
-  .chip:nth-child(7n + 5) { color: var(--tag-5); }
-  .chip:nth-child(7n + 6) { color: var(--tag-6); }
-  .chip:nth-child(7n + 7) { color: var(--tag-7); }
-
-  /* Project titles. Monospace letters sit in wide cells, so they are pulled
-     tight to read as one compact word. */
+  /* Project names, set in JetBrains Mono and pulled tight so each reads as one word.
+     Ligatures off so names stay literal. */
   .project-title {
-    @apply font-mono;
+    font-family: var(--font-jetbrains-mono), ui-monospace, monospace;
+    font-feature-settings: "calt" 0, "liga" 0;
     letter-spacing: -0.06em;
+  }
+
+  /* Section labels read as shell commands, small and quiet, like the meta lines. */
+  .section-title {
+    @apply font-mono text-[14px] leading-5 text-muted;
+  }
+
+  /* Content images get a hairline in pure white or black, never a tint. */
+  .img-outline {
+    outline: 1px solid var(--img-outline);
+    outline-offset: -1px;
+  }
+
+  /* Pressed controls give a little. */
+  .press {
+    transition-property: scale;
+    transition-duration: 150ms;
+    transition-timing-function: ease-out;
+  }
+
+  .press:not(:disabled):active {
+    scale: 0.96;
   }
 
   /* Names of repos and projects, set like inline code. */
   .code-link {
-    @apply bg-fg/[0.08] px-1.5 py-0.5 font-mono text-[13px] text-fg transition-colors duration-150 hover:bg-fg hover:text-bg;
+    @apply rounded-[5px] bg-fg/[0.06] px-1.5 py-0.5 font-mono text-[14px] text-fg/90 transition-colors duration-150 hover:bg-fg hover:text-bg;
   }
-
 }

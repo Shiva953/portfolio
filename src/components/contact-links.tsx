@@ -17,7 +17,7 @@ export function linkTarget(key: (typeof contacts)[number]['key']) {
 // Shared hover behaviour for text links: the label underlines and the arrow fades in.
 // Hover is limited to larger screens so the effect never sticks after a tap on a phone.
 export const arrowLink =
-  'group flex items-center no-underline underline-offset-4 transition duration-150 ease-in-out md:hover:underline focus-visible:underline'
+  'group flex items-center no-underline underline-offset-4 transition-colors duration-150 ease-out md:hover:underline focus-visible:underline'
 export const arrowLinkArrow =
   'h-[1em] w-[1em] shrink-0 opacity-0 transition-opacity duration-150 md:group-hover:opacity-100 group-focus-visible:opacity-100'
 
@@ -47,7 +47,7 @@ export function ContactLinks() {
                 className={`${arrowLink} text-base text-fg/[0.86] md:hover:text-fg`}
               >
                 <Icon className="mr-1.5 h-4 w-4 shrink-0" aria-hidden />
-                <span className="text-[15px] font-[450]">{contact.label}</span>
+                <span className="text-[16px] font-[450]">{contact.label}</span>
                 <ArrowUpRightIcon className={arrowLinkArrow} />
               </a>
             </li>

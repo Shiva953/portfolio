@@ -2,7 +2,7 @@ import './globals.css'
 import type { Metadata, Viewport } from 'next'
 import { ThemedToaster } from '@/components/theme-toggle'
 import { site } from '@/lib/site'
-import { GeistSans, jetbrainsMono, satoshi, supply } from './fonts'
+import { GeistMono, GeistSans, jetbrainsMono, satoshi } from './fonts'
 
 export const metadata: Metadata = {
   metadataBase: new URL(site.url),
@@ -51,10 +51,10 @@ export const metadata: Metadata = {
 }
 
 // Runs in <head> before the first paint, so a saved light theme never flashes dark first.
-const themeScript = `document.documentElement.classList.add('js');try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}`
+const themeScript = `try{if(localStorage.getItem('theme')==='light')document.documentElement.dataset.theme='light'}catch(e){}`
 
 export const viewport: Viewport = {
-  themeColor: '#090a0b',
+  themeColor: '#0a0a0a',
   colorScheme: 'dark light',
 }
 
@@ -89,7 +89,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${satoshi.variable} ${supply.variable} ${GeistSans.variable} ${jetbrainsMono.variable}`}
+      className={`${GeistSans.variable} ${GeistMono.variable} ${satoshi.variable} ${jetbrainsMono.variable}`}
       // The theme script sets data-theme before React hydrates.
       suppressHydrationWarning
     >

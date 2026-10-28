@@ -1,6 +1,8 @@
 import type { Config } from "tailwindcss";
 
 export default {
+  // Hover styles apply only on devices that can hover, so they never stick after a tap.
+  future: { hoverOnlyWhenSupported: true },
   content: [
     "./src/pages/**/*.{js,ts,jsx,tsx,mdx}",
     "./src/components/**/*.{js,ts,jsx,tsx,mdx}",
@@ -24,15 +26,11 @@ export default {
         dock: "var(--dock-shadow)",
       },
       fontFamily: {
-        sans: ["var(--font-satoshi)", "ui-sans-serif", "system-ui", "sans-serif"],
-        // Terminal text. Coding ligatures are off so sequences like "www" or "->" stay literal.
-        mono: [
-          ["var(--font-jetbrains-mono)", "ui-monospace", "SFMono-Regular", "monospace"],
-          { fontFeatureSettings: '"calt" 0, "liga" 0' },
-        ],
-        // The SHIVA wordmark.
-        supply: ["var(--font-supply)", "ui-monospace", "SFMono-Regular", "monospace"],
-        display: ["var(--font-geist-sans)", "Arial", "sans-serif"],
+        // The three type roles are set in globals.css, so each font variant changes one place.
+        sans: ["var(--font-body)"],
+        display: ["var(--font-display)"],
+        // Coding ligatures are off so sequences like "www" or "->" stay literal.
+        mono: [["var(--font-meta)"], { fontFeatureSettings: '"calt" 0, "liga" 0' }],
       },
     },
   },

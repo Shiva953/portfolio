@@ -2,8 +2,10 @@
 export const site = {
   name: 'Shiva Seth',
   role: 'Product Engineer',
-  // One line under the name in the hero. Keep it short: it has to fit on one line on a phone.
   tagline: 'Engineer · Builder',
+  // The two meta lines under the name in the hero. Each has to fit on one line on a phone.
+  meta: ['engineer', 'builder', 'typescript/rust'],
+  location: 'Bangalore',
   // Must be the domain that serves the site directly (the primary domain in Vercel), not one that
   // redirects. Link previews on X fail when the shared address needs more than one redirect.
   url: 'https://shiva66.xyz',
@@ -75,18 +77,46 @@ export const experience = [
   },
 ]
 
-// Projects with a merged pull request, each linking to the PR itself.
-export const openSource = [
-  { repo: 'Anchor', href: 'https://github.com/otter-sec/anchor/pull/2752' },
-  { repo: 'discord.js', href: 'https://github.com/discordjs/discord.js/pull/9345' },
-  { repo: 'Lucide', href: 'https://github.com/lucide-icons/lucide/pull/1220' },
-  {
-    repo: 'Meshery',
-    href: 'https://github.com/meshery/meshery/pulls?q=is%3Apr+author%3AShiva953+is%3Amerged',
-  },
-  { repo: 'Superteam Earn', href: 'https://github.com/SuperteamDAO/earn/pull/437' },
-  { repo: 'AsyncAPI', href: 'https://github.com/asyncapi/cli/pull/1033' },
-]
+// Merged pull requests. `repos` are the tiles, each linking to Shiva's merged PRs in that repo;
+// `highlights` are the rows under them. Counts are from GitHub (merged PRs by Shiva953).
+const mergedIn = (repo: string) =>
+  `https://github.com/${repo}/pulls?q=is%3Apr+author%3AShiva953+is%3Amerged`
+
+export const openSource = {
+  total: 31,
+  allHref: 'https://github.com/pulls?q=is%3Apr+author%3AShiva953+is%3Amerged',
+  repos: [
+    { name: 'zcash', repo: 'zcashlabs/thus-spoke-zakura', avatar: '/oss/zcashlabs.png', merged: 2 },
+    { name: 'anchor', repo: 'otter-sec/anchor', avatar: '/oss/otter-sec.png', merged: 1 },
+    { name: 'discord.js', repo: 'discordjs/discord.js', avatar: '/oss/discordjs.png', merged: 1 },
+    { name: 'meshery', repo: 'meshery/meshery', avatar: '/oss/meshery.png', merged: 3 },
+    { name: 'lucide', repo: 'lucide-icons/lucide', avatar: '/oss/lucide-icons.png', merged: 1 },
+    { name: 'superteam earn', repo: 'SuperteamDAO/earn', avatar: '/oss/SuperteamDAO.png', merged: 1 },
+  ].map((item) => ({ ...item, href: mergedIn(item.repo) })),
+  highlights: [
+    {
+      title: 'feat(cli): add wallet quote command',
+      repo: 'zcash',
+      number: 303,
+      avatar: '/oss/zcashlabs.png',
+      href: 'https://github.com/zcashlabs/thus-spoke-zakura/pull/303',
+    },
+    {
+      title: 'ts: add IDL seed types',
+      repo: 'anchor',
+      number: 2752,
+      avatar: '/oss/otter-sec.png',
+      href: 'https://github.com/otter-sec/anchor/pull/2752',
+    },
+    {
+      title: 'feat!: return entries instead of values in toJSON',
+      repo: 'discord.js',
+      number: 9345,
+      avatar: '/oss/discordjs.png',
+      href: 'https://github.com/discordjs/discord.js/pull/9345',
+    },
+  ],
+}
 
 export const stack = [
   'TypeScript',
