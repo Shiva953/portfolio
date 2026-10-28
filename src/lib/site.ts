@@ -4,7 +4,7 @@ export const site = {
   role: 'Product Engineer',
   tagline: 'Engineer · Builder',
   // The two meta lines under the name in the hero. Each has to fit on one line on a phone.
-  meta: ['engineer', 'builder', 'typescript/rust'],
+  meta: ['engineer', 'builder'],
   location: 'Bangalore',
   // Must be the domain that serves the site directly (the primary domain in Vercel), not one that
   // redirects. Link previews on X fail when the shared address needs more than one redirect.

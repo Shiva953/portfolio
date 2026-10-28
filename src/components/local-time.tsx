@@ -11,7 +11,7 @@ const format = new Intl.DateTimeFormat('en-US', {
 
 // Shiva's local time, so someone in another time zone knows when a reply is likely.
 // Rendered on the client only; the server sends a placeholder so hydration matches.
-export function LocalTime({ className }: { className?: string }) {
+export function LocalTime({ className, zone = true }: { className?: string; zone?: boolean }) {
   const [time, setTime] = useState<string>()
 
   useEffect(() => {
@@ -23,7 +23,8 @@ export function LocalTime({ className }: { className?: string }) {
 
   return (
     <span className={className} title="Local time in India">
-      {time ?? '--:--'} ist
+      {time ?? '--:--'}
+      {zone && ' ist'}
     </span>
   )
 }

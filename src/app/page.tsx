@@ -56,15 +56,12 @@ export default function Home() {
             />
             <div className="min-w-0">
               <h1 className="name">Shiva</h1>
-              {/* The last item drops on phones so the line never truncates. */}
-              <p className="mt-1.5 font-mono text-[14px] leading-5 text-muted">
-                {site.meta.slice(0, -1).join(' · ')}
-                <span className="hidden sm:inline"> · {site.meta.at(-1)}</span>
-              </p>
-              <p className="flex flex-wrap items-center gap-x-1.5 font-mono text-[14px] leading-5 text-faint">
+              <p className="mt-1 font-mono text-[13px] leading-[18px] tracking-[-0.03em] text-muted">{site.meta.join(' · ')}</p>
+              <p className="flex flex-wrap items-center gap-x-1 font-mono text-[13px] leading-[18px] tracking-[-0.03em] text-faint">
                 <span>{site.location}</span>
                 <span aria-hidden>·</span>
-                <LocalTime />
+                {/* Bangalore already says the time zone; the hover title spells it out. */}
+                <LocalTime zone={false} />
                 {/* On phones the dock already says this, so the line stays one line. */}
                 {site.openToWork && (
                   <span className="hidden items-center gap-1.5 text-muted sm:inline-flex">
@@ -77,22 +74,26 @@ export default function Home() {
             </div>
           </div>
 
-          {/* A short spoken-style intro, as if said to a founder in person. */}
-          <p
-            className="enter mt-8 max-w-[62ch] text-pretty text-[15px] normal-case leading-[1.7] text-fg/80"
+          {/* A short spoken-style intro, as if said to a founder in person: what I do, then what
+              I'm into lately and the proof. */}
+          <div
+            className="enter mt-8 max-w-[62ch] space-y-3.5 text-pretty text-[15px] normal-case leading-[1.7] text-fg/80"
             style={order(1)}
           >
-            I’m a <NoBreak>full-stack</NoBreak>, <NoBreak>product-minded</NoBreak> engineer who loves
-            taking products from{' '}
-            <Strong>
-              <NoBreak>0→1</NoBreak>
-            </Strong>
-            . For the past two years I’ve been freelancing, <Strong>building MVPs</Strong> for early
-            teams and owning each one <Strong>end to end</Strong>, from the first sketch to launch.
-            These days that’s mostly <Strong>AI agents and apps on Solana</Strong>. I’m{' '}
-            <NoBreak>self-taught</NoBreak>, and along the way I’ve won a bunch of{' '}
-            <Strong>hackathons and bounties</Strong>, and landed a <Strong>Solana Foundation grant</Strong>.
-          </p>
+            <p>
+              I’m a <NoBreak>full-stack</NoBreak>, <NoBreak>product-minded</NoBreak> engineer who takes
+              products from{' '}
+              <Strong>
+                <NoBreak>0→1</NoBreak>
+              </Strong>
+              . For two years I’ve been freelancing, <Strong>building MVPs</Strong> for early teams and
+              owning each one <Strong>end to end</Strong>.
+            </p>
+            <p>
+              Lately it’s <Strong>AI agents and apps on Solana</Strong>. <NoBreak>Self-taught</NoBreak>,
+              with <Strong>hackathon and bounty wins</Strong> and a <Strong>Solana Foundation grant</Strong>.
+            </p>
+          </div>
 
           <div className="enter mt-6" style={order(2)}>
             <ContactLinks />
