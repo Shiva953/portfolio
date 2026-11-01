@@ -70,11 +70,12 @@ export function ContactDock() {
       >
         {site.openToWork && (
           <>
-            <p className="flex h-10 items-center gap-2 whitespace-nowrap pl-2.5 pr-1.5 font-mono text-[13px] text-fg">
+            {/* The hero says this from sm up, so the dock only carries it on phones. */}
+            <p className="flex h-10 items-center gap-2 whitespace-nowrap pl-2.5 pr-1.5 font-mono text-[13px] text-fg sm:hidden">
               <span className="status-dot" aria-hidden />
               open to work
             </p>
-            <span className="mx-0.5 mb-2 h-6 w-px bg-fg/10" aria-hidden />
+            <span className="mx-0.5 mb-2 h-6 w-px bg-fg/10 sm:hidden" aria-hidden />
           </>
         )}
         {contacts.map((contact, index) => {

@@ -13,7 +13,7 @@ export function Contact() {
         <h2 className="mt-3 font-display text-[26px] font-medium leading-tight tracking-[-0.03em]">
           Hiring? Let’s talk.
         </h2>
-        <p className="mt-1.5 text-[16px] text-muted">Open to full-time and contract roles.</p>
+        <p className="mt-1.5 text-[16px] text-muted">Open to full-time and contract roles</p>
         <div className="mt-5">
           <ContactLinks />
         </div>

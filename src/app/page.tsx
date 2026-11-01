@@ -52,12 +52,12 @@ export default function Home() {
               height={768}
               unoptimized
               loading="eager"
-              className="img-outline h-[68px] w-[68px] shrink-0 rounded-[15px]"
+              className="img-outline h-[68px] w-[68px] shrink-0 rounded-2xl"
             />
             <div className="min-w-0">
               <h1 className="name">Shiva</h1>
-              <p className="mt-1 font-mono text-[13px] leading-[18px] tracking-[-0.03em] text-muted">{site.meta.join(' · ')}</p>
-              <p className="flex flex-wrap items-center gap-x-1 font-mono text-[13px] leading-[18px] tracking-[-0.03em] text-faint">
+              <p className="mt-1 font-mono text-[13px] leading-4 text-muted">{site.meta.join(' · ')}</p>
+              <p className="mt-1 flex flex-wrap items-center gap-x-1 font-mono text-[13px] leading-4 tabular-nums text-faint">
                 <span>{site.location}</span>
                 <span aria-hidden>·</span>
                 {/* Bangalore already says the time zone; the hover title spells it out. */}
@@ -112,19 +112,19 @@ export default function Home() {
                   alt=""
                   width={32}
                   height={32}
-                  className="img-outline mt-0.5 h-[34px] w-[34px] shrink-0 rounded-lg object-cover"
+                  className="img-outline mt-0.5 h-8 w-8 shrink-0 rounded-lg object-cover"
                 />
                 <div className="min-w-0 flex-1">
                   {/* Company and role on one line, dates pushed to the right edge. */}
                   <div className="flex flex-wrap items-baseline gap-x-2">
-                    <h3 className="font-display text-[16px] font-medium tracking-[-0.01em] text-fg">
+                    <h3 className="font-display text-[16px] font-medium text-fg">
                       <a href={job.href} target="_blank" rel="noopener" className={arrowLink}>
                         {job.company}
                         <ArrowUpRightIcon className={arrowLinkArrow} />
                       </a>
                     </h3>
                     <p className="text-[15px] text-muted">{job.role}</p>
-                    <p className="w-full font-mono text-[14px] text-faint sm:ml-auto sm:w-auto">
+                    <p className="w-full font-mono text-[14px] tabular-nums text-faint sm:ml-auto sm:w-auto">
                       {job.period}
                     </p>
                   </div>
@@ -162,7 +162,7 @@ export default function Home() {
                       <h3 className="project-title text-[17px] font-semibold text-fg underline-offset-4 group-hover:underline">
                         {project.name}
                       </h3>
-                      <span className="font-mono text-[14px] text-faint">{project.year}</span>
+                      <span className="font-mono text-[14px] tabular-nums text-faint">{project.year}</span>
                     </div>
                     <p className="mt-1 text-pretty text-[14px] leading-[1.55] text-muted">
                       {project.tagline}
@@ -240,13 +240,13 @@ export default function Home() {
                       width={28}
                       height={28}
                       unoptimized
-                      className="img-outline h-[30px] w-[30px] shrink-0 rounded-[7px]"
+                      className="img-outline h-7 w-7 shrink-0 rounded-[7px]"
                     />
                     <span className="min-w-0">
                       <span className="block truncate text-[15px] font-medium leading-5 text-fg">
                         {item.name}
                       </span>
-                      <span className="block font-mono text-[13.5px] leading-4 text-faint">
+                      <span className="block font-mono text-[13px] leading-4 tabular-nums text-faint">
                         {item.merged} merged
                       </span>
                     </span>
@@ -271,14 +271,14 @@ export default function Home() {
                       width={16}
                       height={16}
                       unoptimized
-                      className="img-outline mt-[3px] h-4 w-4 shrink-0 rounded-[4px]"
+                      className="img-outline mt-0.5 h-4 w-4 shrink-0 rounded-[4px]"
                     />
                     {/* Title and repo share a line from sm up; on phones the repo drops below. */}
                     <span className="flex min-w-0 flex-1 flex-col gap-0.5 sm:flex-row sm:items-baseline sm:gap-4">
                       <span className="min-w-0 flex-1 font-mono text-[14px] normal-case leading-[1.5] text-fg/90 underline-offset-4 group-hover:underline">
                         {pr.title}
                       </span>
-                      <span className="shrink-0 font-mono text-[13.5px] text-faint">
+                      <span className="shrink-0 font-mono text-[13px] tabular-nums text-faint">
                         {pr.repo} #{pr.number}
                       </span>
                     </span>

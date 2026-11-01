@@ -22,7 +22,7 @@ export function LocalTime({ className, zone = true }: { className?: string; zone
   }, [])
 
   return (
-    <span className={className} title="Local time in India">
+    <span className={`tabular-nums ${className ?? ''}`} title="Local time in India">
       {time ?? '--:--'}
       {zone && ' ist'}
     </span>

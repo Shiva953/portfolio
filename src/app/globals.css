@@ -91,7 +91,7 @@ body {
   animation-delay: calc(var(--i, 0) * 100ms);
 }
 
-/* Availability light. */
+/* Availability light. Still: it marks a status, it isn't live data. */
 .status-dot {
   position: relative;
   display: inline-block;
@@ -100,27 +100,6 @@ body {
   flex: none;
   border-radius: 9999px;
   background: var(--live);
-}
-
-.status-dot::after {
-  content: "";
-  position: absolute;
-  inset: 0;
-  border-radius: inherit;
-  background: var(--live);
-  animation: ping 2.4s cubic-bezier(0, 0, 0.2, 1) infinite;
-}
-
-@keyframes ping {
-  0% {
-    transform: scale(1);
-    opacity: 0.55;
-  }
-  70%,
-  100% {
-    transform: scale(2.8);
-    opacity: 0;
-  }
 }
 
 /* Theme toggle: the sun shows in dark mode, the moon in light. Icons cross-fade. */
@@ -157,9 +136,6 @@ body {
     filter: none;
   }
 
-  .status-dot::after {
-    animation: none;
-  }
 }
 
 @keyframes enter-fade {

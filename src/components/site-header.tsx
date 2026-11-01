@@ -13,13 +13,16 @@ export function SiteHeader() {
             key={item.key}
             href={item.href}
             aria-keyshortcuts={item.key}
-            className={`flex items-baseline gap-1.5 rounded-md px-1 py-1 text-muted transition-colors duration-150 hover:text-fg sm:mr-2 ${
+            className={`flex items-center gap-2 rounded-md px-1 py-1 text-muted transition-colors duration-150 hover:text-fg sm:mr-2 ${
               item.key === 'o' ? 'hidden sm:flex' : ''
             }`}
           >
-            <span aria-hidden className="hidden font-mono text-[13px] text-faint sm:inline">
-              [{item.key}]
-            </span>
+            <kbd
+              aria-hidden
+              className="hidden h-[18px] min-w-[18px] items-center justify-center rounded-[4px] border border-line px-1 font-mono text-[12px] leading-none text-faint sm:inline-flex"
+            >
+              {item.key}
+            </kbd>
             {item.label}
           </a>
         ))}

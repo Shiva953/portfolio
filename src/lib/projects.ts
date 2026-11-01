@@ -30,7 +30,7 @@ export const projects: Project[] = [
     slug: 'belzin',
     name: 'Belzin',
     year: '2025',
-    tagline: 'P2P betting inside a group chat, run by an AI agent.',
+    tagline: 'P2P betting inside a group chat, run by an AI agent',
     summary:
       'Friends create and settle wagers without leaving the chat. An AI agent turns a message into an on-chain bet, and everyone else joins through a Solana blink.',
     award: { label: '$3,000 Solana Foundation grant' },
@@ -52,7 +52,7 @@ export const projects: Project[] = [
     slug: 'bountyexchange',
     name: 'BountyExchange',
     year: '2026',
-    tagline: 'Trustless USDC bounties for Solana trading volume.',
+    tagline: 'Trustless USDC bounties for Solana trading volume',
     summary:
       'A sponsor locks USDC in escrow against a trader’s wallet. The trader is paid on-chain once the volume and hold targets are met, and the sponsor is refunded if they are not.',
     built: [
@@ -79,7 +79,7 @@ export const projects: Project[] = [
     slug: 'traderdraft',
     name: 'TraderDraft',
     year: '2025',
-    tagline: 'A fantasy-style game where top Solana traders become tradable tokens.',
+    tagline: 'A fantasy-style game where top Solana traders become tradable tokens',
     summary:
       'TraderDraft turns real on-chain trading performance into a competition. Every top trader gets an SPL token, players collect them in packs, and scores follow each trader’s real PnL.',
     built: [
@@ -106,7 +106,7 @@ export const projects: Project[] = [
     slug: 'gorclash',
     name: 'Gorclash',
     year: '2025',
-    tagline: 'A multiplayer arcade game where every hit is a transaction.',
+    tagline: 'A multiplayer arcade game where every hit is a transaction',
     summary:
       'A real-time arena game on Gorbagana, a Solana L2. Players collect tokens and dodge obstacles, and every reward and penalty settles on-chain while the round is still running.',
     built: [
@@ -133,7 +133,7 @@ export const projects: Project[] = [
     slug: 'gibbon',
     name: 'Gibbon',
     year: '2026',
-    tagline: 'Terraform-style plan and apply for Gibwork bounties.',
+    tagline: 'Terraform-style plan and apply for Gibwork bounties',
     summary:
       'Bounties as code for open source maintainers. Keep the whole backlog in one YAML file, preview every change before money moves, and never pay for the same bounty twice.',
     built: [
@@ -160,7 +160,7 @@ export const projects: Project[] = [
     slug: 'univault',
     name: 'Univault',
     year: '2024',
-    tagline: 'Run a Squads multisig from a single blink.',
+    tagline: 'Run a Squads multisig from a single blink',
     summary:
       'View a Squads vault, send transactions and vote on them without opening an app. Everything is chained inside one Solana blink.',
     award: {
@@ -181,7 +181,7 @@ export const projects: Project[] = [
     slug: 'openvest',
     name: 'OpenVest',
     year: '2024',
-    tagline: 'Token vesting for teams, with cliffs and linear unlocks.',
+    tagline: 'Token vesting for teams, with cliffs and linear unlocks',
     summary:
       'A company locks its token supply in a vault and sets a vesting schedule for each employee. Tokens unlock linearly after the cliff and employees claim them from a dashboard.',
     built: [
@@ -201,7 +201,7 @@ export const projects: Project[] = [
     slug: 'liquotic',
     name: 'Liquotic',
     year: '2024',
-    tagline: 'Buy NFTs with any SPL token, not just SOL.',
+    tagline: 'Buy NFTs with any SPL token, not just SOL',
     summary:
       'Pick any token on the Jupiter list and pay for an NFT with it. Jupiter swaps the token to SOL and the Magic Eden API completes the purchase in the same flow.',
     built: [
@@ -220,17 +220,17 @@ export const projects: Project[] = [
 export const sideProjects = [
   {
     name: 'sol-clix',
-    tagline: 'A minimal Solana CLI wallet, written in Rust.',
+    tagline: 'A minimal Solana CLI wallet, written in Rust',
     href: 'https://github.com/Shiva953/sol-clix',
   },
   {
     name: 'PicoVault',
-    tagline: 'A Redis-like key-value store in Rust.',
+    tagline: 'A Redis-like key-value store in Rust',
     href: 'https://github.com/Shiva953/PicoVault',
   },
   {
     name: 'ecdsa-rust',
-    tagline: 'ECDSA message signing and verification in Rust.',
+    tagline: 'ECDSA message signing and verification in Rust',
     href: 'https://github.com/Shiva953/ecdsa-rust',
   },
 ]
