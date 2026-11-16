@@ -77,23 +77,56 @@ export const experience = [
   },
 ]
 
-// Merged pull requests. `repos` are the tiles, each linking to Shiva's merged PRs in that repo;
-// `highlights` are the rows under them. Counts are from GitHub (merged PRs by Shiva953).
+// Pull requests. `repos` are the tiles, each linking to Shiva's PRs in that repo; `highlights` are
+// the rows under them. Counts are from GitHub (PRs by Shiva953). A repo carries `open` instead of
+// `merged` when the work is still under review, so its tile doesn't claim a merge that hasn't
+// happened.
 const mergedIn = (repo: string) =>
   `https://github.com/${repo}/pulls?q=is%3Apr+author%3AShiva953+is%3Amerged`
+const openedIn = (repo: string) =>
+  `https://github.com/${repo}/pulls?q=is%3Apr+author%3AShiva953+is%3Aopen`
+
+// Either merged PRs or PRs still in review; `label` is whichever the tile shows.
+type Repo = {
+  name: string
+  repo: string
+  avatar: string
+  merged?: number
+  open?: number
+}
 
 export const openSource = {
-  total: 31,
+  total: 32,
   allHref: 'https://github.com/pulls?q=is%3Apr+author%3AShiva953+is%3Amerged',
-  repos: [
+  repos: ([
+    { name: 'gitnexus', repo: 'abhigyanpatwari/GitNexus', avatar: '/oss/abhigyanpatwari.png', merged: 2 },
     { name: 'zcash', repo: 'zcashlabs/thus-spoke-zakura', avatar: '/oss/zcashlabs.png', merged: 2 },
     { name: 'anchor', repo: 'otter-sec/anchor', avatar: '/oss/otter-sec.png', merged: 1 },
     { name: 'discord.js', repo: 'discordjs/discord.js', avatar: '/oss/discordjs.png', merged: 1 },
     { name: 'meshery', repo: 'meshery/meshery', avatar: '/oss/meshery.png', merged: 3 },
     { name: 'lucide', repo: 'lucide-icons/lucide', avatar: '/oss/lucide-icons.png', merged: 1 },
     { name: 'superteam earn', repo: 'SuperteamDAO/earn', avatar: '/oss/SuperteamDAO.png', merged: 1 },
-  ].map((item) => ({ ...item, href: mergedIn(item.repo) })),
+    { name: 'celesto', repo: 'CelestoAI/celesto', avatar: '/oss/CelestoAI.png', open: 1 },
+  ] satisfies Repo[]).map((item) => ({
+    ...item,
+    href: item.open ? openedIn(item.repo) : mergedIn(item.repo),
+    label: item.open ? `${item.open} in review` : `${item.merged} merged`,
+  })),
   highlights: [
+    {
+      title: 'fix(ingestion): drop member edges to owners the file never emitted',
+      repo: 'gitnexus',
+      number: 3767,
+      avatar: '/oss/abhigyanpatwari.png',
+      href: 'https://github.com/abhigyanpatwari/GitNexus/pull/3767',
+    },
+    {
+      title: 'fix(lbug): guard read queries against runaway native memory',
+      repo: 'gitnexus',
+      number: 3749,
+      avatar: '/oss/abhigyanpatwari.png',
+      href: 'https://github.com/abhigyanpatwari/GitNexus/pull/3749',
+    },
     {
       title: 'feat(cli): add wallet quote command',
       repo: 'zcash',
@@ -114,6 +147,14 @@ export const openSource = {
       number: 9345,
       avatar: '/oss/discordjs.png',
       href: 'https://github.com/discordjs/discord.js/pull/9345',
+    },
+    {
+      title: 'fix(vm): coordinate computer lifecycle operations',
+      repo: 'celesto',
+      number: 669,
+      avatar: '/oss/CelestoAI.png',
+      href: 'https://github.com/CelestoAI/celesto/pull/669',
+      open: true,
     },
   ],
 }

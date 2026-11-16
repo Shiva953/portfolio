@@ -247,7 +247,7 @@ export default function Home() {
                         {item.name}
                       </span>
                       <span className="block font-mono text-[13px] leading-4 tabular-nums text-faint">
-                        {item.merged} merged
+                        {item.label}
                       </span>
                     </span>
                   </a>
@@ -280,6 +280,7 @@ export default function Home() {
                       </span>
                       <span className="shrink-0 font-mono text-[13px] tabular-nums text-faint">
                         {pr.repo} #{pr.number}
+                        {pr.open && <span className="ml-2 text-muted">open</span>}
                       </span>
                     </span>
                   </a>
