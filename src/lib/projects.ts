@@ -27,6 +27,31 @@ export type Project = {
 
 export const projects: Project[] = [
   {
+    slug: 'playscore',
+    name: 'Score',
+    year: '2026',
+    tagline: 'Own football players on Solana and earn when they perform',
+    summary:
+      'Every footballer launches on a bonding curve and becomes tradable once it fills. Holders at each matchday kickoff earn USDC when their player finishes in the top five of a position board. Runs on Solana devnet with test USDC and simulated match data.',
+    built: [
+      'Bonding curve launches that bond at $25,000 raised and open a trading pool',
+      'Market and limit orders, with a sell tax that falls from 5% to 0.5% over 90 days',
+      'Matchday snapshots and position boards that pay USDC to holders of top-five finishers',
+      'One sign-in creates a wallet funded with test USDC',
+    ],
+    stack: ['Solana', 'Next.js'],
+    links: [{ label: 'Live', href: 'https://playscore.fun' }],
+    media: {
+      kind: 'video',
+      src: '/demos/playscore.mp4',
+      preview: '/demos/previews/playscore.mp4',
+      poster: '/posters/playscore.jpg',
+      width: 1920,
+      height: 996,
+    },
+    featured: true,
+  },
+  {
     slug: 'belzin',
     name: 'Belzin',
     year: '2025',
