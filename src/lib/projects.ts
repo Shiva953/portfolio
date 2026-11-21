@@ -30,7 +30,7 @@ export const projects: Project[] = [
     slug: 'playscore',
     name: 'Score',
     year: '2026',
-    tagline: 'Own football players on Solana and earn when they perform',
+    tagline: 'trade footplayer players on solana',
     summary:
       'Every footballer launches on a bonding curve and becomes tradable once it fills. Holders at each matchday kickoff earn USDC when their player finishes in the top five of a position board. Runs on Solana devnet with test USDC and simulated match data.',
     built: [
